@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   sl_load_imgs_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/21 14:38:04 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/23 15:12:57 by ntan-wan         ###   ########.fr       */
+/*   Created: 2022/09/26 13:44:17 by ntan-wan          #+#    #+#             */
+/*   Updated: 2022/09/26 14:27:24 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-void	init_game(t_game *game)
+
+/* init and add imgs */
+void	sl_load_imgs(void *mlx_ptr, t_imgs *head, char *key, char *path)
 {
-	game->mlx_ptr = mlx_init();
-	if (!game->mlx_ptr)
-		exit(EXIT_FAILURE);
-	game->win_ptr = mlx_new_window(game->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "Gku");
-	if (!game->win_ptr)
-	{
-		free(game->win_ptr);
-		exit(EXIT_FAILURE);
-	}
-	open_imgs(game);
-	anim_setup(game);
+	sl_imgs_add(head, sl_imgs_init(mlx_ptr, key, path));
+}
+
+void	sl_load_player_imgs(void *mlx_ptr, t_player *player)
+{
+	sl_load_imgs(mlx_ptr, player->idle, "idle0", "sprite/knight/idle_0.xpm");
 }

@@ -28,11 +28,14 @@ NAMESERVER = $(shell cat /etc/resolv.conf | grep nameserver)
 IPV4 = $(filter-out nameserver, $(NAMESERVER))
 IPV4_ADDRESS_SUFFIXED = $(addsuffix :0.0, $(IPV4))
 
+
 all : $(LIBFT_LIB) $(NAME)
 
-#Run this rule first after every startup.
-#Pass the IP address to child process.
-init :
+
+#pass the IP address to child process.
+#the rule below only display the command needed to type in terminal.
+#have to manually type in the command below into the terminal.
+ip :
 	export DISPLAY=$(IPV4_ADDRESS_SUFFIXED)
 
 #Add norminette to PATH
@@ -42,7 +45,7 @@ norminette :
 $(LIBFT_LIB) :
 	make -C libft
 
-$(OBJS_DIR)%.o : $(SRCS_DIR)%.c
+$(OBJS_DIR)%.o : $(SRCS_DIR)/%.c
 	@mkdir -p $(OBJS_DIR)
 	@$(CC) -c $< -o $@ -I$(HEADER_DIR)
 	@echo "$(GREEN)Compiling : $< $(COLOR_OFF)"

@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   sl_img_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/21 17:07:36 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/23 13:32:48 by ntan-wan         ###   ########.fr       */
+/*   Created: 2022/09/25 18:33:28 by ntan-wan          #+#    #+#             */
+/*   Updated: 2022/09/26 14:27:05 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	mlx_hooks_setup(t_game *game)
+//remember to free
+t_img	*sl_img_init(void *mlx_ptr, char *path)
 {
-	mlx_key_hook(game->win_ptr, handle_input, game);
-	mlx_hook(game->win_ptr, 17, 0, end_program, game);
-	mlx_loop_hook(game->mlx_ptr, render_next_frame, game);
+	t_img	*new;
+
+	new = (t_img *)malloc(sizeof(t_img));
+	new->img = mlx_xpm_file_to_image(mlx_ptr, path, &new->x, &new->y);
+	return (new);
 }
