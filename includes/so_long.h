@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/26 17:01:25 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:23:12 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ typedef struct s_game
 char	*ft_strdup(const char *str);
 
 /* content_utils*/
-void	sl_content_free(t_game *game);
+void	sl_free_content(t_game *game);
 
 /* player_utils */
-void	sl_player_init(t_player *player);
+void	sl_player_init(void *mllx_ptr, t_player *player);
 void	sl_player_load_imgs(void *mlx_ptr, t_player *player);
 
 /* img_utils */
@@ -87,6 +87,9 @@ t_img	*sl_img_init(void *mlx_ptr, char *path);
 void	sl_imgs_add(t_imgs **head, t_imgs *new);
 t_imgs	*sl_imgs_init(void *mlx_ptr, char *key, char *path);
 void	sl_imgs_load(void *mlx_ptr, t_imgs **head, char *key, char *path);
+
+/* free_utils */
+void	sl_free_content(t_game *game);
 
 /* debug_utils */
 int		sl_debug_loop(void);

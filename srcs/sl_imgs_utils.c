@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:25:23 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/26 16:51:06 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:07:53 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	sl_imgs_add(t_imgs **head, t_imgs *new)
 		*head = new;
 }
 
-/* init and add imgs */
+/* init + add imgs */
 void	sl_imgs_load(void *mlx_ptr, t_imgs **head, char *key, char *path)
 {
 	sl_imgs_add(head, sl_imgs_init(mlx_ptr, key, path));
