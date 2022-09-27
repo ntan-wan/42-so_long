@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/27 18:32:41 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/28 00:04:39 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@
 /* 
 	x = width
 	y = height
-	bpp = bits_per_pixel
-	size_line = amount of bytes taken by one row of our image
  */
 typedef struct s_img
 {
@@ -52,6 +50,10 @@ typedef struct s_img
 	struct s_img	*next;
 }	t_img;
 
+/* 
+	bpp = bits_per_pixel
+	size_line = amount of bytes taken by one row of our image
+*/
 typedef struct s_img_addr
 {
 	char	*addr;
@@ -81,7 +83,7 @@ void	sl_player_init(void *mllx_ptr, t_player *player);
 void	sl_player_load_imgs(void *mlx, t_player *player);
 
 /* copy_utils */
-void	sl_copy_img(t_img *dst, t_img *src);
+void	sl_copy_img(t_img *dst, t_img *src, int x, int y);
 
 /* img_utils */
 void	sl_img_load(void *mlx, t_img **head, char *key, char *path);

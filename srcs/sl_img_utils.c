@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:25:23 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/27 11:18:46 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/27 18:45:55 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ static t_img	*sl_img_get_last(t_img *head)
 	return (ptr_tail);
 }
 
+/* 
+	head = the start of the link list.
+ */
 static void	sl_img_add(t_img **head, t_img *new)
 {
 	t_img	*tail;
