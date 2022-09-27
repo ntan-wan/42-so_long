@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/27 10:45:04 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/27 11:01:12 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_imgs
 
 typedef struct s_player
 {
-	t_imgs	*idle;
+	t_img	*idle;
 }	t_player;
 
 typedef struct s_game
@@ -71,20 +71,14 @@ typedef struct s_game
 /* libft */
 char	*ft_strdup(const char *str);
 
-/* content_utils*/
-void	sl_free_content(t_game *game);
-
 /* player_utils */
 void	sl_player_init(void *mllx_ptr, t_player *player);
 void	sl_player_load_imgs(void *mlx, t_player *player);
 
 /* img_utils */
-t_img	*sl_img_init(void *mlx, char *path);
-
-/* imgs_utils */
-void	sl_imgs_add(t_imgs **head, t_imgs *new);
-t_imgs	*sl_imgs_init(void *mlx, char *key, char *path);
-void	sl_imgs_load(void *mlx, t_imgs **head, char *key, char *path);
+void	sl_img_add(t_img **head, t_img *new);
+t_img	*sl_img_init(void *mlx, char *key, char *path);
+void	sl_img_load(void *mlx, t_img **head, char *key, char *path);
 
 /* free_utils */
 void	sl_free_content(t_game *game);

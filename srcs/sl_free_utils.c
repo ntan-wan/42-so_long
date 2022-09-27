@@ -6,39 +6,33 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:53:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/26 19:36:04 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/27 11:06:51 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static void	sl_free_img(void *mlx, t_img *frame)
+static void	sl_free_img(void *mlx, t_img **head)
 {
-	mlx_destroy_image(mlx, frame->img);
-	free(frame);
-}
+	t_img	*ptr_img;
+	t_img	*tmp;
 
-static void	sl_free_imgs(void *mlx, t_imgs **head)
-{
-	t_imgs	*ptr_imgs;
-	t_imgs	*tmp;
-
-	ptr_imgs = *head;
-	while (ptr_imgs)
+	ptr_img = *head;
+	while (ptr_img)
 	{
-		tmp = ptr_imgs->next;
-		sl_free_img(mlx, ptr_imgs->frame);
-		free(ptr_imgs->key);
-		free(ptr_imgs);
-		ptr_imgs = tmp;
+		tmp = ptr_img->next;
+		mlx_destroy_image(mlx, ptr_img->img);
+		free(ptr_img->key);
+		free(ptr_img);
+		ptr_img = tmp;
 	}
 	*head = NULL;
 }
 void	sl_free_content(t_game *game)
 {
 	mlx_destroy_display(game->mlx);
-	sl_free_imgs(game->mlx, &game->player->idle);
 	mlx_destroy_window(game->mlx, game->win);
+	sl_free_img(game->mlx, &game->player->idle);
 	free(game->mlx);
 	game->mlx = NULL;
 }

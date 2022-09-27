@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:45:59 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/27 10:45:39 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/27 11:08:36 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	sl_render(t_game *game)
 	
 	//sl_copy_img(buffer->img, game->player->idle->frame);
 	//mlx_put_image_to_window(game->mlx, game->win, buffer->img, 0, 0);
-	//mlx_put_image_to_window(game->mlx, game->win, game->player->idle->frame->img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->player->idle->img, 0, 0);
 }
 
 int	main(int ac, char **av)
