@@ -6,19 +6,19 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:25:23 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/26 17:07:53 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/26 19:35:36 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-t_imgs	*sl_imgs_init(void *mlx_ptr, char *key, char *path)
+t_imgs	*sl_imgs_init(void *mlx, char *key, char *path)
 {
 	t_imgs	*new;
 
 	new = (t_imgs *)malloc(sizeof(t_imgs));
 	new->key = ft_strdup(key);
-	new->frame = sl_img_init(mlx_ptr, path);
+	new->frame = sl_img_init(mlx, path);
 	new->next = NULL;
 	return (new);
 }
@@ -47,7 +47,7 @@ void	sl_imgs_add(t_imgs **head, t_imgs *new)
 }
 
 /* init + add imgs */
-void	sl_imgs_load(void *mlx_ptr, t_imgs **head, char *key, char *path)
+void	sl_imgs_load(void *mlx, t_imgs **head, char *key, char *path)
 {
-	sl_imgs_add(head, sl_imgs_init(mlx_ptr, key, path));
+	sl_imgs_add(head, sl_imgs_init(mlx, key, path));
 }

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:45:59 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/26 19:27:40 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/27 10:45:39 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,23 @@ int	sl_key_hook(int keycode, t_game *game)
 
 int	sl_render(t_game *game)
 {
-	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->player->idle->frame->img, 0, 0);
+	t_img	*buffer;
+	
+	//sl_copy_img(buffer->img, game->player->idle->frame);
+	//mlx_put_image_to_window(game->mlx, game->win, buffer->img, 0, 0);
+	//mlx_put_image_to_window(game->mlx, game->win, game->player->idle->frame->img, 0, 0);
 }
 
 int	main(int ac, char **av)
 {
 	t_game	game;
 
-	game.mlx_ptr = mlx_init();
-	game.win_ptr = mlx_new_window(game.mlx_ptr, SCREEN_W, SCREEN_H, "so_long");
-	sl_player_init(game.mlx_ptr, game.player);
-	mlx_hook(game.win_ptr, ON_DESTROY, 0, sl_close, &game);
-	mlx_key_hook(game.win_ptr, sl_key_hook, &game);
-	mlx_loop_hook(game.mlx_ptr, sl_render, &game);
-	mlx_loop(game.mlx_ptr);
+	game.mlx = mlx_init();
+	game.win = mlx_new_window(game.mlx, SCREEN_W, SCREEN_H, "so_long");
+	sl_player_init(game.mlx, game.player);
+	mlx_hook(game.win, ON_DESTROY, 0, sl_close, &game);
+	mlx_key_hook(game.win, sl_key_hook, &game);
+	mlx_loop_hook(game.mlx, sl_render, &game);
+	mlx_loop(game.mlx);
 	return (0);
 }
