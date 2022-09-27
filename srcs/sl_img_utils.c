@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sl_imgs_utils.c                                    :+:      :+:    :+:   */
+/*   sl_img_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:25:23 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/27 11:02:11 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/27 11:18:46 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-t_img	*sl_img_init(void *mlx, char *key, char *path)
+static t_img	*sl_img_init(void *mlx, char *key, char *path)
 {
 	t_img	*new;
 
@@ -35,7 +35,7 @@ static t_img	*sl_img_get_last(t_img *head)
 	return (ptr_tail);
 }
 
-void	sl_img_add(t_img **head, t_img *new)
+static void	sl_img_add(t_img **head, t_img *new)
 {
 	t_img	*tail;
 
