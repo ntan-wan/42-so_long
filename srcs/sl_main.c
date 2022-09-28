@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/28 08:59:42 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:07:52 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 int	sl_close(t_game *game)
 {
 	sl_free_content(game);
-	sl_exit("exit_success\n", EXIT_SUCCESS);
+	sl_exit("exit success\n", EXIT_SUCCESS);
 }
 
 int	sl_key_hook(int keycode, t_game *game)
 {
 	if (keycode == ESC)
 		sl_close(game);
+	//if (keycode == KEY_D)
+		//sl_move_right();
 	return (0);
 }
 
@@ -30,7 +32,7 @@ int	sl_render(t_game *game)
 	t_img	buffer;
 
 	buffer.img = mlx_new_image(game->mlx, SCREEN_W, SCREEN_H);
-	sl_copy_img(&buffer, game->player->idle, 0, 0);
+	sl_copy_img(&buffer, game->player->move_right, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->win, buffer.img, 0, 0);
 	mlx_destroy_image(game->mlx, buffer.img);
 	return (0);

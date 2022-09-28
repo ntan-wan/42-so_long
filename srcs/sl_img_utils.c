@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:25:23 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/28 08:56:08 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/28 18:01:06 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_img	*sl_img_init(void *mlx, char *key, char *path)
 }
 
 /* 
-	head = the start of the link list.
+	head = the beginning of the linked list.
  */
 void	sl_img_add(t_img **head, t_img *new)
 {

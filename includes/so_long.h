@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/28 08:57:45 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:54:22 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <mlx.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include "../libft/libft.h"
 # include <X11/X.h>
 
 # define SCREEN_W 960
@@ -41,6 +42,7 @@
 /* 
 	x = width
 	y = height
+	frame_count = to indicate the position of the img
  */
 typedef struct s_img
 {
@@ -66,9 +68,16 @@ typedef struct s_img_addr
 	int		endian;
 }	t_img_addr;
 
+typedef struct s_anim
+{
+	t_list	*frames;
+	int		frame_count;
+}	t_anim;
+
 typedef struct s_player
 {
 	t_img	*idle;
+	t_img	*move_right;
 }	t_player;
 
 typedef struct s_game
@@ -77,11 +86,6 @@ typedef struct s_game
 	void		*win;
 	t_player	*player;
 }	t_game;
-
-/* libft */
-char	*ft_strdup(const char *str);
-void	ft_putstr_fd(char *s, int fd);
-
 
 /* img_utils */
 void	sl_img_add(t_img **head, t_img *new);

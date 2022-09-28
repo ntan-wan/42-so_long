@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sl_player_utils.c                                  :+:      :+:    :+:   */
+/*   sl_anim_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 08:48:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/28 18:02:21 by ntan-wan         ###   ########.fr       */
+/*   Created: 2022/09/28 16:23:35 by ntan-wan          #+#    #+#             */
+/*   Updated: 2022/09/28 18:14:17 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	sl_player_init(void *mlx, t_player *player)
+t_anim	*sl_anim_init(void)
 {
-	player->idle = NULL;
-	player->move_right = NULL;
-	sl_load_imgs_player(mlx, player);
+	t_anim	*new;
+
+	new = (t_anim *)malloc(sizeof(t_anim));
+	new->frames = NULL;
+	new->frame_count = 0;
+	return (new);
+}
+
+void	sl_anim_frame_add(t_anim *anim, void *img)
+{
+	ft_lstadd_back(&anim->frames, ft_lstnew(img));
+	anim->frame_count = ft_lstsize(anim->frames);
+}
+
+void	sl_anim_frames_del_all(t_anim *anim)
+{
+	ft_lstclear(&anim->frames, free());
+	anim->frame_count = 0;
 }

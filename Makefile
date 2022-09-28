@@ -45,7 +45,7 @@ norminette :
 $(LIBFT_LIB) :
 	make -C libft
 
-$(OBJS_DIR)%.o : $(SRCS_DIR)/%.c
+$(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
 	@$(CC) -c $< -o $@ -I$(HEADER_DIR)
 	@echo "$(GREEN)Compiling : $< $(COLOR_OFF)"
