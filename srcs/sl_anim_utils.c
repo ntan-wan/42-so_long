@@ -6,13 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:23:35 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/28 18:14:17 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/28 21:14:20 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-t_anim	*sl_anim_init(void)
+/*t_anim	*sl_anim_init(void)
 {
 	t_anim	*new;
 
@@ -30,6 +30,6 @@ void	sl_anim_frame_add(t_anim *anim, void *img)
 
 void	sl_anim_frames_del_all(t_anim *anim)
 {
-	ft_lstclear(&anim->frames, free());
+	ft_lstclear(&anim->frames, free);
 	anim->frame_count = 0;
-}
+}*/

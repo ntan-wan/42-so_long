@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/28 17:54:22 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/28 21:29:33 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
+	t_img		*imgs;
 	t_player	*player;
 }	t_game;
 
@@ -94,6 +95,7 @@ t_img	*sl_img_init(void *mlx, char *key, char *path);
 /* load_utils */
 void	sl_load_img(void *mlx, t_img **head, char *key, char *path);
 void	sl_load_imgs_player(void *mlx, t_player *player);
+//void	sl_load_imgs_player(t_game *game);
 
 /* copy_utils */
 void	sl_copy_img(t_img *dst, t_img *src, int x, int y);

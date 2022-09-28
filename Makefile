@@ -43,7 +43,7 @@ norminette :
 	PATH="$$PATH:/home/ntan-wan/.local/bin"
 
 $(LIBFT_LIB) :
-	make -C libft
+	make bonus -C libft
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
