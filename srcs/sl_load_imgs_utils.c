@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sl_player_utils.c                                  :+:      :+:    :+:   */
+/*   sl_load_imgs_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 08:48:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/28 08:50:33 by ntan-wan         ###   ########.fr       */
+/*   Created: 2022/09/28 08:50:04 by ntan-wan          #+#    #+#             */
+/*   Updated: 2022/09/28 08:54:49 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	sl_player_init(void *mlx, t_player *player)
+/* init + add imgs */
+void	sl_load_img(void *mlx, t_img **head, char *key, char *path)
 {
-	player->idle = NULL;
-	sl_load_imgs_player(mlx, player);
+	sl_img_add(head, sl_img_init(mlx, key, path));
+}
+
+void	sl_load_imgs_player(void *mlx, t_player *player)
+{
+	sl_load_img(mlx, &player->idle, "idle0", "sprite/debug/knight/idle_0.xpm");
 }

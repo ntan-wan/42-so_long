@@ -6,21 +6,23 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/28 00:04:39 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/28 08:57:45 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# include <mlx.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <X11/X.h>
+
 # define SCREEN_W 960
 # define SCREEN_H 540
 
 # define ON_DESTROY 17
 
-# include <mlx.h>
-# include <stdlib.h>
-# include <X11/X.h>
 
 # ifdef __APPLE__
 #  define KEY_A 0
@@ -36,7 +38,6 @@
 #  define ESC 65307
 # endif
 
-
 /* 
 	x = width
 	y = height
@@ -51,6 +52,8 @@ typedef struct s_img
 }	t_img;
 
 /* 
+	addr = address of img, array of pixels
+	pixel = specific pixel
 	bpp = bits_per_pixel
 	size_line = amount of bytes taken by one row of our image
 */
@@ -77,19 +80,28 @@ typedef struct s_game
 
 /* libft */
 char	*ft_strdup(const char *str);
+void	ft_putstr_fd(char *s, int fd);
 
-/* player_utils */
-void	sl_player_init(void *mllx_ptr, t_player *player);
-void	sl_player_load_imgs(void *mlx, t_player *player);
+
+/* img_utils */
+void	sl_img_add(t_img **head, t_img *new);
+t_img	*sl_img_init(void *mlx, char *key, char *path);
+
+/* load_utils */
+void	sl_load_img(void *mlx, t_img **head, char *key, char *path);
+void	sl_load_imgs_player(void *mlx, t_player *player);
 
 /* copy_utils */
 void	sl_copy_img(t_img *dst, t_img *src, int x, int y);
 
-/* img_utils */
-void	sl_img_load(void *mlx, t_img **head, char *key, char *path);
+/* player_utils */
+void	sl_player_init(void *mllx_ptr, t_player *player);
 
 /* free_utils */
 void	sl_free_content(t_game *game);
+
+/* exit_utils */
+void    sl_exit(char *msg, int exit_status);
 
 /* debug_utils */
 int		sl_debug_loop(void);

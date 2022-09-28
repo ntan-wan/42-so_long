@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:31:09 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/28 00:06:54 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/28 08:33:36 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	sl_copy_img(t_img *dst, t_img *src, int x, int y)
 	t_img_addr	s;
 	t_img_addr	d;
 
+	if (!src || !dst)
+		return ;
 	s.addr = mlx_get_data_addr(src->img, &s.bpp, &s.size_line, &s.endian);
 	d.addr = mlx_get_data_addr(dst->img, &d.bpp, &d.size_line, &d.endian);
 	i = -1;
