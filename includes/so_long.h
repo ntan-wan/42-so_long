@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/28 23:19:12 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/29 10:04:26 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include "../libft/libft.h"
-# include <X11/X.h>
 
 # define SCREEN_W 960
 # define SCREEN_H 540
