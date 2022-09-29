@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:25:23 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/29 08:37:31 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/29 09:29:32 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,9 @@ t_img	*sl_img_search(char *key, t_img *imgs)
 	ptr_img = imgs;
 	while (ptr_img)
 	{
-		if (ft_strncmp(key, imgs->key, ft_strlen(key)) == 0)
-		{
-			ft_putstr_fd("img found\n", 1);
+		if (ft_strncmp(key, ptr_img->key, ft_strlen(key)) == 0)
 			return (ptr_img);
-		}
 		ptr_img = ptr_img->next;
 	}
-	ft_putstr_fd("img not found\n", 1);
 	return (NULL);
 }

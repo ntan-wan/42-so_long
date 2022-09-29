@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:48:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/29 08:42:01 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/29 09:29:41 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	sl_player_init(void *mlx, t_player **player, t_img **imgs)
 	new_player->idle = sl_anim_init();
 	new_player->move_right = sl_anim_init();
 	sl_player_load_imgs(mlx, imgs);
-	sl_anim_add_frame(new_player->move_right, sl_img_search("k_right5", *imgs));
-	//sl_player_load_anim(new_player, *imgs);
+	sl_player_load_anim(new_player, *imgs);
 	*player = new_player;
 }
