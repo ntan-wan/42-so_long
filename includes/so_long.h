@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/28 21:46:10 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/28 23:19:12 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 /* 
 	x = width
 	y = height
-	frame_count = to indicate the position of the img
+	key = custom name given to img, for searching img purpose.
  */
 typedef struct s_img
 {
@@ -76,8 +76,8 @@ typedef struct s_anim
 
 typedef struct s_player
 {
-	t_img	*idle;
-	t_img	*move_right;
+	t_anim	*idle;
+	t_anim	*move_right;
 }	t_player;
 
 typedef struct s_game
@@ -90,18 +90,22 @@ typedef struct s_game
 
 /* img_utils */
 void	sl_img_add(t_img **head, t_img *new);
+t_img	*sl_img_search(char *key, t_img *imgs);
 t_img	*sl_img_init(void *mlx, char *key, char *path);
 
 /* load_utils */
 void	sl_load_img(void *mlx, t_img **head, char *key, char *path);
-//void	sl_load_imgs_player(void *mlx, t_player *player);
-void	sl_load_imgs_player(t_game *game);
+void	sl_load_imgs_player(void *mlx, t_img **imgs);
 
 /* copy_utils */
 void	sl_copy_img(t_img *dst, t_img *src, int x, int y);
 
+/* anim_utils */
+t_anim	*sl_anim_init(void);
+void	sl_anim_add_frame(t_anim *anim, t_img *new);
+
 /* player_utils */
-void	sl_player_init(void *mlx_ptr, t_player **player);
+void	sl_player_init(void *mlx, t_player **player, t_img **imgs);
 
 /* free_utils */
 void	sl_free_content(t_game *game);
