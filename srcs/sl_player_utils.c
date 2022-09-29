@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:48:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/29 10:06:35 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/29 10:31:22 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,14 @@ void	sl_player_init(void *mlx, t_player **player, t_img **imgs)
 	t_player	*new_player;
 
 	new_player = (t_player *)malloc(sizeof(t_player));
-	new_player->idle = sl_anim_init();
-	new_player->move_right = sl_anim_init();
-	//sl_player_load_imgs(mlx, imgs);
-	//sl_player_load_anim(new_player, *imgs);
+	if (new_player)
+	{
+		new_player->idle = sl_anim_init();
+		new_player->move_right = sl_anim_init();
+		sl_player_load_imgs(mlx, imgs);
+		sl_player_load_anim(new_player, *imgs);
+	}
+	else
+		ft_putstr_fd("player_init: init failed\n", 1);
 	*player = new_player;
 }
