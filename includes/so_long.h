@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/29 10:04:26 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:26:03 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,13 @@ void	sl_load_img(void *mlx, t_img **head, char *key, char *path);
 void	sl_load_imgs_player(void *mlx, t_img **imgs);
 
 /* copy_utils */
+void	sl_copy_player_img(t_img *dst, t_player *player);
 void	sl_copy_img(t_img *dst, t_img *src, int x, int y);
 
 /* anim_utils */
 t_anim	*sl_anim_init(void);
 void	sl_anim_add_frame(t_anim *anim, t_img *new);
+t_img	*sl_anim_get_frame(t_anim *anim, int frame_index);
 
 /* player_utils */
 void	sl_player_init(void *mlx, t_player **player, t_img **imgs);

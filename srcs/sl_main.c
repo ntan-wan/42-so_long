@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/29 10:09:37 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/29 12:51:27 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	sl_render(t_game *game)
 	t_img	buffer;
 
 	buffer.img = mlx_new_image(game->mlx, SCREEN_W, SCREEN_H);
-	sl_copy_img(&buffer, game->imgs, 0, 0);
+	sl_copy_player_img(&buffer, game->player);
 	mlx_put_image_to_window(game->mlx, game->win, buffer.img, 0, 0);
 	mlx_destroy_image(game->mlx, buffer.img);
 	return (0);
