@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:31:09 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/29 14:30:24 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:33:13 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	sl_copy_player_img(t_img *dst, t_player *player)
 
 	if (frame_index > player->move_right->frame_count)
 		frame_timer = 0;
-	frame_index = frame_timer / 5;
+	frame_index = frame_timer / FRAME_INTERVAL;
 	sl_copy_img(dst, sl_anim_get_frame(player->move_right, frame_index), 0, 0);
 	frame_timer++;
 }
