@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 16:30:18 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/30 16:57:58 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:58:47 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,5 @@ void	sl_player_load_anim_move(t_player *player, t_img *imgs)
 	sl_anim_add_frame(player->attack_right, sl_img_search("h_attack0", imgs));
 	sl_anim_add_frame(player->attack_right, sl_img_search("h_attack1", imgs));
 	sl_anim_add_frame(player->attack_right, sl_img_search("h_attack2", imgs));
-	sl_anim_add_frame(player->attack_right, sl_img_search("h_attack3", imgs));
+	sl_anim_add_frame(player->attack_right, sl_img_search("h_attack3", imgs));*/
 }
