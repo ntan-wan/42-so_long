@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:53:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/29 10:08:38 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/30 14:02:25 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	sl_free_img(void *mlx, t_img **head)
 	ptr_img = *head;
 	while (ptr_img)
 	{
+		printf("%s\n", ptr_img->key);
 		tmp = ptr_img->next;
 		mlx_destroy_image(mlx, ptr_img->img);
 		free(ptr_img->key);

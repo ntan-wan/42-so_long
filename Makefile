@@ -63,4 +63,6 @@ fclean : clean
 	@rm -rf $(NAME)
 	@echo "$(RED)Removed : $(NAME)$(COLOR_OFF)"
 
-.PHONY : clean fclean all init norminette
+re : fclean all
+
+.PHONY : clean fclean all init norminette re

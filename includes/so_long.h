@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/30 08:56:52 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/30 13:53:00 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,24 @@
 # include <stdio.h>
 # include "../libft/libft.h"
 
-# define SCREEN_W 960
-# define SCREEN_H 540
+/* 
+	my laptop's full screen = 1920 x 1080 
+ */
+# define WINDOW_W 800
+# define WINDOW_H 800
+
+/*
+	events
+*/
 # define ON_DESTROY 17
+# define ON_KEY_PRESS 2
+# define ON_KEY_RELEASE 3
+
+/* 
+	eventmasks
+ */
+# define KEY_PRESS_MASK 1L<<0
+# define KEY_RELEASE_MASK 1L<<1
 
 /* 
 	The amont of "time" each frame last.
@@ -31,6 +46,7 @@
 /* 
 	player's movement;
  */
+# define IDLE 0
 # define LEFT 1
 # define RIGHT 2
 
@@ -88,6 +104,7 @@ typedef struct s_player
 	int		movement;
 	t_anim	*idle;
 	t_anim	*move_right;
+	t_anim	*attack_right;
 }	t_player;
 
 typedef struct s_game
@@ -109,6 +126,7 @@ void	sl_load_imgs_player(void *mlx, t_img **imgs);
 
 /* copy_utils */
 void	sl_copy_img(t_img *dst, t_img *src, int x, int y);
+void	sl_copy_player_img(t_img *buffer, t_player *player);
 
 /* anim_utils */
 t_anim	*sl_anim_init(void);
@@ -116,7 +134,7 @@ void	sl_anim_add_frame(t_anim *anim, t_img *new);
 t_img	*sl_anim_get_frame(t_anim *anim, int frame_index);
 
 /* player_utils */
-void	sl_player_get_anim(t_img *dst, t_player *player);
+t_img	*sl_player_get_anim(t_player *player);
 void	sl_player_init(void *mlx, t_player **player, t_img **imgs);
 
 /* free_utils */
