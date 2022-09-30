@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:53:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/30 14:17:44 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/30 20:36:28 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,22 @@ static void	sl_free_img(void *mlx, t_img **head)
 	*head = NULL;
 }
 
+static void	sl_free_anim(t_anim **anim)
+{
+	if (*anim)
+		ft_lstclear(&(*anim)->frames, free);
+}
+
 static void	sl_free_player(t_player **player)
 {
 	if (*player)
+	{
+		sl_free_anim(&(*player)->idle_left);
+		sl_free_anim(&(*player)->idle_right);
+		sl_free_anim(&(*player)->move_left);
+		sl_free_anim(&(*player)->move_right);
 		free(*player);
+	}
 	*player = NULL;
 }
 

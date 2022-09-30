@@ -31,13 +31,14 @@ IPV4_ADDRESS_SUFFIXED = $(addsuffix :0.0, $(IPV4))
 
 all : $(LIBFT_LIB) $(NAME)
 
-
+#for WSL only.
 #pass the IP address to child process.
-#the rule below only display the command needed to type in terminal.
-#have to manually type in the command below into the terminal.
+#the rule below display result only.
+#required to copy paste the result of this rule into the terminal manually and hit 'enter'.
 ip :
 	export DISPLAY=$(IPV4_ADDRESS_SUFFIXED)
 
+#for WSL only.
 #Add norminette to PATH
 norminette :
 	PATH="$$PATH:/home/ntan-wan/.local/bin"

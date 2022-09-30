@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/30 16:33:20 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/30 22:07:38 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,12 @@ typedef struct s_anim
 	t_list	*frames;
 	int		frame_count;
 }	t_anim;
+
+typedef struct s_item
+{
+	t_anim	*frames;
+	t_list	*coords;
+}	t_item;
 
 typedef struct s_player
 {
