@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/30 13:53:00 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:14:51 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@
 /* 
 	player's movement;
  */
-# define IDLE 0
-# define LEFT 1
-# define RIGHT 2
+# define IDLE_LEFT 0
+# define IDLE_RIGHT 1
+# define LEFT 2
+# define RIGHT 3
 
 # ifdef __APPLE__
 #  define KEY_A 0
@@ -102,9 +103,10 @@ typedef struct s_anim
 typedef struct s_player
 {
 	int		movement;
-	t_anim	*idle;
+	t_anim	*idle_right;
+	t_anim	*idle_left;
 	t_anim	*move_right;
-	t_anim	*attack_right;
+	t_anim	*move_left;
 }	t_player;
 
 typedef struct s_game

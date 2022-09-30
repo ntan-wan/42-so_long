@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/30 14:00:37 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:15:04 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,17 @@ int	sl_key_press(int keycode, t_game *game)
 		sl_close(game);
 	if (keycode == KEY_D)
 		game->player->movement = RIGHT;
+	else if (keycode == KEY_A)
+		game->player->movement = LEFT;
 	return (0);
 }
 
 int	sl_key_release(int keycode, t_game *game)
 {
 	if (keycode == KEY_D)
-		game->player->movement = IDLE;
+		game->player->movement = IDLE_RIGHT;
+	else if (keycode == KEY_A)
+		game->player->movement = IDLE_LEFT;
 	return (0);
 }
 
