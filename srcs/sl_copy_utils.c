@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:31:09 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/29 14:33:13 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/09/29 21:02:38 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,4 @@ void	sl_copy_img(t_img *dst, t_img *src, int x, int y)
 			sl_copy_pixel(d.pixel, s.pixel, 4);
 		}
 	}
-}
-
-void	sl_copy_player_img(t_img *dst, t_player *player)
-{
-	static int	frame_index;
-	static int	frame_timer;
-
-	if (frame_index > player->move_right->frame_count)
-		frame_timer = 0;
-	frame_index = frame_timer / FRAME_INTERVAL;
-	sl_copy_img(dst, sl_anim_get_frame(player->move_right, frame_index), 0, 0);
-	frame_timer++;
 }
