@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:25:23 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/29 10:00:09 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/01 18:57:56 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_img	*sl_img_init(void *mlx, char *key, char *path)
 	if (new)
 	{
 		new->key = ft_strdup(key);
-		new->img = mlx_xpm_file_to_image(mlx, path, &new->x, &new->y);
+		new->img = mlx_xpm_file_to_image(mlx, path, &new->width, &new->height);
 		new->next = NULL;
 		if (!new->img)
 			sl_exit(path, EXIT_FAILURE);
@@ -63,7 +63,7 @@ void	sl_img_add(t_img **head, t_img *new)
 
 t_img	*sl_img_search(char *key, t_img *imgs)
 {
-	t_img *ptr_img;
+	t_img	*ptr_img;
 
 	ptr_img = imgs;
 	while (ptr_img)

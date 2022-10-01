@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:31:09 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/30 11:38:41 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/01 18:56:58 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,14 @@ void	sl_copy_img(t_img *dst, t_img *src, int x, int y)
 	s.addr = mlx_get_data_addr(src->img, &s.bpp, &s.size_line, &s.endian);
 	d.addr = mlx_get_data_addr(dst->img, &d.bpp, &d.size_line, &d.endian);
 	i = -1;
-	while (++i < src->y)
+	while (++i < src->height)
 	{
 		j = -1;
-		while (++j < src->x)
+		while (++j < src->width)
 		{
 			s.pixel = s.addr + ((i * s.size_line) + (j * (s.bpp / 8)));
 			d.pixel = d.addr + ((i + y) * d.size_line + (j + x) * (d.bpp / 8));
 			sl_copy_pixel(d.pixel, s.pixel, 4);
 		}
 	}
-}
-
-void	sl_copy_player_img(t_img *buffer, t_player *player)
-{
-	sl_copy_img(buffer, sl_player_get_anim(player), WINDOW_W / 2, WINDOW_H / 2);
 }

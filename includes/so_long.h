@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/30 22:07:38 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/01 21:24:27 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include "../libft/libft.h"
+
+# define SPRITE_SIZE 64
 
 /* 
 	my laptop's full screen = 1920 x 1080 
@@ -65,15 +67,10 @@
 #  define ESC 65307
 # endif
 
-/* 
-	x = width
-	y = height
-	key = custom name given to img, for searching img purpose.
- */
 typedef struct s_img
 {
-	int				x;
-	int				y;
+	int				width;
+	int				height;
 	char			*key;
 	void			*img;
 	struct s_img	*next;
@@ -100,14 +97,17 @@ typedef struct s_anim
 	int		frame_count;
 }	t_anim;
 
-typedef struct s_item
+typedef struct s_chest
 {
-	t_anim	*frames;
+	t_anim	*close;
+	t_anim	*open;
 	t_list	*coords;
-}	t_item;
+}	t_chest;
 
 typedef struct s_player
 {
+	int		x;
+	int		y;
 	int		action;
 	t_anim	*idle_right;
 	t_anim	*idle_left;
@@ -121,6 +121,7 @@ typedef struct s_game
 	void		*win;
 	t_img		*imgs;
 	t_player	*player;
+	t_chest		*chest;
 }	t_game;
 
 /* img_utils */
@@ -129,23 +130,34 @@ t_img	*sl_img_search(char *key, t_img *imgs);
 t_img	*sl_img_init(void *mlx, char *key, char *path);
 
 /* load_utils */
+void	sl_load_imgs(t_game *game);
 void	sl_load_img(void *mlx, t_img **head, char *key, char *path);
-void	sl_load_imgs_player(void *mlx, t_img **imgs);
 
 /* copy_utils */
 void	sl_copy_img(t_img *dst, t_img *src, int x, int y);
-void	sl_copy_player_img(t_img *buffer, t_player *player);
 
 /* anim_utils */
 t_anim	*sl_anim_init(void);
 void	sl_anim_add_frame(t_anim *anim, t_img *new);
 t_img	*sl_anim_get_frame(t_anim *anim, int frame_index);
 
+/* item_utils */
+t_img	*sl_item_chest_get_anim(t_chest *chest);
+void	sl_item_chest_copy_img(t_img *buffer, t_chest *chest);
+void	sl_item_chest_init(t_chest **chest);
+
+/* item_load_utils */
+void	sl_item_load_imgs_chest_close(void *mlx, t_img **imgs);
+void	sl_item_load_imgs_chest_open(void *mlx, t_img **imgs);
+void	sl_item_load_anim_chest_close(t_chest *chest, t_img *imgs);
+void	sl_item_load_anim_chest_open(t_chest *chest, t_img *imgs);
+
 /* player_utils */
+void	sl_player_init(t_player **player);
 t_img	*sl_player_get_anim(t_player *player);
-void	sl_player_init(void *mlx, t_player **player, t_img **imgs);
 
 /* player_load_utils */
+void	sl_player_copy_img(t_img *buffer, t_player *player);
 void	sl_player_load_imgs_idle(void *mlx, t_img **imgs);
 void	sl_player_load_imgs_move(void *mlx, t_img **imgs);
 void	sl_player_load_anim_idle(t_player *player, t_img *imgs);;

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/30 19:01:28 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/01 21:23:51 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	sl_render(t_game *game)
 	t_img	buffer;
 
 	buffer.img = mlx_new_image(game->mlx, WINDOW_W, WINDOW_H);
-	sl_copy_player_img(&buffer, game->player);
+	sl_player_copy_img(&buffer, game->player);
+	sl_item_chest_copy_img(&buffer, game->chest);
 	mlx_put_image_to_window(game->mlx, game->win, buffer.img, 0, 0);
 	mlx_destroy_image(game->mlx, buffer.img);
 	return (0);
@@ -55,7 +56,9 @@ int	main(int ac, char **av)
 
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, WINDOW_W, WINDOW_H, "so_long");
-	sl_player_init(game.mlx, &game.player, &game.imgs);
+	sl_player_init(&game.player);
+	sl_item_chest_init(&game.chest);
+	sl_load_imgs(&game);
 	mlx_hook(game.win, ON_DESTROY, 0, sl_close, &game);
 	mlx_hook(game.win, ON_KEY_PRESS, KEY_PRESS_MASK, sl_key_press, &game);
 	mlx_hook(game.win, ON_KEY_RELEASE, KEY_RELEASE_MASK, sl_key_release, &game);

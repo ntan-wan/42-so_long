@@ -6,13 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:53:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/30 20:36:28 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/01 16:01:15 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static void	sl_free_img(void *mlx, t_img **head)
+static void	sl_free_imgs(void *mlx, t_img **head)
 {
 	t_img	*ptr_img;
 	t_img	*tmp;
@@ -31,8 +31,9 @@ static void	sl_free_img(void *mlx, t_img **head)
 
 static void	sl_free_anim(t_anim **anim)
 {
-	if (*anim)
-		ft_lstclear(&(*anim)->frames, free);
+	ft_lstclear(&(*anim)->frames, free);
+	free(*anim);
+	*anim = NULL;
 }
 
 static void	sl_free_player(t_player **player)
@@ -48,14 +49,27 @@ static void	sl_free_player(t_player **player)
 	*player = NULL;
 }
 
+static void sl_free_item_chest(t_chest **chest)
+{
+	if (*chest)
+	{
+		sl_free_anim(&(*chest)->open);
+		sl_free_anim(&(*chest)->close);
+		ft_lstclear(&(*chest)->coords, free);
+		free(*chest);
+	}
+	*chest = NULL;
+}
+
 void	sl_free_content(t_game *game)
 {
 	if (game)
 	{
 		mlx_destroy_display(game->mlx);
 		mlx_destroy_window(game->mlx, game->win);
+		sl_free_imgs(game->mlx, &game->imgs);
 		sl_free_player(&game->player);
-		sl_free_img(game->mlx, &game->imgs);
+		sl_free_item_chest(&game->chest);
 		free(game->mlx);
 		game->mlx = NULL;
 	}

@@ -1,24 +1,23 @@
 /* XPM */
 static char *result[] = {
 /* columns rows colors chars-per-pixel */
-"64 64 8 1 ",
+"64 64 7 1 ",
 "  c black",
 ". c #342423",
 "X c #4D3533",
 "o c #704844",
 "O c #898989",
 "+ c #A4A4A4",
-"@ c white",
-"# c None",
+"@ c None",
 /* pixels */
-"########                                                ########",
-"########                                                ########",
-"########                                                #######@",
-"########                                                ########",
-"####    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO    ####",
-"####    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO    ####",
-"####    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO    ####",
-"####    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO    ####",
+"@@@@@@@@                                                @@@@@@@@",
+"@@@@@@@@                                                @@@@@@@@",
+"@@@@@@@@                                                @@@@@@@@",
+"@@@@@@@@                                                @@@@@@@@",
+"@@@@    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO    @@@@",
+"@@@@    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO    @@@@",
+"@@@@    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO    @@@@",
+"@@@@    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO    @@@@",
 "    OOOOOOOO........XXXXXXXXXXXXXXXXXXXXXXXX........OOOOOOOO    ",
 "    OOOOOOOO........XXXXXXXXXXXXXXXXXXXXXXXX........OOOOOOOO    ",
 "    OOOOOOOO........XXXXXXXXXXXXXXXXXXXXXXXX........OOOOOOOO    ",
@@ -71,8 +70,8 @@ static char *result[] = {
 "    OOOOOOOOXXXXXXXXooooooooooooooooooooooooXXXXXXXXOOOOOOOO    ",
 "    OOOOOOOOXXXXXXXXooooooooooooooooooooooooXXXXXXXXOOOOOOOO    ",
 "    OOOOOOOOXXXXXXXXooooooooooooooooooooooooXXXXXXXXOOOOOOOO    ",
-"####                                                        ####",
-"####                                                        ##@#",
-"####                                                        ####",
-"####                                                        ####"
+"@@@@                                                        @@@@",
+"@@@@                                                        @@@@",
+"@@@@                                                        @@@@",
+"@@@@                                                        @@@@"
 };
