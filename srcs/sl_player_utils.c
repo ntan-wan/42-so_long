@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:48:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/01 21:24:10 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:41:36 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ void	sl_player_init(t_player **player)
 		new_player->x = 0;
 		new_player->y = 0;
 		new_player->action = 0;
+		new_player->dir = 0;
 		new_player->idle_left = sl_anim_init();
 		new_player->idle_right = sl_anim_init();
 		new_player->move_left = sl_anim_init();
 		new_player->move_right = sl_anim_init();
 	}
 	else
-		ft_putstr_fd("player_init: init failed\n", 1);
+		ft_printf("player_init: init failed\n");
 	*player = new_player;
 }
 
@@ -47,10 +48,43 @@ t_img	*sl_player_get_anim(t_player *player)
 		anim = player->move_right;
 	else if (player->action == MOVE_LEFT)
 		anim = player->move_left;
+	else if (player->action == MOVE_DOWN && player->dir == IDLE_RIGHT)
+		anim = player->move_right;
+	else if (player->action == MOVE_DOWN && player->dir == IDLE_LEFT)
+		anim = player->move_left;
+	else if (player->action == MOVE_UP && player->dir == IDLE_RIGHT)
+		anim = player->move_right;
+	else if (player->action == MOVE_UP && player->dir == IDLE_LEFT)
+		anim = player->move_left;
 	return (sl_anim_get_frame(anim, frame % anim->frame_count));
 }
 
-void	sl_player_copy_img(t_img *buffer, t_player *player)
+void	sl_player_set_coord(t_player *player, int x, int y)
 {
-	sl_copy_img(buffer, sl_player_get_anim(player), WINDOW_W / 2, WINDOW_H / 2);
+	if (player)
+	{
+		player->x = x;
+		player->y = y;
+	}
+	else
+		ft_printf("player_set_coord: player not found\n");
+}
+
+
+void	sl_player_set_direction(t_player *player)
+{
+	if (player)
+	{
+		if (player->action == IDLE_LEFT)
+			player->dir = IDLE_LEFT;
+		else if (player->action == IDLE_RIGHT)
+			player->dir = IDLE_RIGHT;
+	}
+	else
+		ft_printf("set_move_direction: player not found\n");
+}
+
+void	sl_player_copy_img(t_img *buffer, t_player *player, int x, int y)
+{
+	sl_copy_img(buffer, sl_player_get_anim(player), x, y);
 }

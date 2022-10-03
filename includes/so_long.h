@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/01 21:24:27 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/03 17:21:57 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include "../libft/libft.h"
 
+# define STEP_SIZE 16
 # define SPRITE_SIZE 64
 
 /* 
@@ -52,6 +53,8 @@
 # define IDLE_LEFT 1
 # define MOVE_LEFT 2
 # define MOVE_RIGHT 3
+# define MOVE_UP 4
+# define MOVE_DOWN 5
 
 # ifdef __APPLE__
 #  define KEY_A 0
@@ -99,9 +102,9 @@ typedef struct s_anim
 
 typedef struct s_chest
 {
+	t_list	*coords;
 	t_anim	*close;
 	t_anim	*open;
-	t_list	*coords;
 }	t_chest;
 
 typedef struct s_player
@@ -109,6 +112,7 @@ typedef struct s_player
 	int		x;
 	int		y;
 	int		action;
+	int		dir;
 	t_anim	*idle_right;
 	t_anim	*idle_left;
 	t_anim	*move_right;
@@ -142,9 +146,11 @@ void	sl_anim_add_frame(t_anim *anim, t_img *new);
 t_img	*sl_anim_get_frame(t_anim *anim, int frame_index);
 
 /* item_utils */
-t_img	*sl_item_chest_get_anim(t_chest *chest);
-void	sl_item_chest_copy_img(t_img *buffer, t_chest *chest);
 void	sl_item_chest_init(t_chest **chest);
+t_img	*sl_item_chest_get_anim(t_chest *chest);
+void	sl_item_chest_set_coord(t_chest *chest, int x, int y);
+void	sl_item_chest_copy_img(t_img *buffer, t_chest *chest, int x, int y);
+void	sl_item_chest_copy_all(t_img *buffer, t_chest *chest, int p_x, int p_y);
 
 /* item_load_utils */
 void	sl_item_load_imgs_chest_close(void *mlx, t_img **imgs);
@@ -152,14 +158,19 @@ void	sl_item_load_imgs_chest_open(void *mlx, t_img **imgs);
 void	sl_item_load_anim_chest_close(t_chest *chest, t_img *imgs);
 void	sl_item_load_anim_chest_open(t_chest *chest, t_img *imgs);
 
+/* move_utils */
+void    sl_move_player_step(t_player *player);
+
 /* player_utils */
 void	sl_player_init(t_player **player);
 t_img	*sl_player_get_anim(t_player *player);
+void	sl_player_set_direction(t_player *player);
+void	sl_player_copy_img(t_img *buffer, t_player *player, int x, int y);
 
 /* player_load_utils */
-void	sl_player_copy_img(t_img *buffer, t_player *player);
 void	sl_player_load_imgs_idle(void *mlx, t_img **imgs);
 void	sl_player_load_imgs_move(void *mlx, t_img **imgs);
+void	sl_player_set_coord(t_player *player, int x, int y);
 void	sl_player_load_anim_idle(t_player *player, t_img *imgs);;
 void	sl_player_load_anim_move(t_player *player, t_img *imgs);
 

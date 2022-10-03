@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:25:23 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/01 18:57:56 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/02 11:34:22 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_img	*sl_img_init(void *mlx, char *key, char *path)
 			sl_exit(path, EXIT_FAILURE);
 	}
 	else
-		ft_putstr_fd("img_init: init failed\n", 1);
+		ft_printf("img_init: init failed\n");
 	return (new);
 }
 
@@ -58,7 +58,7 @@ void	sl_img_add(t_img **head, t_img *new)
 			*head = new;
 	}
 	else
-		ft_putstr_fd("img_add: new img not found\n", 1);
+		ft_printf("img_add: new img not found\n");
 }
 
 t_img	*sl_img_search(char *key, t_img *imgs)
@@ -72,6 +72,6 @@ t_img	*sl_img_search(char *key, t_img *imgs)
 			return (ptr_img);
 		ptr_img = ptr_img->next;
 	}
-	ft_putstr_fd("img_search: img not found\n", 1);
+	ft_printf("img_search: img not found\n");
 	return (NULL);
 }

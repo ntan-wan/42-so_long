@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:31:09 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/01 18:56:58 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/02 11:34:35 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	sl_copy_pixel(char *dst, char *src, int bytes_per_pixel)
 			*dst++ = *src++;
 	}
 	else
-		ft_putstr_fd("copy_pixel: src or dst not found\n", 1);
+		ft_printf("copy_pixel: src or dst not found\n");
 }
 
 /*
@@ -42,7 +42,7 @@ void	sl_copy_img(t_img *dst, t_img *src, int x, int y)
 
 	if (!src || !dst)
 	{
-		ft_putstr_fd("copy_img: src or dst not found\n", 1);
+		ft_printf("copy_img: src or dst not found\n");
 		return ;
 	}
 	s.addr = mlx_get_data_addr(src->img, &s.bpp, &s.size_line, &s.endian);

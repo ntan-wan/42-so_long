@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:23:35 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/29 14:25:37 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/02 11:34:45 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_anim	*sl_anim_init(void)
 		new->frame_count = 0;
 	}
 	else
-		ft_putstr_fd("anim_init: init failed\n", 1);
+		ft_printf("anim_init: init failed\n");
 	return (new);
 }
 
@@ -53,7 +53,7 @@ void	sl_anim_add_frame(t_anim *anim, t_img *new)
 		anim->frame_count = ft_lstsize(anim->frames);
 	}
 	else
-		ft_putstr_fd("add_frame: anim or new frame not found\n", 1);
+		ft_printf("add_frame: anim or new frame not found\n");
 }
 
 void	sl_anim_del_all_frames(t_anim *anim)
@@ -64,5 +64,5 @@ void	sl_anim_del_all_frames(t_anim *anim)
 		anim->frame_count = 0;
 	}
 	else
-		ft_putstr_fd("del_all_frames: frames not found\n", 1);
+		ft_printf("del_all_frames: frames not found\n");
 }
