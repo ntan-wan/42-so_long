@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/03 17:31:49 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/03 21:23:32 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,17 @@ int	sl_render(t_game *game)
 	t_img	buffer;
 
 	buffer.img = mlx_new_image(game->mlx, WINDOW_W, WINDOW_H);
+	buffer.width = WINDOW_W;
+	buffer.height = WINDOW_H;
 	//
-	printf("x -> %d\n", game->player->x);
-	printf("y -> %d\n", game->player->y);
-	printf("action -> %d\n", game->player->action);
+	//printf("x -> %d\n", game->player->x);
+	//printf("y -> %d\n", game->player->y);
+	//printf("action -> %d\n", game->player->action);
 	sl_player_set_direction(game->player);
 	sl_move_player_step(game->player);
 	//sl_player_copy_img(&buffer, game->player, game->player->x, game->player->y);
 	sl_player_copy_img(&buffer, game->player, WINDOW_W / 2 - SPRITE_SIZE, WINDOW_H / 2 - SPRITE_SIZE);
+	//sl_player_copy_img(&buffer, game->player, 800, 800);
 	sl_item_chest_copy_all(&buffer, game->chest, game->player->x, game->player->y);
 	//
 	mlx_put_image_to_window(game->mlx, game->win, buffer.img, 0, 0);
@@ -82,7 +85,7 @@ int	main(int ac, char **av)
 	//sl_player_set_coord(game.player, 0, 0);
 	sl_player_set_coord(game.player, WINDOW_W / 2 - SPRITE_SIZE, WINDOW_H / 2 - SPRITE_SIZE);
 	sl_item_chest_set_coord(game.chest, WINDOW_W - SPRITE_SIZE, WINDOW_H / 2 - SPRITE_SIZE);
-	sl_item_chest_set_coord(game.chest, WINDOW_W /2 - SPRITE_SIZE, - 0);
+	sl_item_chest_set_coord(game.chest, WINDOW_W / 2 - SPRITE_SIZE, 0);
 	//
 	sl_load_imgs(&game);
 	mlx_hook(game.win, ON_DESTROY, 0, sl_close, &game);

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 21:31:20 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/03 17:29:38 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/03 21:23:01 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	sl_item_chest_copy_img(t_img *buffer, t_chest *chest, int x, int y)
 /* 
 	p_x = player's x coordinate.
 	p_y = player's y coordinate.
+	Copy the chest's image according to the player's coordinate.
  */
 void	sl_item_chest_copy_all(t_img *buffer, t_chest *chest, int p_x, int p_y)
 {
@@ -71,6 +72,9 @@ void	sl_item_chest_copy_all(t_img *buffer, t_chest *chest, int p_x, int p_y)
 		sl_item_chest_copy_img(buffer, chest,
 			((int *)coords->content)[0] + (WINDOW_W / 2 - SPRITE_SIZE - p_x),
 			((int *)coords->content)[1] + (WINDOW_W / 2 - SPRITE_SIZE - p_y));
+		//
+		//printf("x -> %d\n", ((int *)coords->content)[0] + (WINDOW_W / 2 - SPRITE_SIZE - p_x));
+		//printf("y -> %d\n", ((int *)coords->content)[1] + (WINDOW_W / 2 - SPRITE_SIZE - p_y));
 		coords = coords->next;
 	}
 }

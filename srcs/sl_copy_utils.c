@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:31:09 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/02 11:34:35 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/03 21:19:50 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,28 @@ static void	sl_copy_pixel(char *dst, char *src, int bytes_per_pixel)
 		ft_printf("copy_pixel: src or dst not found\n");
 }
 
+
+/* 
+	Eg: coordinate = (0, -1), img = 4 x 4 resolution
+	Should copy 4 columns and 3 rows only
+	as the first row is out of boundary.
+	Hence, start to copy from 0th(index) column
+	and 1st(index) row. 
+	Else, copy the whole img.
+ */
+static int	sl_copy_starting_pixel(int num)
+{
+	if (num < 0)
+		num = -num;
+	else
+		num = -1;
+	return (num);
+}
+
 /*
 	s = sources
 	d = destination
 	x and y = dst's coordinate
-	src->x = src img width
-	src->y = src img height
  */
 void	sl_copy_img(t_img *dst, t_img *src, int x, int y)
 {
@@ -47,11 +63,11 @@ void	sl_copy_img(t_img *dst, t_img *src, int x, int y)
 	}
 	s.addr = mlx_get_data_addr(src->img, &s.bpp, &s.size_line, &s.endian);
 	d.addr = mlx_get_data_addr(dst->img, &d.bpp, &d.size_line, &d.endian);
-	i = -1;
-	while (++i < src->height)
+	i = sl_copy_starting_pixel(y);
+	while (++i < src->height && y + i < dst->height)
 	{
-		j = -1;
-		while (++j < src->width)
+		j = sl_copy_starting_pixel(x);
+		while (++j < src->width && x + j < dst->width)
 		{
 			s.pixel = s.addr + ((i * s.size_line) + (j * (s.bpp / 8)));
 			d.pixel = d.addr + ((i + y) * d.size_line + (j + x) * (d.bpp / 8));
