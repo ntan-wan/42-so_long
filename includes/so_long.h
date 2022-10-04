@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 11:01:26 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:25:10 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ void	sl_player_load_anim_move(t_player *player, t_img *imgs);
 void	sl_free_content(t_game *game);
 
 /* exit_utils */
-void	sl_exit(char *msg, int exit_status);
+int		sl_exit(t_game *game, char *msg, int exit_status);
 
 /* debug_utils */
 int		sl_debug_loop(void);

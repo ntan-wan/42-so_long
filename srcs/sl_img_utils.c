@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:25:23 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/02 11:34:22 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:23:42 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ t_img	*sl_img_init(void *mlx, char *key, char *path)
 	new = (t_img *)malloc(sizeof(t_img));
 	if (new)
 	{
-		new->key = ft_strdup(key);
+		new->key = key;
 		new->img = mlx_xpm_file_to_image(mlx, path, &new->width, &new->height);
 		new->next = NULL;
 		if (!new->img)
-			sl_exit(path, EXIT_FAILURE);
+			ft_printf("img_init: path not found\n");
 	}
 	else
 		ft_printf("img_init: init failed\n");

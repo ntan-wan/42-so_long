@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 10:08:26 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 10:50:18 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:17:42 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	sl_game_init(t_game *game)
 		game->player = NULL;
 	}
 	else
-		sl_exit("game_init\n", EXIT_FAILURE);
+		sl_exit(game, "game_init\n", EXIT_FAILURE);
 }
 
 void	sl_game_buffer_init(void *mlx, t_img *buffer)

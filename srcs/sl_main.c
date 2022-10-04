@@ -6,22 +6,16 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 11:03:07 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:26:30 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	sl_close(t_game *game)
-{
-	sl_free_content(game);
-	sl_exit("exit success\n", EXIT_SUCCESS);
-}
-
 int	sl_key_press(int keycode, t_game *game)
 {
 	if (keycode == ESC)
-		sl_close(game);
+		sl_exit(game, "exit success\n", EXIT_SUCCESS);
 	else if (keycode == KEY_E)
 		sl_interact(game);
 	else if (keycode == KEY_D)
@@ -81,7 +75,7 @@ int	main(int ac, char **av)
 	//
 	sl_game_load_imgs(&game);
 	sl_game_load_anims(&game);
-	mlx_hook(game.win, ON_DESTROY, 0, sl_close, &game);
+	mlx_hook(game.win, ON_DESTROY, 0, sl_exit, &game);
 	mlx_hook(game.win, ON_KEY_PRESS, 1L << 0, sl_key_press, &game);
 	mlx_hook(game.win, ON_KEY_RELEASE, 1L << 1, sl_key_release, &game);
 	mlx_loop_hook(game.mlx, sl_render, &game);
