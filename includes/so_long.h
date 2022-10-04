@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 13:54:36 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:52:42 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ void	sl_item_load_anim_chest_close(t_chest *chest, t_img *imgs);
 void	sl_item_load_anim_chest_open(t_chest *chest, t_img *imgs);
 
 /* move_utils */
-void	sl_move_player_step(t_game *game, t_player *player);
+void	sl_move_player_step(t_player *player);
 
 /* interact */
 void	sl_interact(t_game *game);
@@ -191,5 +191,9 @@ int		sl_debug_loop(void);
 int		sl_debug_keycode_keypress(int keycode);
 
 
-//void	sl_move(t_game *game);
+int		sl_check_in_range(int p_x, int p_y, int x, int y);
+int 	sl_math_is_in_range(int center_point, int coord);
+int 	sl_math_get_center(int point);
+int		sl_move_is_blocked(t_game *game);
+void	sl_move(t_game *game);
 #endif

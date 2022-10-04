@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 13:27:21 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 16:04:18 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:51:39 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	get_center(int coord)
 
 int	sl_move_is_blocked(t_game *game)
 {
-	int		chest_x;
-	int		chest_y;
 	int		center_x;
 	int		center_y;
 	t_chest	*ptr_chest;
@@ -30,25 +28,22 @@ int	sl_move_is_blocked(t_game *game)
 	//printf("p.y -> %d\n", game->player->y);
 	while (ptr_chest)
 	{
-		chest_x = ptr_chest->x;
-		chest_y = ptr_chest->y;
-		center_x = get_center(game->player->x);
-		center_y = get_center(game->player->y);
-		//printf("c.y -> %d\n", center_y);
-		if (game->player->action == MOVE_RIGHT && game->player->x + SPRITE_SIZE == chest_x && center_y <= chest_y + SPRITE_SIZE && center_y >= chest_y)
+		center_x = sl_math_get_center(game->player->x);
+		center_y = sl_math_get_center(game->player->y);
+		if (game->player->action == MOVE_RIGHT && game->player->x + SPRITE_SIZE == ptr_chest->x && sl_math_is_in_range(sl_math_get_center(game->player->y), ptr_chest->y))
 			return (1);
 		ptr_chest = ptr_chest->next;
 	}
 	return (0);
 }
 
-void	sl_move_player_step(t_game *game, t_player *p)
+void	sl_move_player_step(t_player *p)
 {
 	if (p)
 	{
 		if (p->action == MOVE_LEFT)
 			p->x -= STEP_SIZE;
-		else if (p->action == MOVE_RIGHT && !sl_move_is_blocked(game))
+		else if (p->action == MOVE_RIGHT)
 			p->x += STEP_SIZE;
 		else if (p->action == MOVE_UP)
 			p->y -= STEP_SIZE;
@@ -59,8 +54,8 @@ void	sl_move_player_step(t_game *game, t_player *p)
 		ft_printf("move_player_step: player not found\n");
 }
 
-/*void	sl_move(t_game *game)
+void	sl_move(t_game *game)
 {
 	if (!sl_move_is_blocked(game))
 		sl_move_player_step(game->player);
-}*/
+}

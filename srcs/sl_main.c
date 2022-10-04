@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 15:38:42 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:52:16 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int	sl_render(t_game *game)
 	//printf("outside -> %d\n", game->player->action);
 	sl_game_buffer_init(game->mlx, &buffer);
 	sl_player_set_dir(game->player);
-	sl_move_player_step(game, game->player);
-	//sl_move(game);
+//	sl_move_player_step(game->player);
+	sl_move(game);
 	sl_item_chest_copy_all(&buffer, game->chest,
 		game->player->x, game->player->y);
 	sl_player_copy_img(&buffer, game->player,
@@ -75,8 +75,8 @@ int	main(int ac, char **av)
 	sl_player_init(&game.player);
 	//
 	sl_player_set_coord(game.player, WINDOW_W / 2 - SPRITE_SIZE, WINDOW_H / 2 - SPRITE_SIZE);
-	sl_item_chest_add(&game.chest, sl_item_chest_new(64, 2 * 64));
-	//sl_item_chest_add(&game.chest, sl_item_chest_new(64, 4 * 64));
+	sl_item_chest_add(&game.chest, sl_item_chest_new(2 * 64, WINDOW_H / 2 - SPRITE_SIZE));
+	sl_item_chest_add(&game.chest, sl_item_chest_new(5 * 64, WINDOW_H / 2 - SPRITE_SIZE));
 	//
 	sl_game_load_imgs(&game);
 	sl_game_load_anims(&game);
