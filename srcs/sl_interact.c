@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 22:40:06 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 10:31:37 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 14:38:32 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	sl_interact_chest(t_player *p, t_chest *chest)
 	{
 		chest_x = ptr_chest->x;
 		chest_y = ptr_chest->y;
-		if (p->x + SPRITE_SIZE == chest_x && p->y == chest_y)
+		if (p->x + SPRITE_SIZE == chest_x)
 		{
 			ptr_chest->interacted = 1;
 			return ;

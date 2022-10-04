@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 11:25:10 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 13:54:36 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include "../libft/libft.h"
 
-# define STEP_SIZE 16
+# define STEP_SIZE 4
 # define SPRITE_SIZE 64
 
 /* 
@@ -162,7 +162,7 @@ void	sl_item_load_anim_chest_close(t_chest *chest, t_img *imgs);
 void	sl_item_load_anim_chest_open(t_chest *chest, t_img *imgs);
 
 /* move_utils */
-void	sl_move_player_step(t_player *player);
+void	sl_move_player_step(t_game *game, t_player *player);
 
 /* interact */
 void	sl_interact(t_game *game);
@@ -190,4 +190,6 @@ int		sl_exit(t_game *game, char *msg, int exit_status);
 int		sl_debug_loop(void);
 int		sl_debug_keycode_keypress(int keycode);
 
+
+//void	sl_move(t_game *game);
 #endif

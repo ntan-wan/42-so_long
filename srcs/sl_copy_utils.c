@@ -6,11 +6,16 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:31:09 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 10:28:44 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 16:17:28 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+static int	is_pixel_black(char *pixel)
+{
+	return (*pixel == 0);
+}
 
 static void	sl_copy_pixel(char *dst, char *src, int bytes_per_pixel)
 {
@@ -69,7 +74,8 @@ void	sl_copy_img(t_img *dst, t_img *src, int x, int y)
 		{
 			s.pixel = s.addr + ((i * s.size_line) + (j * (s.bpp / 8)));
 			d.pixel = d.addr + ((i + y) * d.size_line + (j + x) * (d.bpp / 8));
-			sl_copy_pixel(d.pixel, s.pixel, 4);
+			if (!is_pixel_black(s.pixel))
+				sl_copy_pixel(d.pixel, s.pixel, 4);
 		}
 	}
 }
