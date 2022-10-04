@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/03 23:27:38 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 09:40:48 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	sl_key_press(int keycode, t_game *game)
 {
 	if (keycode == KEY_E)
 		sl_interact(game);
-	else if (keycode == ESC)
+	if (keycode == ESC)
 		sl_close(game);
 	else if (keycode == KEY_D)
 		game->player->action = MOVE_RIGHT;
@@ -79,14 +79,19 @@ int	main(int ac, char **av)
 
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, WINDOW_W, WINDOW_H, "so_long");
+	game.chest = NULL;
 	sl_player_init(&game.player);
-	sl_item_chest_init(&game.chest);
+	//sl_item_chest_init(&game.chest);
 	//
 	sl_player_set_coord(game.player, WINDOW_W / 2 - SPRITE_SIZE, WINDOW_H / 2 - SPRITE_SIZE);
-	sl_item_chest_set_coord(game.chest, WINDOW_W - SPRITE_SIZE, WINDOW_H / 2 - SPRITE_SIZE);
-	sl_item_chest_set_coord(game.chest, WINDOW_W / 2 - SPRITE_SIZE, 0);
+	sl_item_chest_add(&game.chest, sl_item_chest_new(64, 336));
+	sl_item_chest_add(&game.chest, sl_item_chest_new(5 * 64, 336));
+	//printf("%d\n", game.chest->x);
+	//sl_item_chest_set_coord(game.chest, WINDOW_W - SPRITE_SIZE, WINDOW_H / 2 - SPRITE_SIZE);
+	//sl_item_chest_set_coord(game.chest, WINDOW_W / 2 - SPRITE_SIZE, 0);
 	//
 	sl_load_imgs(&game);
+	sl_load_anims(&game);
 	mlx_hook(game.win, ON_DESTROY, 0, sl_close, &game);
 	mlx_hook(game.win, ON_KEY_PRESS, KEY_PRESS_MASK, sl_key_press, &game);
 	mlx_hook(game.win, ON_KEY_RELEASE, KEY_RELEASE_MASK, sl_key_release, &game);

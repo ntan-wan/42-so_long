@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:53:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 08:26:19 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 09:01:32 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void sl_free_item_chest(t_chest **chest)
 	{
 		sl_free_anim(&(*chest)->open);
 		sl_free_anim(&(*chest)->close);
-		ft_lstclear(&(*chest)->coords, free);
+		//ft_lstclear(&(*chest)->coords, free);
 		free(*chest);
 	}
 	*chest = NULL;

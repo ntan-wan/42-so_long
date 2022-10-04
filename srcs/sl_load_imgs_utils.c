@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:50:04 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/01 21:20:29 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 09:35:16 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,32 @@ void	sl_load_imgs(t_game *game)
 {
 	sl_player_load_imgs_idle(game->mlx, &game->imgs);
 	sl_player_load_imgs_move(game->mlx, &game->imgs);
-	sl_player_load_anim_idle(game->player, game->imgs);
-	sl_player_load_anim_move(game->player, game->imgs);
+	//sl_player_load_anim_idle(game->player, game->imgs);
+	//sl_player_load_anim_move(game->player, game->imgs);
 	sl_item_load_imgs_chest_open(game->mlx, &game->imgs);
 	sl_item_load_imgs_chest_close(game->mlx, &game->imgs);
-	sl_item_load_anim_chest_open(game->chest, game->imgs);
-	sl_item_load_anim_chest_close(game->chest, game->imgs);
+	//
+	//sl_item_load_anim_chest_open(game->chest, game->imgs);
+	//sl_item_load_anim_chest_close(game->chest, game->imgs);
+}
+
+void	sl_load_anim_chest(t_img *imgs, t_chest *chest)
+{
+	t_chest	*ptr_chest;
+	
+	ptr_chest = chest;
+	while (ptr_chest)
+	{
+		sl_item_load_anim_chest_open(ptr_chest, imgs);
+		sl_item_load_anim_chest_close(ptr_chest, imgs);
+		ptr_chest = ptr_chest->next;
+	}
+}
+
+void	sl_load_anims(t_game *game)
+{
+
+	sl_player_load_anim_idle(game->player, game->imgs);
+	sl_player_load_anim_move(game->player, game->imgs);
+	sl_load_anim_chest(game->imgs, game->chest);
 }

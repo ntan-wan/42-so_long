@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 08:26:04 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 09:31:50 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,13 @@ typedef struct s_anim
 
 typedef struct s_chest
 {
-	//int		x;
-	//int		y;
-	t_list	*coords;
-	t_anim	*close;
-	t_anim	*open;
-	int		interacted;
+	int		x;
+	int		y;
+	//t_list			*coords;
+	t_anim			*close;
+	t_anim			*open;
+	int				interacted;
+	struct s_chest	*next;
 }	t_chest;
 
 typedef struct s_player
@@ -192,4 +193,8 @@ void	sl_exit(char *msg, int exit_status);
 int		sl_debug_loop(void);
 int		sl_debug_keycode_keypress(int keycode);
 
+
+t_chest	*sl_item_chest_new(int x, int y);
+void	sl_load_anims(t_game *game);
+void	sl_item_chest_add(t_chest **head, t_chest *new);
 #endif
