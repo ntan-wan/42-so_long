@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:31:09 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/03 21:39:38 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 10:28:44 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	sl_copy_pixel(char *dst, char *src, int bytes_per_pixel)
 	else
 		ft_printf("copy_pixel: src or dst not found\n");
 }
-
 
 /* 
 	Eg: coordinate = (0, -1), img = 4 x 4 resolution.

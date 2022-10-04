@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 23:41:43 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/01 18:37:24 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 10:31:59 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	sl_item_load_imgs_chest_open(void *mlx, t_img **imgs)
 
 void	sl_item_load_anim_chest_close(t_chest *chest, t_img *imgs)
 {
-	//printf("%p\n", chest->close);
 	sl_anim_add_frame(chest->close, sl_img_search("chest_close0", imgs));
 	sl_anim_add_frame(chest->close, sl_img_search("chest_close1", imgs));
 	sl_anim_add_frame(chest->close, sl_img_search("chest_close2", imgs));

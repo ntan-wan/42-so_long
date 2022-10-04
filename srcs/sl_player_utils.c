@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:48:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/03 22:34:34 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 10:56:07 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ void	sl_player_set_coord(t_player *player, int x, int y)
 		ft_printf("player_set_coord: player not found\n");
 }
 
-
-void	sl_player_set_direction(t_player *player)
+/* 
+	Set player's facing direction.
+ */
+void	sl_player_set_dir(t_player *player)
 {
 	if (player)
 	{

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 09:31:50 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:01:26 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,6 @@
 # define ON_DESTROY 17
 # define ON_KEY_PRESS 2
 # define ON_KEY_RELEASE 3
-
-/* 
-	eventmasks
- */
-# define KEY_PRESS_MASK 1L<<0
-# define KEY_RELEASE_MASK 1L<<1
 
 /* 
 	The amont of "time" each frame last.
@@ -103,9 +97,8 @@ typedef struct s_anim
 
 typedef struct s_chest
 {
-	int		x;
-	int		y;
-	//t_list			*coords;
+	int				x;
+	int				y;
 	t_anim			*close;
 	t_anim			*open;
 	int				interacted;
@@ -131,8 +124,13 @@ typedef struct s_game
 	t_img		*imgs;
 	t_player	*player;
 	t_chest		*chest;
-	//t_list		*chest_coords;
 }	t_game;
+
+/* game_uitls */
+void	sl_game_init(t_game *game);
+void	sl_game_load_imgs(t_game *game);
+void	sl_game_load_anims(t_game *game);
+void	sl_game_buffer_init(void *mlx, t_img *buffer);
 
 /* img_utils */
 void	sl_img_add(t_img **head, t_img *new);
@@ -140,7 +138,7 @@ t_img	*sl_img_search(char *key, t_img *imgs);
 t_img	*sl_img_init(void *mlx, char *key, char *path);
 
 /* load_utils */
-void	sl_load_imgs(t_game *game);
+void	sl_load_anim_chest(t_img *imgs, t_chest *chest);
 void	sl_load_img(void *mlx, t_img **head, char *key, char *path);
 
 /* copy_utils */
@@ -152,10 +150,9 @@ void	sl_anim_add_frame(t_anim *anim, t_img *new);
 t_img	*sl_anim_get_frame(t_anim *anim, int frame_index);
 
 /* item_utils */
-void	sl_item_chest_init(t_chest **chest);
+t_chest	*sl_item_chest_new(int x, int y);
 t_img	*sl_item_chest_get_anim(t_chest *chest);
-void	sl_item_chest_set_coord(t_chest *chest, int x, int y);
-void	sl_item_chest_copy_img(t_img *buffer, t_chest *chest, int x, int y);
+void	sl_item_chest_add(t_chest **head, t_chest *new);
 void	sl_item_chest_copy_all(t_img *buffer, t_chest *chest, int p_x, int p_y);
 
 /* item_load_utils */
@@ -165,15 +162,15 @@ void	sl_item_load_anim_chest_close(t_chest *chest, t_img *imgs);
 void	sl_item_load_anim_chest_open(t_chest *chest, t_img *imgs);
 
 /* move_utils */
-void    sl_move_player_step(t_player *player);
+void	sl_move_player_step(t_player *player);
 
 /* interact */
-void    sl_interact(t_game *game);
+void	sl_interact(t_game *game);
 
 /* player_utils */
 void	sl_player_init(t_player **player);
 t_img	*sl_player_get_anim(t_player *player);
-void	sl_player_set_direction(t_player *player);
+void	sl_player_set_dir(t_player *player);
 void	sl_player_copy_img(t_img *buffer, t_player *player, int x, int y);
 
 /* player_load_utils */
@@ -193,8 +190,4 @@ void	sl_exit(char *msg, int exit_status);
 int		sl_debug_loop(void);
 int		sl_debug_keycode_keypress(int keycode);
 
-
-t_chest	*sl_item_chest_new(int x, int y);
-void	sl_load_anims(t_game *game);
-void	sl_item_chest_add(t_chest **head, t_chest *new);
 #endif

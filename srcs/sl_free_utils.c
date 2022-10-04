@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:53:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 09:01:32 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 10:30:43 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,19 @@ static void	sl_free_player(t_player **player)
 	*player = NULL;
 }
 
-static void sl_free_item_chest(t_chest **chest)
+static void	sl_free_item_chest(t_chest **chest)
 {
-	if (*chest)
+	t_chest	*ptr_chest;
+	t_chest	*next;
+
+	ptr_chest = *chest;
+	while (ptr_chest)
 	{
-		sl_free_anim(&(*chest)->open);
-		sl_free_anim(&(*chest)->close);
-		//ft_lstclear(&(*chest)->coords, free);
-		free(*chest);
+		next = ptr_chest->next;
+		sl_free_anim(&ptr_chest->open);
+		sl_free_anim(&ptr_chest->close);
+		free(ptr_chest);
+		ptr_chest = next;
 	}
 	*chest = NULL;
 }
