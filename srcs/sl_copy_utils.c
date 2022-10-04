@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:31:09 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/03 21:19:50 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/03 21:39:38 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,10 @@ static void	sl_copy_pixel(char *dst, char *src, int bytes_per_pixel)
 
 
 /* 
-	Eg: coordinate = (0, -1), img = 4 x 4 resolution
-	Should copy 4 columns and 3 rows only
-	as the first row is out of boundary.
-	Hence, start to copy from 0th(index) column
-	and 1st(index) row. 
+	Eg: coordinate = (0, -1), img = 4 x 4 resolution.
+	Should copy 4 columns and 3 rows only as the first 
+	row is out of boundary.Hence, start to copy from 
+	0th(index) column and 1st(index) row. 
 	Else, copy the whole img.
  */
 static int	sl_copy_starting_pixel(int num)

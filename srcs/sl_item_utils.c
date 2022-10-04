@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 21:31:20 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/03 21:23:01 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 08:27:10 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	sl_item_chest_init(t_chest **chest)
 	new_chest = (t_chest *)malloc(sizeof(t_chest));
 	if (new_chest)
 	{
+		//new_chest->x = 0;
+		//new_chest->y = 0;
 		new_chest->coords = NULL;
+		new_chest->interacted = 0;
 		new_chest->close = sl_anim_init();
 		new_chest->open = sl_anim_init();
 	}
@@ -33,16 +36,24 @@ t_img	*sl_item_chest_get_anim(t_chest *chest)
 	static unsigned int	frame;
 
 	frame = timer++ / INTERVAL;
-	anim = chest->close;
+	if (chest->interacted)
+		anim = chest->open;
+	else
+		anim = chest->close;
 	return (sl_anim_get_frame(anim, frame % anim->frame_count));
 }
 
+/*void	sl_item_chest_save_coord(t_game *game)
+{
+}*/
+
 void	sl_item_chest_set_coord(t_chest *chest, int x, int y)
 {
-	int	*arr;
-
 	if (chest)
 	{
+		//chest->x = x;
+		//chest->y = y;
+		int	*arr;
 		arr = (int *)malloc(2 * sizeof(int));
 		arr[0] = x;
 		arr[1] = y;
@@ -72,9 +83,7 @@ void	sl_item_chest_copy_all(t_img *buffer, t_chest *chest, int p_x, int p_y)
 		sl_item_chest_copy_img(buffer, chest,
 			((int *)coords->content)[0] + (WINDOW_W / 2 - SPRITE_SIZE - p_x),
 			((int *)coords->content)[1] + (WINDOW_W / 2 - SPRITE_SIZE - p_y));
-		//
-		//printf("x -> %d\n", ((int *)coords->content)[0] + (WINDOW_W / 2 - SPRITE_SIZE - p_x));
-		//printf("y -> %d\n", ((int *)coords->content)[1] + (WINDOW_W / 2 - SPRITE_SIZE - p_y));
 		coords = coords->next;
 	}
+		
 }

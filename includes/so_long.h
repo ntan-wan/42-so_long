@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/03 17:21:57 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 08:26:04 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@
 #  define ESC 53
 # else
 #  define KEY_A 97
-#  define KEY_S 115
 #  define KEY_D 100
+#  define KEY_E 101
+#  define KEY_S 115
 #  define KEY_W 119
 #  define ESC 65307
 # endif
@@ -102,17 +103,20 @@ typedef struct s_anim
 
 typedef struct s_chest
 {
+	//int		x;
+	//int		y;
 	t_list	*coords;
 	t_anim	*close;
 	t_anim	*open;
+	int		interacted;
 }	t_chest;
 
 typedef struct s_player
 {
 	int		x;
 	int		y;
-	int		action;
 	int		dir;
+	int		action;
 	t_anim	*idle_right;
 	t_anim	*idle_left;
 	t_anim	*move_right;
@@ -126,6 +130,7 @@ typedef struct s_game
 	t_img		*imgs;
 	t_player	*player;
 	t_chest		*chest;
+	//t_list		*chest_coords;
 }	t_game;
 
 /* img_utils */
@@ -161,6 +166,9 @@ void	sl_item_load_anim_chest_open(t_chest *chest, t_img *imgs);
 /* move_utils */
 void    sl_move_player_step(t_player *player);
 
+/* interact */
+void    sl_interact(t_game *game);
+
 /* player_utils */
 void	sl_player_init(t_player **player);
 t_img	*sl_player_get_anim(t_player *player);
@@ -171,7 +179,7 @@ void	sl_player_copy_img(t_img *buffer, t_player *player, int x, int y);
 void	sl_player_load_imgs_idle(void *mlx, t_img **imgs);
 void	sl_player_load_imgs_move(void *mlx, t_img **imgs);
 void	sl_player_set_coord(t_player *player, int x, int y);
-void	sl_player_load_anim_idle(t_player *player, t_img *imgs);;
+void	sl_player_load_anim_idle(t_player *player, t_img *imgs);
 void	sl_player_load_anim_move(t_player *player, t_img *imgs);
 
 /* free_utils */
