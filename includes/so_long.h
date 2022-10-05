@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/05 10:11:24 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:39:59 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,8 +193,8 @@ int		sl_debug_keycode_keypress(int keycode);
 
 int		sl_check_in_range(int p_x, int p_y, int x, int y);
 int 	sl_is_blocked_range(int center_point, int coord);
-int		sl_move_is_blocked(t_game *game);
-int	sl_is_blocked_right(int action, int p_x, int o_x);
+int		sl_is_blocked(t_game *g);
+int	sl_is_blkd_right(int action, int p_x, int o_x);
 int	sl_is_blocked_left(int action, int p_x, int o_x);
-int	sl_is_blocked(int action, int p_x, int p_y, int o_x, int o_y);
+//int	sl_is_blocked(int action, int p_x, int p_y, int o_x, int o_y);
 #endif
