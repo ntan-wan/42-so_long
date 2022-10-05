@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/05 16:39:12 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:41:30 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	sl_key_press(int keycode, t_game *game)
 {
 	if (keycode == ESC)
 		sl_exit(game, "exit success\n", EXIT_SUCCESS);
-	else if (keycode == KEY_E)
+	else if (keycode == SPACE_BAR)
 		sl_interact(game);
 	else if (keycode == KEY_D)
 		game->player->action = MOVE_RIGHT;
@@ -52,7 +52,7 @@ int	sl_render(t_game *game)
 
 	sl_game_buffer_init(game->mlx, &buffer);
 	sl_item_copy_img(&buffer, game->chest, game->player->x, game->player->y);
-	if (!sl_move_is_blocked(game))
+	if (!sl_is_blocked(game))
 		sl_move_player_step(game->player);
 	sl_player_set_dir(game->player);
 	sl_player_copy_img(&buffer, game->player);
@@ -70,7 +70,7 @@ int	main(int ac, char **av)
 	//
 	sl_player_set_coord(game.player, WINDOW_W / 2 - SPRITE_SIZE, WINDOW_H / 2 - SPRITE_SIZE);
 	sl_item_chest_add(&game.chest, sl_item_chest_new(1 * 64, 1 * 64));
-	sl_item_chest_add(&game.chest, sl_item_chest_new(3 * 64, 1 * 64));
+	sl_item_chest_add(&game.chest, sl_item_chest_new(2 * 64, 1 * 64));
 	sl_item_chest_add(&game.chest, sl_item_chest_new(1 * 64, 3 * 64));
 	sl_item_chest_add(&game.chest, sl_item_chest_new(3 * 64, 3 * 64));
 	//

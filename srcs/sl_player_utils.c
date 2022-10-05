@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:48:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 20:14:57 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:34:03 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_img	*sl_player_get_anim(t_player *player)
 	static unsigned int	timer;
 	static unsigned int	frame;
 
-	frame = timer++ / INTERVAL;
+	frame = timer++ / PLAYER_ANIM_SPEED;
 	if (player->action == IDLE_RIGHT)
 		anim = player->idle_right;
 	else if (player->action == IDLE_LEFT)

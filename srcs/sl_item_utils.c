@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 21:31:20 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 20:23:18 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:33:07 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_img	*sl_item_chest_get_anim(t_chest *chest)
 	static unsigned int	timer;
 	static unsigned int	frame;
 
-	frame = timer++ / INTERVAL;
+	frame = timer++ / ITEM_ANIM_SPEED;
 	if (chest->interacted)
 		anim = chest->open;
 	else

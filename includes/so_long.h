@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/05 16:41:09 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:41:30 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@
 	The amont of "time" each frame last.
 	Smaller the value, faster the animation.
  */
-# define INTERVAL 10
+# define ITEM_ANIM_SPEED 20
+# define PLAYER_ANIM_SPEED 10
 
 /* 
 	player's action;
@@ -59,7 +60,7 @@
 # else
 #  define KEY_A 97
 #  define KEY_D 100
-#  define KEY_E 101
+#  define SPACE_BAR 32
 #  define KEY_S 115
 #  define KEY_W 119
 #  define ESC 65307
@@ -162,13 +163,13 @@ void	sl_item_load_anim_chest_close(t_chest *chest, t_img *imgs);
 void	sl_item_load_anim_chest_open(t_chest *chest, t_img *imgs);
 
 /* move_utils */
-int	sl_move_is_blocked(t_game *g);
 void	sl_move_player_step(t_player *player);
 
 /* interact */
 void	sl_interact(t_game *game);
 
 /* check_blocked_utils */
+int	sl_is_blocked(t_game *g);
 int	sl_is_blocked_by_chest(t_player *p, t_chest *c);
 
 /* check_blocked_utils2 */
