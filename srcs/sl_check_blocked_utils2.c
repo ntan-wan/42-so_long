@@ -6,21 +6,19 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:34:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/05 18:29:05 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:55:11 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
 /* 
-	+ 10 = control entry blocked range.
-	- 10 = control leaving blocked range.
-	the larger the number above, the smaller the blocked range.
+	BLOCKED_RANGE = set blocked range.
  */
 int	sl_is_blocked_range(int p_coord, int o_coord)
 {
-	return (p_coord + SPRITE_SIZE >= o_coord + 8
-		&& p_coord <= o_coord + SPRITE_SIZE - 8);
+	return (p_coord + SPRITE_SIZE >= o_coord + NOT_BLOCKED_RANGE
+		&& p_coord <= o_coord + SPRITE_SIZE - NOT_BLOCKED_RANGE);
 }
 
 int	sl_is_blocked_right(int action, int p_x, int o_x)

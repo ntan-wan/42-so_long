@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/05 18:41:30 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:56:04 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 
 # define STEP_SIZE 4
 # define SPRITE_SIZE 64
+
+/* 
+	The higher the number, 
+	the lesser the blocked range by another img.
+ */
+# define NOT_BLOCKED_RANGE 8
+
 
 /* 
 	my laptop's full screen = 1920 x 1080 
