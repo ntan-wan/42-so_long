@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 19:52:42 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/05 10:11:24 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ t_img	*sl_anim_get_frame(t_anim *anim, int frame_index);
 t_chest	*sl_item_chest_new(int x, int y);
 t_img	*sl_item_chest_get_anim(t_chest *chest);
 void	sl_item_chest_add(t_chest **head, t_chest *new);
-void	sl_item_chest_copy_all(t_img *buffer, t_chest *chest, int p_x, int p_y);
+void	sl_item_copy_img(t_img *buffer, t_chest *chest, int p_x, int p_y);
 
 /* item_load_utils */
 void	sl_item_load_imgs_chest_close(void *mlx, t_img **imgs);
@@ -171,7 +171,7 @@ void	sl_interact(t_game *game);
 void	sl_player_init(t_player **player);
 t_img	*sl_player_get_anim(t_player *player);
 void	sl_player_set_dir(t_player *player);
-void	sl_player_copy_img(t_img *buffer, t_player *player, int x, int y);
+void	sl_player_copy_img(t_img *buffer, t_player *player);
 
 /* player_load_utils */
 void	sl_player_load_imgs_idle(void *mlx, t_img **imgs);
@@ -192,8 +192,9 @@ int		sl_debug_keycode_keypress(int keycode);
 
 
 int		sl_check_in_range(int p_x, int p_y, int x, int y);
-int 	sl_math_is_in_range(int center_point, int coord);
-int 	sl_math_get_center(int point);
+int 	sl_is_blocked_range(int center_point, int coord);
 int		sl_move_is_blocked(t_game *game);
-void	sl_move(t_game *game);
+int	sl_is_blocked_right(int action, int p_x, int o_x);
+int	sl_is_blocked_left(int action, int p_x, int o_x);
+int	sl_is_blocked(int action, int p_x, int p_y, int o_x, int o_y);
 #endif

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:48:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 10:56:07 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:14:57 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	sl_player_set_dir(t_player *player)
 		ft_printf("set_move_direction: player not found\n");
 }
 
-void	sl_player_copy_img(t_img *buffer, t_player *player, int x, int y)
+void	sl_player_copy_img(t_img *buffer, t_player *player)
 {
-	sl_copy_img(buffer, sl_player_get_anim(player), x, y);
+	sl_copy_img(buffer, sl_player_get_anim(player), WINDOW_W / 2 - SPRITE_SIZE, WINDOW_H / 2 - SPRITE_SIZE);
 }

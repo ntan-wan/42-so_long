@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 21:31:20 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 10:41:16 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:23:18 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_img	*sl_item_chest_get_anim(t_chest *chest)
 	p_y = player's y coordinate.
 	Copy the chest's image according to the player's coordinate.
  */
-void	sl_item_chest_copy_all(t_img *buffer, t_chest *head, int p_x, int p_y)
+void	sl_item_copy_img(t_img *buffer, t_chest *head, int p_x, int p_y)
 {
 	t_chest	*chest;
 
