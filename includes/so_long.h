@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/05 14:39:59 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:41:09 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,10 +162,21 @@ void	sl_item_load_anim_chest_close(t_chest *chest, t_img *imgs);
 void	sl_item_load_anim_chest_open(t_chest *chest, t_img *imgs);
 
 /* move_utils */
+int	sl_move_is_blocked(t_game *g);
 void	sl_move_player_step(t_player *player);
 
 /* interact */
 void	sl_interact(t_game *game);
+
+/* check_blocked_utils */
+int	sl_is_blocked_by_chest(t_player *p, t_chest *c);
+
+/* check_blocked_utils2 */
+int	sl_is_blocked_up(int action, int p_y, int o_y);
+int	sl_is_blocked_left(int action, int p_x, int o_x);
+int	sl_is_blocked_down(int action, int p_y, int o_y);
+int	sl_is_blocked_range(int p_coord, int o_coord);
+int	sl_is_blocked_right(int action, int p_x, int o_x);
 
 /* player_utils */
 void	sl_player_init(t_player **player);
@@ -189,12 +200,4 @@ int		sl_exit(t_game *game, char *msg, int exit_status);
 /* debug_utils */
 int		sl_debug_loop(void);
 int		sl_debug_keycode_keypress(int keycode);
-
-
-int		sl_check_in_range(int p_x, int p_y, int x, int y);
-int 	sl_is_blocked_range(int center_point, int coord);
-int		sl_is_blocked(t_game *g);
-int	sl_is_blkd_right(int action, int p_x, int o_x);
-int	sl_is_blocked_left(int action, int p_x, int o_x);
-//int	sl_is_blocked(int action, int p_x, int p_y, int o_x, int o_y);
 #endif
