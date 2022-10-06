@@ -6,48 +6,42 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:26:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/06 19:37:25 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/07 07:12:09 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	sl_is_blocked_by_chest(t_player *p, t_chest *c)
+/* 
+	o_x = other object's x coordinate.
+	o_y = other object's y coordinate.
+ */
+static int	sl_is_blocked(t_player *p, int o_x, int o_y)
 {
 	int		act;
 
 	act = p->action;
-	if (sl_is_blocked_right(act, p->x, c->x)
-		&& sl_is_blocked_range(p->y, c->y))
+	if (sl_is_blocked_right(act, p->x, o_x)
+		&& sl_is_blocked_range(p->y, o_y))
 		return (1);
-	else if (sl_is_blocked_left(act, p->x, c->x)
-		&& sl_is_blocked_range(p->y, c->y))
+	else if (sl_is_blocked_left(act, p->x, o_x)
+		&& sl_is_blocked_range(p->y, o_y))
 		return (1);
-	else if (sl_is_blocked_up(act, p->y, c->y)
-		&& sl_is_blocked_range(p->x, c->x))
+	else if (sl_is_blocked_up(act, p->y, o_y)
+		&& sl_is_blocked_range(p->x, o_x))
 		return (1);
-	else if (sl_is_blocked_down(act, p->y, c->y)
-		&& sl_is_blocked_range(p->x, c->x))
+	else if (sl_is_blocked_down(act, p->y, o_y)
+		&& sl_is_blocked_range(p->x, o_x))
 		return (1);
 	return (0);
 }
 
+int	sl_is_blocked_by_chest(t_player *p, t_chest *c)
+{
+	return (sl_is_blocked(p, c->x, c->y));
+}
+
 int	sl_is_blocked_by_door(t_player *p, t_door *d)
 {
-	int		act;
-
-	act = p->action;
-	if (sl_is_blocked_right(act, p->x, d->x)
-		&& sl_is_blocked_range(p->y, d->y))
-		return (1);
-	else if (sl_is_blocked_left(act, p->x, d->x)
-		&& sl_is_blocked_range(p->y, d->y))
-		return (1);
-	else if (sl_is_blocked_up(act, p->y, d->y)
-		&& sl_is_blocked_range(p->x, d->x))
-		return (1);
-	else if (sl_is_blocked_down(act, p->y, d->y)
-		&& sl_is_blocked_range(p->x, d->x))
-		return (1);
-	return (0);	
+	return (sl_is_blocked(p, d->x, d->y));
 }
