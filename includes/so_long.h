@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/06 09:28:09 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:10:27 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include "../libft/libft.h"
-
-# define STEP_SIZE 4
-# define SPRITE_SIZE 64
-
 
 
 /* 
@@ -43,13 +39,16 @@
  */
 # define NON_BLOCKED_RANGE 8
 
+# define STEP_SIZE 4
+# define SPRITE_SIZE 64
+
 /* 
 	The amont of "time" each frame last.
 	Smaller the value, faster the animation.
  */
 # define ITEM_ANIM_SPEED 20
-# define PLAYER_ANIM_SPEED 10
 # define DOOR_ANIM_SPEED 10
+# define PLAYER_ANIM_SPEED 10
 
 /* 
 	player's action;
@@ -133,7 +132,7 @@ typedef struct s_door
 	int		x;
 	int		y;
 	int		interacted;
-	t_anim	*opening;
+	t_anim	*open;
 	t_anim	*opened;
 	t_anim	*closed;
 }	t_door;
@@ -157,6 +156,7 @@ void	sl_game_buffer_init(void *mlx, t_img *buffer);
 /* img_utils */
 void	sl_img_add(t_img **head, t_img *new);
 t_img	*sl_img_search(char *key, t_img *imgs);
+char	*sl_img_get_key(int index, t_anim *anim);
 t_img	*sl_img_init(void *mlx, char *key, char *path);
 
 /* load_utils */
@@ -167,6 +167,7 @@ void	sl_copy_img(t_img *dst, t_img *src, int x, int y);
 
 /* anim_utils */
 t_anim	*sl_anim_init(void);
+int		sl_is_last_frame(char *key, t_anim *anim);
 void	sl_anim_add_frame(t_anim *anim, t_img *new);
 t_img	*sl_anim_get_frame(t_anim *anim, int frame_index);
 

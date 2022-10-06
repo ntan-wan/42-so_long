@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 22:40:06 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/05 18:43:15 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/06 10:03:44 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,6 @@ static void	sl_interact_chest(t_player *p, t_chest *c)
 void	sl_interact(t_game *game)
 {
 	sl_interact_chest(game->player, game->chest);
+	//
+	game->door->interacted = 1;
 }

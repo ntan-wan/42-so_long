@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 18:25:23 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 11:23:42 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:03:43 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,18 @@ t_img	*sl_img_search(char *key, t_img *imgs)
 	}
 	ft_printf("img_search: img not found\n");
 	return (NULL);
+}
+
+char	*sl_img_get_key(int index, t_anim *anim)
+{
+	int		i;
+	t_list	*frame;
+
+	if (!anim)
+		return (NULL);
+	i = -1;
+	frame = anim->frames;
+	while (frame && ++i < index)
+		frame = frame->next;
+	return (((t_img *)frame->content)->key);
 }

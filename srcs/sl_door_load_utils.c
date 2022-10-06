@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 08:28:09 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/06 09:24:03 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/06 14:26:47 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,20 @@ void    sl_door_load_imgs_closed(void *mlx, t_img **imgs)
 
 void	sl_door_load_anim_opening(t_door *door, t_img *imgs)
 {
-	sl_anim_add_frame(door->opening, sl_img_search("opening0", imgs));
-	sl_anim_add_frame(door->opening, sl_img_search("opening1", imgs));
-	sl_anim_add_frame(door->opening, sl_img_search("opening2", imgs));
-	sl_anim_add_frame(door->opening, sl_img_search("opening3", imgs));
-	sl_anim_add_frame(door->opening, sl_img_search("opening4", imgs));
-	sl_anim_add_frame(door->opening, sl_img_search("opening5", imgs));
-	sl_anim_add_frame(door->opening, sl_img_search("opening6", imgs));
-	sl_anim_add_frame(door->opening, sl_img_search("opening7", imgs));
-	sl_anim_add_frame(door->opening, sl_img_search("opening8", imgs));
-	sl_anim_add_frame(door->opening, sl_img_search("opening9", imgs));
-	sl_anim_add_frame(door->opening, sl_img_search("opening10", imgs));
-	sl_anim_add_frame(door->opening, sl_img_search("opening11", imgs));
-	sl_anim_add_frame(door->opening, sl_img_search("opening12", imgs));
-	sl_anim_add_frame(door->opening, sl_img_search("opening13", imgs));
+	sl_anim_add_frame(door->open, sl_img_search("opening0", imgs));
+	sl_anim_add_frame(door->open, sl_img_search("opening1", imgs));
+	sl_anim_add_frame(door->open, sl_img_search("opening2", imgs));
+	sl_anim_add_frame(door->open, sl_img_search("opening3", imgs));
+	sl_anim_add_frame(door->open, sl_img_search("opening4", imgs));
+	sl_anim_add_frame(door->open, sl_img_search("opening5", imgs));
+	sl_anim_add_frame(door->open, sl_img_search("opening6", imgs));
+	sl_anim_add_frame(door->open, sl_img_search("opening7", imgs));
+	sl_anim_add_frame(door->open, sl_img_search("opening8", imgs));
+	sl_anim_add_frame(door->open, sl_img_search("opening9", imgs));
+	sl_anim_add_frame(door->open, sl_img_search("opening10", imgs));
+	sl_anim_add_frame(door->open, sl_img_search("opening11", imgs));
+	sl_anim_add_frame(door->open, sl_img_search("opening12", imgs));
+	sl_anim_add_frame(door->open, sl_img_search("opening13", imgs));
 }
 
 void	sl_door_load_anim_opened(t_door *door, t_img *imgs)
