@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 08:28:15 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/06 15:10:36 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:16:49 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_img	*sl_door_get_anim(t_door *door)
 
 	frame = timer++ / DOOR_ANIM_SPEED;
 	key = sl_img_get_key(frame % door->open->frame_count, door->open);
-	if (door->interacted && is_last_frame(key, door->open)
+	if (door->interacted && sl_is_last_frame(key, door->open)
 		|| anim == door->opened)
 		anim = door->opened;
 	else if (door->interacted)
