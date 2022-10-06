@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/06 15:10:27 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/06 19:45:30 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 	the lesser the blocked range by another img.
 	Must be lesser than sprite size.
  */
-# define NON_BLOCKED_RANGE 8
+# define NON_BLOCKED_RANGE 5
 
 # define STEP_SIZE 4
 # define SPRITE_SIZE 64
@@ -186,6 +186,7 @@ void	sl_item_load_anim_chest_close(t_chest *chest, t_img *imgs);
 
 /* door */
 void    sl_door_init(t_door **door);
+	
 void    sl_door_set_coord(t_door *door, int x, int y);
 void	sl_door_copy_img(t_img *buffer, t_door *door, int p_x, int p_y);
 
@@ -198,13 +199,14 @@ void	sl_door_load_anim_opened(t_door *door, t_img *imgs);
 void	sl_door_load_anim_closed(t_door *door, t_img *imgs);
 
 /* move_utils */
+int		sl_move_is_blocked(t_game *g);
 void	sl_move_player_step(t_player *player);
 
 /* interact */
 void	sl_interact(t_game *game);
 
 /* check_blocked_utils */
-int	sl_is_blocked_move(t_game *g);
+int	sl_is_blocked_by_door(t_player *p, t_door *d);
 int	sl_is_blocked_by_chest(t_player *p, t_chest *c);
 
 /* check_blocked_utils2 */
@@ -220,7 +222,6 @@ void	sl_player_set_dir(t_player *player);
 t_img	*sl_player_get_anim(t_player *player);
 void	sl_player_set_coord(t_player *player, int x, int y);
 void	sl_player_copy_img(t_img *buffer, t_player *player);
-
 /* player_load_utils */
 void	sl_player_load_imgs_idle(void *mlx, t_img **imgs);
 void	sl_player_load_imgs_move(void *mlx, t_img **imgs);

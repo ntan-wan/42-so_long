@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:23:35 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/06 15:10:07 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/06 22:39:53 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,12 @@ void	sl_anim_del_all_frames(t_anim *anim)
 
 int	sl_is_last_frame(char *key, t_anim *anim)
 {
-	int		key_len;
+	int		compared_key_len;
 	t_list	*last_frame;
 	char	*compared_key;
 
-	key_len = ft_strlen(key);
 	last_frame = ft_lstlast(anim->frames);
 	compared_key = ((t_img *)last_frame->content)->key;
-	return (ft_strncmp(key, compared_key, key_len) == 0);
+	compared_key_len = ft_strlen(compared_key);
+	return (ft_strncmp(key, compared_key, compared_key_len) == 0);
 }

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/06 09:28:09 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/06 19:36:58 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	sl_render(t_game *game)
 	t_img	buffer;
 
 	sl_game_buffer_init(game->mlx, &buffer);
-	if (!sl_is_blocked_move(game))
+	if (!sl_move_is_blocked(game))
 		sl_move_player_step(game->player);
 	sl_player_set_dir(game->player);
 	sl_item_copy_img(&buffer, game->chest, game->player->x, game->player->y);

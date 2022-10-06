@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 13:27:21 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/05 17:55:05 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/06 19:53:56 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,20 @@ void	sl_move_player_step(t_player *p)
 	}
 	else
 		ft_printf("move_player_step: player not found\n");
+}
+
+int	sl_move_is_blocked(t_game *g)
+{
+	t_chest	*chest;
+
+	if (sl_is_blocked_by_door(g->player, g->door))
+		return (1);
+	chest = g->chest;
+	while (chest)
+	{
+		if (sl_is_blocked_by_chest(g->player, chest))
+			return (1);
+		chest = chest->next;
+	}
+	return (0);
 }
