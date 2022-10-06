@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/05 18:41:30 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/06 09:28:09 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,11 @@ int	sl_render(t_game *game)
 	t_img	buffer;
 
 	sl_game_buffer_init(game->mlx, &buffer);
-	sl_item_copy_img(&buffer, game->chest, game->player->x, game->player->y);
-	if (!sl_is_blocked(game))
+	if (!sl_is_blocked_move(game))
 		sl_move_player_step(game->player);
 	sl_player_set_dir(game->player);
+	sl_item_copy_img(&buffer, game->chest, game->player->x, game->player->y);
+	sl_door_copy_img(&buffer, game->door, game->player->x, game->player->y);
 	sl_player_copy_img(&buffer, game->player);
 	mlx_put_image_to_window(game->mlx, game->win, buffer.img, 0, 0);
 	mlx_destroy_image(game->mlx, buffer.img);
@@ -66,13 +67,15 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	sl_game_init(&game);
+	sl_door_init(&game.door);
 	sl_player_init(&game.player);
-	//
-	sl_player_set_coord(game.player, WINDOW_W / 2 - SPRITE_SIZE, WINDOW_H / 2 - SPRITE_SIZE);
-	sl_item_chest_add(&game.chest, sl_item_chest_new(1 * 64, 1 * 64));
-	sl_item_chest_add(&game.chest, sl_item_chest_new(2 * 64, 1 * 64));
-	sl_item_chest_add(&game.chest, sl_item_chest_new(1 * 64, 3 * 64));
-	sl_item_chest_add(&game.chest, sl_item_chest_new(3 * 64, 3 * 64));
+	sl_door_set_coord(game.door, 5 * 64, 5 * 64);
+	sl_player_set_coord(game.player, 3 * 64, 3 * 64);
+	sl_item_chest_add(&game.chest, sl_item_chest_new(2 * 64, 2 * 64));
+	sl_item_chest_add(&game.chest, sl_item_chest_new(3 * 64, 2 * 64));
+	sl_item_chest_add(&game.chest, sl_item_chest_new(4 * 64, 2 * 64));
+	sl_item_chest_add(&game.chest, sl_item_chest_new(2 * 64, 3 * 64));
+	sl_item_chest_add(&game.chest, sl_item_chest_new(4 * 64, 3 * 64));
 	//
 	sl_game_load_imgs(&game);
 	sl_game_load_anims(&game);

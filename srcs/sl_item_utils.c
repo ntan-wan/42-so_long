@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 21:31:20 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/05 18:33:07 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/06 09:12:39 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	sl_item_copy_img(t_img *buffer, t_chest *head, int p_x, int p_y)
 	{
 		sl_copy_img(buffer, sl_item_chest_get_anim(chest),
 			chest->x + (WINDOW_W / 2 - SPRITE_SIZE - p_x),
-			chest->y + (WINDOW_W / 2 - SPRITE_SIZE - p_y));
+			chest->y + (WINDOW_H / 2 - SPRITE_SIZE - p_y));
 		chest = chest->next;
 	}
 }

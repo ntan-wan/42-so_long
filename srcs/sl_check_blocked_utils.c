@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:26:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/05 18:24:44 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/06 09:28:09 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	sl_is_blocked_by_chest(t_player *p, t_chest *c)
 	return (0);
 }
 
-int	sl_is_blocked(t_game *g)
+int	sl_is_blocked_move(t_game *g)
 {
 	t_chest	*chest;
 

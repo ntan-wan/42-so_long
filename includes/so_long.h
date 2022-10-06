@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/05 19:56:04 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/06 09:28:09 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@
 # define STEP_SIZE 4
 # define SPRITE_SIZE 64
 
-/* 
-	The higher the number, 
-	the lesser the blocked range by another img.
- */
-# define NOT_BLOCKED_RANGE 8
 
 
 /* 
@@ -42,11 +37,19 @@
 # define ON_KEY_RELEASE 3
 
 /* 
+	The higher the number, 
+	the lesser the blocked range by another img.
+	Must be lesser than sprite size.
+ */
+# define NON_BLOCKED_RANGE 8
+
+/* 
 	The amont of "time" each frame last.
 	Smaller the value, faster the animation.
  */
 # define ITEM_ANIM_SPEED 20
 # define PLAYER_ANIM_SPEED 10
+# define DOOR_ANIM_SPEED 10
 
 /* 
 	player's action;
@@ -125,6 +128,16 @@ typedef struct s_player
 	t_anim	*move_left;
 }	t_player;
 
+typedef struct s_door
+{
+	int		x;
+	int		y;
+	int		interacted;
+	t_anim	*opening;
+	t_anim	*opened;
+	t_anim	*closed;
+}	t_door;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -132,6 +145,7 @@ typedef struct s_game
 	t_img		*imgs;
 	t_player	*player;
 	t_chest		*chest;
+	t_door		*door;
 }	t_game;
 
 /* game_uitls */
@@ -146,7 +160,6 @@ t_img	*sl_img_search(char *key, t_img *imgs);
 t_img	*sl_img_init(void *mlx, char *key, char *path);
 
 /* load_utils */
-void	sl_load_anim_chest(t_img *imgs, t_chest *chest);
 void	sl_load_img(void *mlx, t_img **head, char *key, char *path);
 
 /* copy_utils */
@@ -164,10 +177,24 @@ void	sl_item_chest_add(t_chest **head, t_chest *new);
 void	sl_item_copy_img(t_img *buffer, t_chest *chest, int p_x, int p_y);
 
 /* item_load_utils */
-void	sl_item_load_imgs_chest_close(void *mlx, t_img **imgs);
+void	sl_item_load_anim_chests(t_chest *chest, t_img *imgs);
 void	sl_item_load_imgs_chest_open(void *mlx, t_img **imgs);
-void	sl_item_load_anim_chest_close(t_chest *chest, t_img *imgs);
+void	sl_item_load_imgs_chest_close(void *mlx, t_img **imgs);
 void	sl_item_load_anim_chest_open(t_chest *chest, t_img *imgs);
+void	sl_item_load_anim_chest_close(t_chest *chest, t_img *imgs);
+
+/* door */
+void    sl_door_init(t_door **door);
+void    sl_door_set_coord(t_door *door, int x, int y);
+void	sl_door_copy_img(t_img *buffer, t_door *door, int p_x, int p_y);
+
+/* door_load*/
+void	sl_door_load_imgs_opening(void *mlx, t_img **imgs);
+void	sl_door_load_imgs_opened(void *mlx, t_img **imgs);
+void    sl_door_load_imgs_closed(void *mlx, t_img **imgs);
+void	sl_door_load_anim_opening(t_door *door, t_img *imgs);
+void	sl_door_load_anim_opened(t_door *door, t_img *imgs);
+void	sl_door_load_anim_closed(t_door *door, t_img *imgs);
 
 /* move_utils */
 void	sl_move_player_step(t_player *player);
@@ -176,7 +203,7 @@ void	sl_move_player_step(t_player *player);
 void	sl_interact(t_game *game);
 
 /* check_blocked_utils */
-int	sl_is_blocked(t_game *g);
+int	sl_is_blocked_move(t_game *g);
 int	sl_is_blocked_by_chest(t_player *p, t_chest *c);
 
 /* check_blocked_utils2 */
@@ -188,14 +215,14 @@ int	sl_is_blocked_right(int action, int p_x, int o_x);
 
 /* player_utils */
 void	sl_player_init(t_player **player);
-t_img	*sl_player_get_anim(t_player *player);
 void	sl_player_set_dir(t_player *player);
+t_img	*sl_player_get_anim(t_player *player);
+void	sl_player_set_coord(t_player *player, int x, int y);
 void	sl_player_copy_img(t_img *buffer, t_player *player);
 
 /* player_load_utils */
 void	sl_player_load_imgs_idle(void *mlx, t_img **imgs);
 void	sl_player_load_imgs_move(void *mlx, t_img **imgs);
-void	sl_player_set_coord(t_player *player, int x, int y);
 void	sl_player_load_anim_idle(t_player *player, t_img *imgs);
 void	sl_player_load_anim_move(t_player *player, t_img *imgs);
 

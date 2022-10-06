@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:34:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/05 19:55:11 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/05 23:49:03 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
  */
 int	sl_is_blocked_range(int p_coord, int o_coord)
 {
-	return (p_coord + SPRITE_SIZE >= o_coord + NOT_BLOCKED_RANGE
-		&& p_coord <= o_coord + SPRITE_SIZE - NOT_BLOCKED_RANGE);
+	return (p_coord + SPRITE_SIZE >= o_coord + NON_BLOCKED_RANGE
+		&& p_coord <= o_coord + SPRITE_SIZE - NON_BLOCKED_RANGE);
 }
 
 int	sl_is_blocked_right(int action, int p_x, int o_x)

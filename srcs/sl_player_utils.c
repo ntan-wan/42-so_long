@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:48:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/05 18:34:03 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/06 07:46:34 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,17 @@ void	sl_player_init(t_player **player)
 	else
 		ft_printf("player_init: init failed\n");
 	*player = new_player;
+}
+
+void	sl_player_set_coord(t_player *player, int x, int y)
+{
+	if (player)
+	{
+		player->x = x;
+		player->y = y;
+	}
+	else
+		ft_printf("player_set_coord: player not found\n");
 }
 
 t_img	*sl_player_get_anim(t_player *player)
@@ -59,16 +70,6 @@ t_img	*sl_player_get_anim(t_player *player)
 	return (sl_anim_get_frame(anim, frame % anim->frame_count));
 }
 
-void	sl_player_set_coord(t_player *player, int x, int y)
-{
-	if (player)
-	{
-		player->x = x;
-		player->y = y;
-	}
-	else
-		ft_printf("player_set_coord: player not found\n");
-}
 
 /* 
 	Set player's facing direction.
@@ -88,5 +89,6 @@ void	sl_player_set_dir(t_player *player)
 
 void	sl_player_copy_img(t_img *buffer, t_player *player)
 {
-	sl_copy_img(buffer, sl_player_get_anim(player), WINDOW_W / 2 - SPRITE_SIZE, WINDOW_H / 2 - SPRITE_SIZE);
+	sl_copy_img(buffer, sl_player_get_anim(player),
+		WINDOW_W / 2 - SPRITE_SIZE, WINDOW_H / 2 - SPRITE_SIZE);
 }
