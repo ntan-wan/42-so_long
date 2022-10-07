@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/07 09:28:22 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:23:23 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	sl_key_press(int keycode, t_game *game)
 {
 	if (keycode == ESC)
-		sl_exit(game, "exit success\n", EXIT_SUCCESS);
+		sl_exit_free(game, "exit success\n", EXIT_SUCCESS);
 	else if (keycode == SPACE_BAR)
 		sl_interact(game);
 	else if (keycode == KEY_D)
@@ -67,6 +67,8 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	sl_game_init(&game);
+	sl_map_init(&game.map);
+	sl_map_parse(game.map, av[1]);
 	sl_door_init(&game.door);
 	sl_player_init(&game.player);
 	sl_door_set_coord(game.door, 5 * 64, 5 * 64);
@@ -77,7 +79,7 @@ int	main(int ac, char **av)
 	sl_item_chest_add(&game.chest, sl_item_chest_new(4 * 64, 4 * 64));
 	sl_game_load_imgs(&game);
 	sl_game_load_anims(&game);
-	mlx_hook(game.win, ON_DESTROY, 0, sl_exit, &game);
+	mlx_hook(game.win, ON_DESTROY, 0, sl_exit_free, &game);
 	mlx_hook(game.win, ON_KEY_PRESS, 1L << 0, sl_key_press, &game);
 	mlx_hook(game.win, ON_KEY_RELEASE, 1L << 1, sl_key_release, &game);
 	mlx_loop_hook(game.mlx, sl_render, &game);

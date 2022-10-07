@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:23:35 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/07 09:29:21 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/07 10:38:12 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,6 @@ t_anim	*sl_anim_init(void)
 	return (new);
 }
 
-/* 
-	frame_num = frame number offset.
-	Eg1: if searching for 2nd frame from a series of frames, pass in "1".
-	If frame_num exceed frame_count, will return 1st frame.
-	Eg2: frame_count = 2, frame_num = 10, return 1st frame.
- */
 t_img	*sl_anim_get_frame(t_anim *anim, int frame_index)
 {
 	int		i;
@@ -56,18 +50,12 @@ void	sl_anim_add_frame(t_anim *anim, t_img *new)
 		ft_printf("add_frame: anim or new frame not found\n");
 }
 
-void	sl_anim_del_all_frames(t_anim *anim)
+int	sl_anim_get_duration(int anim_speed, int frame_count)
 {
-	if (anim)
-	{
-		ft_lstclear(&anim->frames, free);
-		anim->frame_count = 0;
-	}
-	else
-		ft_printf("del_all_frames: frames not found\n");
+	return (anim_speed * frame_count);
 }
 
-int	sl_is_last_frame(char *key, t_anim *anim)
+int	sl_anim_is_last_frame(char *key, t_anim *anim)
 {
 	int		compared_key_len;
 	t_list	*last_frame;

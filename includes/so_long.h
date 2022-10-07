@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/07 09:39:11 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:59:32 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,14 @@
 # include <mlx.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 # include "../libft/libft.h"
 
-/* 
-	my laptop's full screen = 1920 x 1080 
- */
 # define WINDOW_W 800
 # define WINDOW_H 800
 
-/*
-	events
-*/
 # define ON_DESTROY 17
 # define ON_KEY_PRESS 2
 # define ON_KEY_RELEASE 3
@@ -36,9 +33,9 @@
 	the lesser the blocked range by another img.
 	Must be lesser than sprite size.
  */
-# define NON_BLOCKED_RANGE 5
+# define NON_BLOCKED_RANGE 4
 
-# define STEP_SIZE 4
+# define STEP_SIZE 2
 # define SPRITE_SIZE 64
 
 /* 
@@ -49,9 +46,8 @@
 # define DOOR_ANIM_SPEED 10
 # define PLAYER_ANIM_SPEED 10
 
-/* 
-	player's action;
- */
+# define CHEST_ANIM_DELAY 6
+
 # define IDLE_RIGHT 0
 # define IDLE_LEFT 1
 # define MOVE_LEFT 2
@@ -115,6 +111,16 @@ typedef struct s_chest
 	struct s_chest	*next;
 }	t_chest;
 
+typedef struct s_door
+{
+	int		x;
+	int		y;
+	int		interacted;
+	t_anim	*open;
+	t_anim	*opened;
+	t_anim	*closed;
+}	t_door;
+
 typedef struct s_player
 {
 	int		x;
@@ -127,15 +133,12 @@ typedef struct s_player
 	t_anim	*move_left;
 }	t_player;
 
-typedef struct s_door
+typedef struct s_map
 {
-	int		x;
-	int		y;
-	int		interacted;
-	t_anim	*open;
-	t_anim	*opened;
-	t_anim	*closed;
-}	t_door;
+	t_list	*data;
+	int		width;
+	int		height;
+}	t_map;
 
 typedef struct s_game
 {
@@ -145,6 +148,7 @@ typedef struct s_game
 	t_player	*player;
 	t_chest		*chest;
 	t_door		*door;
+	t_map		*map;
 }	t_game;
 
 /* game_uitls */
@@ -167,9 +171,10 @@ void	sl_copy_img(t_img *dst, t_img *src, int x, int y);
 
 /* anim_utils */
 t_anim	*sl_anim_init(void);
-int		sl_is_last_frame(char *key, t_anim *anim);
+int		sl_anim_is_last_frame(char *key, t_anim *anim);
 void	sl_anim_add_frame(t_anim *anim, t_img *new);
 t_img	*sl_anim_get_frame(t_anim *anim, int frame_index);
+int		sl_anim_get_duration(int anim_speed, int frame_count);
 
 /* item_utils */
 t_chest	*sl_item_chest_new(int x, int y);
@@ -219,17 +224,24 @@ void	sl_player_set_dir(t_player *player);
 t_img	*sl_player_get_anim(t_player *player);
 void	sl_player_set_coord(t_player *player, int x, int y);
 void	sl_player_copy_img(t_img *buffer, t_player *player);
+
 /* player_load_utils */
 void	sl_player_load_imgs_idle(void *mlx, t_img **imgs);
 void	sl_player_load_imgs_move(void *mlx, t_img **imgs);
 void	sl_player_load_anim_idle(t_player *player, t_img *imgs);
 void	sl_player_load_anim_move(t_player *player, t_img *imgs);
 
+/* map_utils */
+void	sl_map_init(t_map **map);
+int		sl_map_open_fd(char *path);
+void	sl_map_parse(t_map *map, char *path);
+
 /* free_utils */
 void	sl_free_content(t_game *game);
 
 /* exit_utils */
-int		sl_exit(t_game *game, char *msg, int exit_status);
+int		sl_exit(char *msg, int fd, int exit_status);
+int		sl_exit_free(t_game *game, char *msg, int exit_status);
 
 /* debug_utils */
 int		sl_debug_loop(void);
