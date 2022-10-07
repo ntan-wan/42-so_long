@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/06 19:45:30 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/07 09:09:20 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct s_chest
 	int				x;
 	int				y;
 	t_anim			*close;
+	t_anim			*shine;
 	t_anim			*open;
 	int				interacted;
 	struct s_chest	*next;
@@ -179,10 +180,10 @@ void	sl_item_copy_img(t_img *buffer, t_chest *chest, int p_x, int p_y);
 
 /* item_load_utils */
 void	sl_item_load_anim_chests(t_chest *chest, t_img *imgs);
-void	sl_item_load_imgs_chest_open(void *mlx, t_img **imgs);
-void	sl_item_load_imgs_chest_close(void *mlx, t_img **imgs);
-void	sl_item_load_anim_chest_open(t_chest *chest, t_img *imgs);
-void	sl_item_load_anim_chest_close(t_chest *chest, t_img *imgs);
+void	sl_item_load_imgs_chest_idle(void *mlx, t_img **imgs);
+void	sl_item_load_imgs_chest_shine(void *mlx, t_img **imgs);
+void	sl_item_load_anim_chest_idle(t_chest *chest, t_img *imgs);
+void	sl_item_load_anim_chest_shine(t_chest *chest, t_img *imgs);
 
 /* door */
 void    sl_door_init(t_door **door);

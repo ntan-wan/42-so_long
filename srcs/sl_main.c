@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/06 19:36:58 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/07 07:20:05 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,9 @@ int	main(int ac, char **av)
 	sl_door_set_coord(game.door, 5 * 64, 5 * 64);
 	sl_player_set_coord(game.player, 3 * 64, 3 * 64);
 	sl_item_chest_add(&game.chest, sl_item_chest_new(2 * 64, 2 * 64));
-	sl_item_chest_add(&game.chest, sl_item_chest_new(3 * 64, 2 * 64));
 	sl_item_chest_add(&game.chest, sl_item_chest_new(4 * 64, 2 * 64));
-	sl_item_chest_add(&game.chest, sl_item_chest_new(2 * 64, 3 * 64));
-	sl_item_chest_add(&game.chest, sl_item_chest_new(4 * 64, 3 * 64));
+	sl_item_chest_add(&game.chest, sl_item_chest_new(2 * 64, 4 * 64));
+	sl_item_chest_add(&game.chest, sl_item_chest_new(4 * 64, 4 * 64));
 	//
 	sl_game_load_imgs(&game);
 	sl_game_load_anims(&game);
