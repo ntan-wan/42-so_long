@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 08:28:09 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/06 14:26:47 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/07 09:25:44 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,9 @@ void	sl_door_load_imgs_opening(void *mlx, t_img **imgs)
 	sl_load_img(mlx, imgs, "opening13", "sprite/door/door_open13.xpm");
 }
 
-void	sl_door_load_imgs_opened(void *mlx, t_img **imgs)
+void	sl_door_load_imgs_idle(void *mlx, t_img **imgs)
 {
 	sl_load_img(mlx, imgs, "opened", "sprite/door/door_opened.xpm");
-}
-
-void    sl_door_load_imgs_closed(void *mlx, t_img **imgs)
-{
 	sl_load_img(mlx, imgs, "closed", "sprite/door/door_closed.xpm");
 }
 
@@ -58,12 +54,8 @@ void	sl_door_load_anim_opening(t_door *door, t_img *imgs)
 	sl_anim_add_frame(door->open, sl_img_search("opening13", imgs));
 }
 
-void	sl_door_load_anim_opened(t_door *door, t_img *imgs)
+void	sl_door_load_anim_idle(t_door *door, t_img *imgs)
 {
 	sl_anim_add_frame(door->opened, sl_img_search("opened", imgs));
-}
-
-void	sl_door_load_anim_closed(t_door *door, t_img *imgs)
-{
 	sl_anim_add_frame(door->closed, sl_img_search("closed", imgs));
 }

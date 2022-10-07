@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:53:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/07 09:03:51 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/07 09:27:18 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	sl_free_imgs(void *mlx, t_img **head)
 	}
 	*head = NULL;
 }
-
 
 static void	sl_free_anim(t_anim **anim)
 {

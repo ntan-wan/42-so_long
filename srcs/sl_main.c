@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/07 07:20:05 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/07 09:28:22 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	main(int ac, char **av)
 	sl_item_chest_add(&game.chest, sl_item_chest_new(4 * 64, 2 * 64));
 	sl_item_chest_add(&game.chest, sl_item_chest_new(2 * 64, 4 * 64));
 	sl_item_chest_add(&game.chest, sl_item_chest_new(4 * 64, 4 * 64));
-	//
 	sl_game_load_imgs(&game);
 	sl_game_load_anims(&game);
 	mlx_hook(game.win, ON_DESTROY, 0, sl_exit, &game);

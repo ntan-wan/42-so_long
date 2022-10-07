@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 22:40:06 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/06 21:52:52 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/07 09:27:39 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	sl_interact_chest(t_player *p, t_chest *c)
 	}
 }
 
-static void sl_interact_door(t_player *p, t_door *d)
+static void	sl_interact_door(t_player *p, t_door *d)
 {
 	if (sl_is_blocked_by_door(p, d))
 		d->interacted = 1;

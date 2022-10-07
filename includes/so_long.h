@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/07 09:09:20 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/07 09:39:11 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include "../libft/libft.h"
-
 
 /* 
 	my laptop's full screen = 1920 x 1080 
@@ -186,18 +185,15 @@ void	sl_item_load_anim_chest_idle(t_chest *chest, t_img *imgs);
 void	sl_item_load_anim_chest_shine(t_chest *chest, t_img *imgs);
 
 /* door */
-void    sl_door_init(t_door **door);
-	
-void    sl_door_set_coord(t_door *door, int x, int y);
+void	sl_door_init(t_door **door);
+void	sl_door_set_coord(t_door *door, int x, int y);
 void	sl_door_copy_img(t_img *buffer, t_door *door, int p_x, int p_y);
 
 /* door_load*/
+void	sl_door_load_imgs_idle(void *mlx, t_img **imgs);
+void	sl_door_load_anim_idle(t_door *door, t_img *imgs);
 void	sl_door_load_imgs_opening(void *mlx, t_img **imgs);
-void	sl_door_load_imgs_opened(void *mlx, t_img **imgs);
-void    sl_door_load_imgs_closed(void *mlx, t_img **imgs);
 void	sl_door_load_anim_opening(t_door *door, t_img *imgs);
-void	sl_door_load_anim_opened(t_door *door, t_img *imgs);
-void	sl_door_load_anim_closed(t_door *door, t_img *imgs);
 
 /* move_utils */
 int		sl_move_is_blocked(t_game *g);
@@ -207,15 +203,15 @@ void	sl_move_player_step(t_player *player);
 void	sl_interact(t_game *game);
 
 /* check_blocked_utils */
-int	sl_is_blocked_by_door(t_player *p, t_door *d);
-int	sl_is_blocked_by_chest(t_player *p, t_chest *c);
+int		sl_is_blocked_by_door(t_player *p, t_door *d);
+int		sl_is_blocked_by_chest(t_player *p, t_chest *c);
 
 /* check_blocked_utils2 */
-int	sl_is_blocked_up(int action, int p_y, int o_y);
-int	sl_is_blocked_left(int action, int p_x, int o_x);
-int	sl_is_blocked_down(int action, int p_y, int o_y);
-int	sl_is_blocked_range(int p_coord, int o_coord);
-int	sl_is_blocked_right(int action, int p_x, int o_x);
+int		sl_is_blocked_up(int action, int p_y, int o_y);
+int		sl_is_blocked_left(int action, int p_x, int o_x);
+int		sl_is_blocked_down(int action, int p_y, int o_y);
+int		sl_is_blocked_range(int p_coord, int o_coord);
+int		sl_is_blocked_right(int action, int p_x, int o_x);
 
 /* player_utils */
 void	sl_player_init(t_player **player);

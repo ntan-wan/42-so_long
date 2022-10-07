@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 21:31:20 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/07 09:17:00 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/07 09:37:05 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,21 @@ void	sl_item_chest_add(t_chest **head, t_chest *new)
 		*head = new;
 }
 
-int	sl_anim_get_duration(int anim_speed, int frame_count)
-{
-	return (anim_speed * frame_count);
-}
-
+/* 
+	anim_dur = animation duration per cycle.
+ */
 t_img	*sl_item_chest_get_anim(t_chest *chest)
 {
 	t_anim				*anim;
 	static unsigned int	timer;
 	static unsigned int	frame;
 	int					delay;
-	int					duration;
+	int					anim_dur;
 
 	frame = timer++ / ITEM_ANIM_SPEED;
-	duration = sl_anim_get_duration(ITEM_ANIM_SPEED, chest->shine->frame_count);
-	delay = duration * 6;
-	if (!chest->interacted && timer % delay >= 0 && timer % delay <= duration)
+	anim_dur = ITEM_ANIM_SPEED * chest->shine->frame_count;
+	delay = anim_dur * 6;
+	if (!chest->interacted && timer % delay >= 0 && timer % delay <= anim_dur)
 		anim = chest->shine;
 	else if (chest->interacted)
 		anim = chest->open;

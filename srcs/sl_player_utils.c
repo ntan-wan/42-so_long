@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:48:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/06 07:46:34 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/07 09:20:54 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ t_img	*sl_player_get_anim(t_player *player)
 		anim = player->move_left;
 	return (sl_anim_get_frame(anim, frame % anim->frame_count));
 }
-
 
 /* 
 	Set player's facing direction.
