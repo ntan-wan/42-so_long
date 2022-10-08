@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/07 14:59:32 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/08 15:46:43 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ typedef struct s_map
 	t_list	*data;
 	int		width;
 	int		height;
+	t_img	*img;
 }	t_map;
 
 typedef struct s_game
@@ -233,8 +234,6 @@ void	sl_player_load_anim_move(t_player *player, t_img *imgs);
 
 /* map_utils */
 void	sl_map_init(t_map **map);
-int		sl_map_open_fd(char *path);
-void	sl_map_parse(t_map *map, char *path);
 
 /* free_utils */
 void	sl_free_content(t_game *game);
@@ -246,4 +245,10 @@ int		sl_exit_free(t_game *game, char *msg, int exit_status);
 /* debug_utils */
 int		sl_debug_loop(void);
 int		sl_debug_keycode_keypress(int keycode);
+
+
+int		sl_map_open_fd(t_game *game, char *path);
+void	sl_parse_map(t_game *g);
+void	sl_map_get_data(t_game *game, char *path, t_map *map);
+void	sl_map_parse_character(t_game *g, char c, int x, int y);
 #endif

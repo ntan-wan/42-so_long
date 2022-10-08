@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 08:28:15 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/07 10:38:12 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/07 17:51:06 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,20 @@ void	sl_door_set_coord(t_door *door, int x, int y)
 t_img	*sl_door_get_anim(t_door *door)
 {
 	char				*key;
-	static t_anim		*anim;
+	t_anim				*anim;
 	static unsigned int	timer;
 	static unsigned int	frame;
+	int					opened;
 
+	opened = 0;
 	frame = timer / DOOR_ANIM_SPEED;
 	key = sl_img_get_key(frame % door->open->frame_count, door->open);
 	if (door->interacted
-		&& sl_anim_is_last_frame(key, door->open) || anim == door->opened)
+		&& sl_anim_is_last_frame(key, door->open) || opened)
+	{
 		anim = door->opened;
+		opened = 1;
+	}
 	else if (door->interacted)
 	{
 		timer++;

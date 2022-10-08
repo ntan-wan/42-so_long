@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/07 15:23:23 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/08 15:46:07 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,10 @@ int	main(int ac, char **av)
 
 	sl_game_init(&game);
 	sl_map_init(&game.map);
-	sl_map_parse(game.map, av[1]);
 	sl_door_init(&game.door);
 	sl_player_init(&game.player);
-	sl_door_set_coord(game.door, 5 * 64, 5 * 64);
-	sl_player_set_coord(game.player, 3 * 64, 3 * 64);
-	sl_item_chest_add(&game.chest, sl_item_chest_new(2 * 64, 2 * 64));
-	sl_item_chest_add(&game.chest, sl_item_chest_new(4 * 64, 2 * 64));
-	sl_item_chest_add(&game.chest, sl_item_chest_new(2 * 64, 4 * 64));
-	sl_item_chest_add(&game.chest, sl_item_chest_new(4 * 64, 4 * 64));
+	sl_map_get_data(&game, av[1], game.map);
+	sl_parse_map(&game);
 	sl_game_load_imgs(&game);
 	sl_game_load_anims(&game);
 	mlx_hook(game.win, ON_DESTROY, 0, sl_exit_free, &game);

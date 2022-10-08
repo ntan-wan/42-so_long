@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:53:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/07 09:27:18 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/08 16:38:42 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ static void	sl_free_imgs(void *mlx, t_img **head)
 	while (ptr_img)
 	{
 		next = ptr_img->next;
+		//
 		mlx_destroy_image(mlx, ptr_img->img);
-		free(ptr_img);
+		// free(ptr_img);
 		ptr_img = next;
 	}
 	*head = NULL;
@@ -81,12 +82,14 @@ void	sl_free_content(t_game *game)
 {
 	if (game)
 	{
-		mlx_destroy_display(game->mlx);
 		mlx_destroy_window(game->mlx, game->win);
 		sl_free_imgs(game->mlx, &game->imgs);
+		mlx_destroy_display(game->mlx);
 		sl_free_player(&game->player);
 		sl_free_item_chest(&game->chest);
 		sl_free_door(&game->door);
+		ft_lstclear(&game->map->data, free);
+		free(game->map);
 		free(game->mlx);
 		game->mlx = NULL;
 	}
