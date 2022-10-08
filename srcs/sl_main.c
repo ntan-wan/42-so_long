@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/08 15:46:07 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/08 23:38:00 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	sl_key_press(int keycode, t_game *game)
 {
 	if (keycode == ESC)
-		sl_exit_free(game, "exit success\n", EXIT_SUCCESS);
+		sl_exit_msg(game, "exit success\n", EXIT_SUCCESS);
 	else if (keycode == SPACE_BAR)
 		sl_interact(game);
 	else if (keycode == KEY_D)
@@ -46,19 +46,21 @@ int	sl_key_release(int keycode, t_game *game)
 	return (0);
 }
 
-int	sl_render(t_game *game)
+int	sl_render(t_game *g)
 {
 	t_img	buffer;
 
-	sl_game_buffer_init(game->mlx, &buffer);
-	if (!sl_move_is_blocked(game))
-		sl_move_player_step(game->player);
-	sl_player_set_dir(game->player);
-	sl_item_copy_img(&buffer, game->chest, game->player->x, game->player->y);
-	sl_door_copy_img(&buffer, game->door, game->player->x, game->player->y);
-	sl_player_copy_img(&buffer, game->player);
-	mlx_put_image_to_window(game->mlx, game->win, buffer.img, 0, 0);
-	mlx_destroy_image(game->mlx, buffer.img);
+	sl_game_buffer_init(g->mlx, &buffer);
+	if (!sl_move_is_blocked(g))
+		sl_move_player_step(g->player);
+	sl_player_set_dir(g->player);
+	sl_map_copy_img(&buffer, g->map, g->player->x, g->player->y);
+	//sl_copy_img(&buffer, sl_img_search("wall", g->imgs), 1 * 64, 1 * 64);
+	sl_item_copy_img(&buffer, g->chest, g->player->x, g->player->y);
+	sl_door_copy_img(&buffer, g->door, g->player->x, g->player->y);
+	sl_player_copy_img(&buffer, g->player);
+	mlx_put_image_to_window(g->mlx, g->win, buffer.img, 0, 0);
+	mlx_destroy_image(g->mlx, buffer.img);
 	return (0);
 }
 
@@ -70,11 +72,11 @@ int	main(int ac, char **av)
 	sl_map_init(&game.map);
 	sl_door_init(&game.door);
 	sl_player_init(&game.player);
-	sl_map_get_data(&game, av[1], game.map);
-	sl_parse_map(&game);
+	sl_parse_map(&game, av[1]);
 	sl_game_load_imgs(&game);
 	sl_game_load_anims(&game);
-	mlx_hook(game.win, ON_DESTROY, 0, sl_exit_free, &game);
+	sl_map_parse_data(&game, sl_map_parse_image);
+	mlx_hook(game.win, ON_DESTROY, 0, sl_exit, &game);
 	mlx_hook(game.win, ON_KEY_PRESS, 1L << 0, sl_key_press, &game);
 	mlx_hook(game.win, ON_KEY_RELEASE, 1L << 1, sl_key_release, &game);
 	mlx_loop_hook(game.mlx, sl_render, &game);

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/08 15:46:43 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/08 21:45:51 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,8 +239,8 @@ void	sl_map_init(t_map **map);
 void	sl_free_content(t_game *game);
 
 /* exit_utils */
-int		sl_exit(char *msg, int fd, int exit_status);
-int		sl_exit_free(t_game *game, char *msg, int exit_status);
+int		sl_exit(t_game *game);
+int		sl_exit_msg(t_game *game, char *msg, int exit_status);
 
 /* debug_utils */
 int		sl_debug_loop(void);
@@ -248,7 +248,11 @@ int		sl_debug_keycode_keypress(int keycode);
 
 
 int		sl_map_open_fd(t_game *game, char *path);
-void	sl_parse_map(t_game *g);
-void	sl_map_get_data(t_game *game, char *path, t_map *map);
 void	sl_map_parse_character(t_game *g, char c, int x, int y);
+void	sl_parse_map(t_game *g, char *path);
+void	sl_map_get_data(t_map *map, int fd);
+void	sl_map_parse_image(t_game *g, char c, int x, int y);
+void	sl_map_copy_img(t_img *buffer, t_map *map, int p_x, int p_y);
+void	sl_map_parse_data(t_game *g, void (*f)(t_game *, char, int, int));
+void	sl_map_parse_image(t_game *g, char c, int x, int y);
 #endif

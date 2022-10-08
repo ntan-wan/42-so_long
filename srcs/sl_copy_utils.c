@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 10:31:09 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/04 16:17:28 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/08 23:26:06 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	sl_copy_pixel(char *dst, char *src, int bytes_per_pixel)
 	if (dst && src)
 	{
 		while (++i < bytes_per_pixel)
-			*dst++ = *src++;
+			dst[i] = src[i];
 	}
 	else
 		ft_printf("copy_pixel: src or dst not found\n");
