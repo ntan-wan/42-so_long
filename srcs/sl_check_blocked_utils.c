@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:26:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/11 17:43:47 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/12 03:58:13 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	sl_is_blocked_by_door(t_player *p, t_door *d)
 	return (sl_is_blocked(p, d->x, d->y) && !d->interacted);
 }
 
-int	sl_is_blocked_by_wall(t_map *map, int x, int y)
+int	sl_is_wall(t_map *map, int x, int y)
 {
 	int		i;
 	t_list	*data;

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 20:35:59 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/11 11:06:12 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/12 03:42:44 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	sl_map_parse_image(t_game *g, char c, int x, int y)
 	if (c == '1')
 		sl_copy_img(g->map->img, sl_img_search("wall", g->imgs),
 			x * SPRITE_SIZE, y * SPRITE_SIZE);
-	else if (ft_strchr("0CP", c))
+	else if (ft_strchr("0CPE", c))
 		sl_copy_img(g->map->img, sl_img_search("floor", g->imgs),
 			x * SPRITE_SIZE, y * SPRITE_SIZE);
 }

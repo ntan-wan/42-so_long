@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/11 19:07:29 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/12 03:58:13 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,11 @@ typedef struct s_door
 	t_anim	*closed;
 }	t_door;
 
+typedef struct s_brick
+{
+	t_list	*coords;
+}	t_brick;
+
 typedef struct s_player
 {
 	int		x;
@@ -201,7 +206,7 @@ void	sl_door_load_anims(t_door *door, t_img *imgs);
 
 /* move_utils */
 int		sl_move_is_blocked(t_game *g);
-void	sl_move_player_step(t_player *player);
+void	sl_move_player_step(t_game *g);
 
 /* interact */
 void	sl_interact(t_game *game);
@@ -212,7 +217,7 @@ int	sl_coord_is_overlapped(int coord, int o_coord, int reduced_range);
 /* check_blocked_utils */
 int		sl_is_blocked(t_player *p, int o_x, int o_y);
 int		sl_is_blocked_by_door(t_player *p, t_door *d);
-int		sl_is_blocked_by_wall(t_map *map, int x, int y);
+int		sl_is_wall(t_map *map, int x, int y);
 int		sl_is_blocked_by_chest(t_player *p, t_chest *c);
 
 /* check_blocked_utils2 */

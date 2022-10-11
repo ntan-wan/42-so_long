@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 21:31:20 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/11 19:11:47 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/11 19:14:42 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	sl_item_check_collected(t_game *g)
 	int		reduced_range;
 
 	chest = g->chest;
-	reduced_range = 20;
+	reduced_range = 16;
 	p_mid_y = g->player->y + SPRITE_SIZE / 2;
 	p_mid_x = g->player->x + SPRITE_SIZE / 2;
 	while (chest)
