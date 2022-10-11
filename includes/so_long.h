@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/11 11:24:28 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/11 19:07:29 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef struct s_chest
 	t_anim			*shine;
 	t_anim			*open;
 	int				interacted;
+	int				collected;
 	struct s_chest	*next;
 }	t_chest;
 
@@ -205,17 +206,21 @@ void	sl_move_player_step(t_player *player);
 /* interact */
 void	sl_interact(t_game *game);
 
+/* check_coord_utils */
+int	sl_coord_is_overlapped(int coord, int o_coord, int reduced_range);
+
 /* check_blocked_utils */
+int		sl_is_blocked(t_player *p, int o_x, int o_y);
 int		sl_is_blocked_by_door(t_player *p, t_door *d);
 int		sl_is_blocked_by_wall(t_map *map, int x, int y);
 int		sl_is_blocked_by_chest(t_player *p, t_chest *c);
 
 /* check_blocked_utils2 */
-int		sl_is_blocked_up(int action, int p_y, int o_y);
-int		sl_is_blocked_left(int action, int p_x, int o_x);
-int		sl_is_blocked_down(int action, int p_y, int o_y);
+int		sl_is_blocked_up(int p_y, int o_y);
+int		sl_is_blocked_left(int p_x, int o_x);
+int		sl_is_blocked_down(int p_y, int o_y);
 int		sl_is_blocked_range(int p_coord, int o_coord);
-int		sl_is_blocked_right(int action, int p_x, int o_x);
+int		sl_is_blocked_right(int p_x, int o_x);
 
 /* player_utils */
 void	sl_player_init(t_player **player);
@@ -256,4 +261,6 @@ void	sl_free_imgs(void *mlx, t_img **head);
 /* exit_utils */
 int		sl_exit(t_game *game);
 int		sl_exit_msg(t_game *game, char *msg, int exit_status);
+
+void	sl_item_check_collected(t_game *g);
 #endif

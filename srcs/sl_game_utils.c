@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 10:08:26 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/11 11:23:46 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/11 12:48:24 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	sl_game_init(t_game *g)
 
 void	sl_game_load_imgs(t_game *g)
 {
-	sl_img_load(g->mlx, &g->imgs, "wall", "sprite/tiles/wall1.xpm");
+	sl_img_load(g->mlx, &g->imgs, "wall", "sprite/tiles/wall2.xpm");
 	sl_img_load(g->mlx, &g->imgs, "floor", "sprite/tiles/floor2.xpm");
 	sl_player_load_imgs_idle(g->mlx, &g->imgs);
 	sl_player_load_imgs_move(g->mlx, &g->imgs);

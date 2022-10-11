@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sl_interact.c                                      :+:      :+:    :+:   */
+/*   sl_check_coord_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 22:40:06 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/11 17:22:00 by ntan-wan         ###   ########.fr       */
+/*   Created: 2022/10/11 19:01:45 by ntan-wan          #+#    #+#             */
+/*   Updated: 2022/10/11 19:09:03 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static void	sl_interact_chest(t_player *p, t_chest *c)
+static int	sl_coord_get_upper_limit(int o_coord, int reduced_range)
 {
-	t_chest	*chest;
-
-	chest = c;
-	while (chest)
-	{
-		if (sl_is_blocked_by_chest(p, chest))
-		{
-			chest->interacted = 1;
-			return ;
-		}
-		chest = chest->next;
-	}
+	return (o_coord + SPRITE_SIZE - reduced_range);
 }
 
-static void	sl_interact_door(t_player *p, t_door *d)
+static int	sl_coord_get_lower_limit(int o_coord, int reduced_range)
 {
-	if (sl_is_blocked_by_door(p, d))
-		d->interacted = 1;
+	return (o_coord + reduced_range);
 }
 
-void	sl_interact(t_game *game)
+int	sl_coord_is_overlapped(int coord, int o_coord, int reduced_range)
 {
-	sl_interact_chest(game->player, game->chest);
-	sl_interact_door(game->player, game->door);
+	return (coord >= sl_coord_get_lower_limit(o_coord, reduced_range)
+		&& coord <= sl_coord_get_upper_limit(o_coord, reduced_range));
 }
