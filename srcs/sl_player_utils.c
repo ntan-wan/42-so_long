@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:48:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/11 10:52:08 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/11 12:12:24 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,9 @@ t_img	*sl_player_get_anim(t_player *player)
 		anim = player->move_right;
 	else if (player->action == MOVE_LEFT)
 		anim = player->move_left;
-	else if (player->action == MOVE_DOWN && player->dir == IDLE_RIGHT)
+	else if (player->dir == IDLE_RIGHT)
 		anim = player->move_right;
-	else if (player->action == MOVE_DOWN && player->dir == IDLE_LEFT)
-		anim = player->move_left;
-	else if (player->action == MOVE_UP && player->dir == IDLE_RIGHT)
-		anim = player->move_right;
-	else if (player->action == MOVE_UP && player->dir == IDLE_LEFT)
+	else if (player->dir == IDLE_LEFT)
 		anim = player->move_left;
 	return (sl_anim_get_frame(anim, frame % anim->frame_count));
 }
