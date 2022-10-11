@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 08:28:15 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/07 17:51:06 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/11 07:50:11 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ t_img	*sl_door_get_anim(t_door *door)
 	return (sl_anim_get_frame(anim, frame % anim->frame_count));
 }
 
-void	sl_door_copy_img(t_img *buffer, t_door *door, int p_x, int p_y)
+void	sl_door_copy_img(t_img *buffer, t_game *g)
 {
-	sl_copy_img(buffer, sl_door_get_anim(door),
-		door->x + (WINDOW_W / 2 - SPRITE_SIZE - p_x),
-		door->y + (WINDOW_H / 2 - SPRITE_SIZE - p_y));
+	sl_copy_img(buffer, sl_door_get_anim(g->door),
+		g->door->x + ((WINDOW_W - SPRITE_SIZE) / 2 - g->player->x),
+		g->door->y + ((WINDOW_H - SPRITE_SIZE) / 2 - g->player->y));
 }

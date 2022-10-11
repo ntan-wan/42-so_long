@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:48:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/07 09:20:54 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:52:08 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_img	*sl_player_get_anim(t_player *player)
 }
 
 /* 
-	Set player's facing direction.
+	dir = direction
  */
 void	sl_player_set_dir(t_player *player)
 {
@@ -89,5 +89,5 @@ void	sl_player_set_dir(t_player *player)
 void	sl_player_copy_img(t_img *buffer, t_player *player)
 {
 	sl_copy_img(buffer, sl_player_get_anim(player),
-		WINDOW_W / 2 - SPRITE_SIZE, WINDOW_H / 2 - SPRITE_SIZE);
+		(WINDOW_W - SPRITE_SIZE) / 2, (WINDOW_H - SPRITE_SIZE) / 2);
 }

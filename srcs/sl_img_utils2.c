@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sl_debug_utils.c                                   :+:      :+:    :+:   */
+/*   sl_img_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 16:52:22 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/09/30 12:39:48 by ntan-wan         ###   ########.fr       */
+/*   Created: 2022/10/11 11:22:21 by ntan-wan          #+#    #+#             */
+/*   Updated: 2022/10/11 11:25:25 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_printf(const char *str, ...);
+#include "../includes/so_long.h"
 
-/* print keypress keycode */
-int	sl_debug_keycode_keypress(int keycode)
+/* init + add imgs */
+void	sl_img_load(void *mlx, t_img **head, char *key, char *path)
 {
-	ft_printf("keycode -> %d\n", keycode);
-	return (0);
+	sl_img_add(head, sl_img_init(mlx, key, path));
 }
 
-/* handle no event */
-int	sl_debug_loop(void)
+t_img	*sl_img_new(void *mlx, int width, int height)
 {
-	return (0);
+	t_img	*new_img;
+
+	new_img = (t_img *)malloc(sizeof(t_img));
+	new_img->width = width;
+	new_img->height = height;
+	new_img->img = mlx_new_image(mlx, width, height);
+	return (new_img);
 }

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:23:35 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/07 10:38:12 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:08:29 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	sl_anim_add_frame(t_anim *anim, t_img *new)
 	if (anim && new)
 	{
 		ft_lstadd_back(&anim->frames, ft_lstnew(new));
-		anim->frame_count = ft_lstsize(anim->frames);
+		(anim->frame_count)++;
 	}
 	else
 		ft_printf("add_frame: anim or new frame not found\n");

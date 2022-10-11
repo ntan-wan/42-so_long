@@ -6,37 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:53:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/08 17:55:14 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/11 09:06:39 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static void	sl_free_imgs(void *mlx, t_img **head)
-{
-	t_img	*ptr_img;
-	t_img	*next;
-
-	ptr_img = *head;
-	while (ptr_img)
-	{
-		next = ptr_img->next;
-		//
-		mlx_destroy_image(mlx, ptr_img->img);
-		// free(ptr_img);
-		ptr_img = next;
-	}
-	*head = NULL;
-}
-
-static void	sl_free_anim(t_anim **anim)
-{
-	ft_lstclear(&(*anim)->frames, free);
-	free(*anim);
-	*anim = NULL;
-}
-
-static void	sl_free_door(t_door **door)
+void	sl_free_door(t_door **door)
 {
 	if (*door)
 	{
@@ -47,7 +23,7 @@ static void	sl_free_door(t_door **door)
 	}
 }
 
-static void	sl_free_player(t_player **player)
+void	sl_free_player(t_player **player)
 {
 	if (*player)
 	{
@@ -60,7 +36,7 @@ static void	sl_free_player(t_player **player)
 	*player = NULL;
 }
 
-static void	sl_free_item_chest(t_chest **chest)
+void	sl_free_item_chest(t_chest **chest)
 {
 	t_chest	*ptr_chest;
 	t_chest	*next;
@@ -83,20 +59,4 @@ void	sl_free_map(t_map **map)
 	ft_lstclear(&(*map)->data, free);
 	free(*map);
 	*map = NULL;
-}
-
-void	sl_free_content(t_game *game)
-{
-	if (game)
-	{
-		sl_free_imgs(game->mlx, &game->imgs);
-		mlx_destroy_window(game->mlx, game->win);
-		mlx_destroy_display(game->mlx);
-		sl_free_player(&game->player);
-		sl_free_item_chest(&game->chest);
-		sl_free_door(&game->door);
-		sl_free_map(&game->map);
-		free(game->mlx);
-		game->mlx = NULL;
-	}
 }

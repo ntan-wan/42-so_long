@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:05:08 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/09 00:03:06 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:22:49 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	sl_map_init(t_map **map)
 	{
 		new_map->width = 0;
 		new_map->height = 0;
-		new_map->img = NULL;
+		new_map->img = (t_img *)malloc(sizeof(t_img));
 		new_map->data = NULL;
 	}
 	else
@@ -29,27 +29,16 @@ void	sl_map_init(t_map **map)
 	*map = new_map;
 }
 
-int	sl_map_open_fd(t_game *game, char *path)
+int	sl_map_open_fd(t_game *g, char *path)
 {
 	int	fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		sl_exit_msg(game, "open_fd: unable to read map\n", EXIT_FAILURE);
+		sl_exit_msg(g, "open_fd: unable to read map\n", EXIT_FAILURE);
 	else if (ft_strncmp(".ber", ft_substr(path, ft_strlen(path) - 4, 4), 4))
-		sl_exit_msg(game, "open_fd: wrong file extension", EXIT_FAILURE);
+		sl_exit_msg(g, "open_fd: wrong file extension", EXIT_FAILURE);
 	return (fd);
-}
-
-void	sl_map_parse_character(t_game *g, char c, int x, int y)
-{
-	if (c == 'C')
-		sl_item_chest_add(&g->chest,
-			sl_item_chest_new(x * SPRITE_SIZE, y * SPRITE_SIZE));
-	else if (c == 'P')
-		sl_player_set_coord(g->player, x * SPRITE_SIZE, y * SPRITE_SIZE);
-	else if (c == 'E')
-		sl_door_set_coord(g->door, x * SPRITE_SIZE, y * SPRITE_SIZE);
 }
 
 void	sl_map_get_data(t_map *map, int fd)
@@ -66,49 +55,22 @@ void	sl_map_get_data(t_map *map, int fd)
 	map->width = ft_strlen(map->data->content) - 1;
 }
 
-void	sl_map_parse_image(t_game *g, char c, int x, int y)
+void	sl_map_copy_img(t_img *buffer, t_game *g)
 {
-	if (c == '1')
-		sl_copy_img(g->map->img, sl_img_search("wall", g->imgs),
-		x * SPRITE_SIZE, y * SPRITE_SIZE);
-	else if (ft_strchr("0CPE", c))
-		sl_copy_img(g->map->img, sl_img_search("floor", g->imgs),
-		x * SPRITE_SIZE, y * SPRITE_SIZE);
+	sl_copy_img(buffer, g->map->img,
+		(WINDOW_W - SPRITE_SIZE) / 2 - g->player->x,
+		(WINDOW_H - SPRITE_SIZE) / 2 - g->player->y);
 }
 
-void	sl_map_parse_data(t_game *g, void (*f)(t_game *, char, int, int))
+void	sl_map_setup(t_game *g, char *path)
 {
-	int		x;
-	int		y;
-	t_list	*map_data;
-
-	y = -1;
-	map_data = g->map->data;
-	while (map_data)
-	{
-		++y;
-		x = -1;
-		while (((char *)map_data->content)[++x])
-			f(g, ((char *)map_data->content)[x], x, y);
-		map_data = map_data->next;
-	}
-}
-
-void	sl_parse_map(t_game *g, char *path)
-{
-	int	fd;
+	int		fd;
+	char	*buffer;
 
 	fd = sl_map_open_fd(g, path);
 	sl_map_get_data(g->map, fd);
-	g->map->img = (t_img *)malloc(sizeof (t_img));
-	g->map->img->next = NULL;
-	g->map->img->height = g->map->height * SPRITE_SIZE;
-	g->map->img->width = g->map->width * SPRITE_SIZE;
-	g->map->img->key = "map";
-	g->map->img->img = mlx_new_image(g->mlx, g->map->width * SPRITE_SIZE,
-		g->map->height * SPRITE_SIZE);
-	// printf("%d\n", g->map->width);
-	// printf("%d\n", g->map->height);
+	g->map->img = sl_img_new(g->mlx, g->map->width * SPRITE_SIZE,
+			g->map->height * SPRITE_SIZE);
 	sl_map_parse_data(g, sl_map_parse_character);
 	close(fd);
 }

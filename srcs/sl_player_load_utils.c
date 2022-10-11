@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 16:30:18 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/06 08:58:58 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:23:46 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,34 @@
 
 void	sl_player_load_imgs_idle(void *mlx, t_img **imgs)
 {
-	sl_load_img(mlx, imgs, "k_idle0_r", "sprite/knight/idle_right0.xpm");
-	sl_load_img(mlx, imgs, "k_idle1_r", "sprite/knight/idle_right1.xpm");
-	sl_load_img(mlx, imgs, "k_idle2_r", "sprite/knight/idle_right2.xpm");
-	sl_load_img(mlx, imgs, "k_idle3_r", "sprite/knight/idle_right3.xpm");
-	sl_load_img(mlx, imgs, "k_idle4_r", "sprite/knight/idle_right4.xpm");
-	sl_load_img(mlx, imgs, "k_idle5_r", "sprite/knight/idle_right5.xpm");
-	sl_load_img(mlx, imgs, "k_idle0_l", "sprite/knight/idle_left0.xpm");
-	sl_load_img(mlx, imgs, "k_idle1_l", "sprite/knight/idle_left1.xpm");
-	sl_load_img(mlx, imgs, "k_idle2_l", "sprite/knight/idle_left2.xpm");
-	sl_load_img(mlx, imgs, "k_idle3_l", "sprite/knight/idle_left3.xpm");
-	sl_load_img(mlx, imgs, "k_idle4_l", "sprite/knight/idle_left4.xpm");
-	sl_load_img(mlx, imgs, "k_idle5_l", "sprite/knight/idle_left5.xpm");
+	sl_img_load(mlx, imgs, "k_idle0_r", "sprite/knight/idle_right0.xpm");
+	sl_img_load(mlx, imgs, "k_idle1_r", "sprite/knight/idle_right1.xpm");
+	sl_img_load(mlx, imgs, "k_idle2_r", "sprite/knight/idle_right2.xpm");
+	sl_img_load(mlx, imgs, "k_idle3_r", "sprite/knight/idle_right3.xpm");
+	sl_img_load(mlx, imgs, "k_idle4_r", "sprite/knight/idle_right4.xpm");
+	sl_img_load(mlx, imgs, "k_idle5_r", "sprite/knight/idle_right5.xpm");
+	sl_img_load(mlx, imgs, "k_idle0_l", "sprite/knight/idle_left0.xpm");
+	sl_img_load(mlx, imgs, "k_idle1_l", "sprite/knight/idle_left1.xpm");
+	sl_img_load(mlx, imgs, "k_idle2_l", "sprite/knight/idle_left2.xpm");
+	sl_img_load(mlx, imgs, "k_idle3_l", "sprite/knight/idle_left3.xpm");
+	sl_img_load(mlx, imgs, "k_idle4_l", "sprite/knight/idle_left4.xpm");
+	sl_img_load(mlx, imgs, "k_idle5_l", "sprite/knight/idle_left5.xpm");
 }
 
 void	sl_player_load_imgs_move(void *mlx, t_img **imgs)
 {
-	sl_load_img(mlx, imgs, "k_run0_r", "sprite/knight/run_right0.xpm");
-	sl_load_img(mlx, imgs, "k_run1_r", "sprite/knight/run_right1.xpm");
-	sl_load_img(mlx, imgs, "k_run2_r", "sprite/knight/run_right2.xpm");
-	sl_load_img(mlx, imgs, "k_run3_r", "sprite/knight/run_right3.xpm");
-	sl_load_img(mlx, imgs, "k_run4_r", "sprite/knight/run_right4.xpm");
-	sl_load_img(mlx, imgs, "k_run5_r", "sprite/knight/run_right5.xpm");
-	sl_load_img(mlx, imgs, "k_run0_l", "sprite/knight/run_left0.xpm");
-	sl_load_img(mlx, imgs, "k_run1_l", "sprite/knight/run_left1.xpm");
-	sl_load_img(mlx, imgs, "k_run2_l", "sprite/knight/run_left2.xpm");
-	sl_load_img(mlx, imgs, "k_run3_l", "sprite/knight/run_left3.xpm");
-	sl_load_img(mlx, imgs, "k_run4_l", "sprite/knight/run_left4.xpm");
-	sl_load_img(mlx, imgs, "k_run5_l", "sprite/knight/run_left5.xpm");
+	sl_img_load(mlx, imgs, "k_run0_r", "sprite/knight/run_right0.xpm");
+	sl_img_load(mlx, imgs, "k_run1_r", "sprite/knight/run_right1.xpm");
+	sl_img_load(mlx, imgs, "k_run2_r", "sprite/knight/run_right2.xpm");
+	sl_img_load(mlx, imgs, "k_run3_r", "sprite/knight/run_right3.xpm");
+	sl_img_load(mlx, imgs, "k_run4_r", "sprite/knight/run_right4.xpm");
+	sl_img_load(mlx, imgs, "k_run5_r", "sprite/knight/run_right5.xpm");
+	sl_img_load(mlx, imgs, "k_run0_l", "sprite/knight/run_left0.xpm");
+	sl_img_load(mlx, imgs, "k_run1_l", "sprite/knight/run_left1.xpm");
+	sl_img_load(mlx, imgs, "k_run2_l", "sprite/knight/run_left2.xpm");
+	sl_img_load(mlx, imgs, "k_run3_l", "sprite/knight/run_left3.xpm");
+	sl_img_load(mlx, imgs, "k_run4_l", "sprite/knight/run_left4.xpm");
+	sl_img_load(mlx, imgs, "k_run5_l", "sprite/knight/run_left5.xpm");
 }
 
 void	sl_player_load_anim_idle(t_player *player, t_img *imgs)

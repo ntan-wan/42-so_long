@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 21:31:20 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/07 10:36:15 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:37:56 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,21 +76,16 @@ t_img	*sl_item_chest_get_anim(t_chest *chest)
 	return (sl_anim_get_frame(anim, frame % anim->frame_count));
 }
 
-/* 
-	p_x = player's x coordinate.
-	p_y = player's y coordinate.
-	Copy the chest's image according to the player's coordinate.
- */
-void	sl_item_copy_img(t_img *buffer, t_chest *head, int p_x, int p_y)
+void	sl_item_copy_img(t_img *buffer, t_game *g)
 {
 	t_chest	*chest;
 
-	chest = head;
+	chest = g->chest;
 	while (chest)
 	{
 		sl_copy_img(buffer, sl_item_chest_get_anim(chest),
-			chest->x + (WINDOW_W / 2 - SPRITE_SIZE - p_x),
-			chest->y + (WINDOW_H / 2 - SPRITE_SIZE - p_y));
+			chest->x + ((WINDOW_W - SPRITE_SIZE) / 2 - g->player->x),
+			chest->y + ((WINDOW_H - SPRITE_SIZE) / 2 - g->player->y));
 		chest = chest->next;
 	}
 }

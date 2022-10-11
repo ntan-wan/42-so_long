@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:26:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/07 07:12:09 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/11 08:05:24 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,16 @@ int	sl_is_blocked_by_chest(t_player *p, t_chest *c)
 int	sl_is_blocked_by_door(t_player *p, t_door *d)
 {
 	return (sl_is_blocked(p, d->x, d->y));
+}
+
+int	sl_is_blocked_by_wall(t_map *map, int x, int y)
+{
+	int		i;
+	t_list	*data;
+
+	i = -1;
+	data = map->data;
+	while (++i < y / SPRITE_SIZE)
+		data = data->next;
+	return (((char *)data->content)[x / SPRITE_SIZE] == '1');
 }
