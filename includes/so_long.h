@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/12 03:58:13 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/12 19:38:41 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,9 +242,7 @@ void	sl_player_load_anim_move(t_player *player, t_img *imgs);
 
 /* map_utils */
 void	sl_map_init(t_map **map);
-int		sl_map_open_fd(t_game *game, char *path);
 void	sl_map_setup(t_game *g, char *path);
-void	sl_map_get_data(t_map *map, int fd);
 void	sl_map_copy_img(t_img *buffer, t_game *g);
 
 /* map_utils2 */
@@ -264,8 +262,8 @@ void	sl_free_content(t_game *game);
 void	sl_free_imgs(void *mlx, t_img **head);
 
 /* exit_utils */
-int		sl_exit(t_game *game);
-int		sl_exit_msg(t_game *game, char *msg, int exit_status);
+int		sl_exit_free(t_game *game);
+int		sl_exit_free_msg(t_game *game, char *msg, int exit_status);
 
 void	sl_item_check_collected(t_game *g);
 #endif

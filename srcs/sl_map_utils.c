@@ -6,42 +6,25 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:05:08 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/11 11:22:49 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/12 19:40:00 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	sl_map_init(t_map **map)
-{
-	t_map	*new_map;
-
-	new_map = (t_map *)malloc(sizeof(t_map));
-	if (new_map)
-	{
-		new_map->width = 0;
-		new_map->height = 0;
-		new_map->img = (t_img *)malloc(sizeof(t_img));
-		new_map->data = NULL;
-	}
-	else
-		ft_printf("map_init: init failed\n");
-	*map = new_map;
-}
-
-int	sl_map_open_fd(t_game *g, char *path)
+static int	sl_map_open_fd(t_game *g, char *path)
 {
 	int	fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		sl_exit_msg(g, "open_fd: unable to read map\n", EXIT_FAILURE);
+		sl_exit_free_msg(g, "open_fd: unable to read map\n", EXIT_FAILURE);
 	else if (ft_strncmp(".ber", ft_substr(path, ft_strlen(path) - 4, 4), 4))
-		sl_exit_msg(g, "open_fd: wrong file extension", EXIT_FAILURE);
+		sl_exit_free_msg(g, "open_fd: wrong file extension", EXIT_FAILURE);
 	return (fd);
 }
 
-void	sl_map_get_data(t_map *map, int fd)
+static void	sl_map_get_data(t_map *map, int fd)
 {
 	char	*buffer;
 
@@ -55,11 +38,54 @@ void	sl_map_get_data(t_map *map, int fd)
 	map->width = ft_strlen(map->data->content) - 1;
 }
 
-void	sl_map_copy_img(t_img *buffer, t_game *g)
+static int	sl_map_is_surrounded(t_map *map)
 {
-	sl_copy_img(buffer, g->map->img,
-		(WINDOW_W - SPRITE_SIZE) / 2 - g->player->x,
-		(WINDOW_H - SPRITE_SIZE) / 2 - g->player->y);
+	int		x;
+	int		y;
+	char	c;
+	t_list	*map_data;
+
+	y = 0;
+	map_data = map->data;
+	while (map_data)
+	{
+		x = 0;
+		while (((char *)map_data->content)[x])
+		{
+			c = ((char *)map_data->content)[x];
+			if ((y == 0 || y == map->height - 1) && (c != '1' && c != '\n'))
+				return (0);
+			else if ((x == 0 || x == ft_strlen((char *)map_data->content) - 2)
+				&& c != '1')
+				return (0);
+			x++;
+		}
+		map_data = map_data->next;
+		y++;
+	}
+	return (1);
+}
+
+/*
+	rect = rectangle
+  */
+static int	sl_map_is_rect(t_map *map)
+{
+	int		width;
+	t_list	*map_data;
+
+	map_data = map->data;
+	while (map_data)
+	{
+		if (ft_strchr((char *)map_data->content, '\n'))
+				width = ft_strlen((char *)map_data->content) - 1;
+		else
+			width = ft_strlen((char *)map_data->content);
+		if (width != map->width || map->width == map->height)
+			return (0);
+		map_data = map_data->next;
+	}
+	return (1);
 }
 
 void	sl_map_setup(t_game *g, char *path)
@@ -69,6 +95,10 @@ void	sl_map_setup(t_game *g, char *path)
 
 	fd = sl_map_open_fd(g, path);
 	sl_map_get_data(g->map, fd);
+	if (!sl_map_is_surrounded(g->map))
+		sl_exit_free_msg(g, "map_setup: map not surrounded\n", EXIT_FAILURE);
+	else if (!sl_map_is_rect(g->map))
+		sl_exit_free_msg(g, "map_setup: map is not rectangular\n", EXIT_FAILURE);
 	g->map->img = sl_img_new(g->mlx, g->map->width * SPRITE_SIZE,
 			g->map->height * SPRITE_SIZE);
 	sl_map_parse_data(g, sl_map_parse_character);

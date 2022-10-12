@@ -6,11 +6,35 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 20:35:59 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/12 03:42:44 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/12 19:36:25 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+void	sl_map_init(t_map **map)
+{
+	t_map	*new_map;
+
+	new_map = (t_map *)malloc(sizeof(t_map));
+	if (new_map)
+	{
+		new_map->width = 0;
+		new_map->height = 0;
+		new_map->img = (t_img *)malloc(sizeof(t_img));
+		new_map->data = NULL;
+	}
+	else
+		ft_printf("map_init: init failed\n");
+	*map = new_map;
+}
+
+void	sl_map_copy_img(t_img *buffer, t_game *g)
+{
+	sl_copy_img(buffer, g->map->img,
+		(WINDOW_W - SPRITE_SIZE) / 2 - g->player->x,
+		(WINDOW_H - SPRITE_SIZE) / 2 - g->player->y);
+}
 
 void	sl_map_parse_character(t_game *g, char c, int x, int y)
 {
