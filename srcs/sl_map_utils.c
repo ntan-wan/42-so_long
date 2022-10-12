@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:05:08 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/12 19:40:00 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/12 22:12:55 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ static int	sl_map_open_fd(t_game *g, char *path)
 	return (fd);
 }
 
-static void	sl_map_get_data(t_map *map, int fd)
+static int	sl_map_get_data(t_map *map, int fd)
 {
 	char	*buffer;
 
 	buffer = get_next_line(fd);
+	if (!buffer)
+		return (0);
 	while (buffer)
 	{
 		map->height++;
@@ -36,6 +38,7 @@ static void	sl_map_get_data(t_map *map, int fd)
 		buffer = get_next_line(fd);
 	}
 	map->width = ft_strlen(map->data->content) - 1;
+	return (1);
 }
 
 static int	sl_map_is_surrounded(t_map *map)
@@ -45,23 +48,21 @@ static int	sl_map_is_surrounded(t_map *map)
 	char	c;
 	t_list	*map_data;
 
-	y = 0;
+	y = -1;
 	map_data = map->data;
 	while (map_data)
 	{
-		x = 0;
-		while (((char *)map_data->content)[x])
+		x = -1;
+		while (((char *)map_data->content)[++x])
 		{
 			c = ((char *)map_data->content)[x];
-			if ((y == 0 || y == map->height - 1) && (c != '1' && c != '\n'))
+			if ((++y == 0 || y == map->height - 1) && (c != '1' && c != '\n'))
 				return (0);
 			else if ((x == 0 || x == ft_strlen((char *)map_data->content) - 2)
 				&& c != '1')
 				return (0);
-			x++;
 		}
 		map_data = map_data->next;
-		y++;
 	}
 	return (1);
 }
@@ -91,14 +92,14 @@ static int	sl_map_is_rect(t_map *map)
 void	sl_map_setup(t_game *g, char *path)
 {
 	int		fd;
-	char	*buffer;
 
 	fd = sl_map_open_fd(g, path);
-	sl_map_get_data(g->map, fd);
-	if (!sl_map_is_surrounded(g->map))
-		sl_exit_free_msg(g, "map_setup: map not surrounded\n", EXIT_FAILURE);
+	if (!sl_map_get_data(g->map, fd))
+		sl_exit_free_msg(g, "map_setup: map is empty\n", EXIT_FAILURE);
 	else if (!sl_map_is_rect(g->map))
 		sl_exit_free_msg(g, "map_setup: map is not rectangular\n", EXIT_FAILURE);
+	else if (!sl_map_is_surrounded(g->map))
+		sl_exit_free_msg(g, "map_setup: map is not surrounded\n", EXIT_FAILURE);
 	g->map->img = sl_img_new(g->mlx, g->map->width * SPRITE_SIZE,
 			g->map->height * SPRITE_SIZE);
 	sl_map_parse_data(g, sl_map_parse_character);
