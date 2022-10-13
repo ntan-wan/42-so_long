@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 20:35:59 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/12 20:01:10 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:16:18 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	sl_map_init(t_map **map)
 	{
 		new_map->width = 0;
 		new_map->height = 0;
-		new_map->img = (t_img *)malloc(sizeof(t_img));
+		new_map->img = NULL;
+		new_map->wall = NULL;
+		new_map->floor = NULL;
 		new_map->data = NULL;
 	}
 	else

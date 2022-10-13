@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:53:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/11 09:06:39 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:22:23 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	sl_free_door(t_door **door)
 		sl_free_anim(&(*door)->open);
 		sl_free_anim(&(*door)->opened);
 		free(*door);
+		*door = NULL;
 	}
 }
 
@@ -32,8 +33,8 @@ void	sl_free_player(t_player **player)
 		sl_free_anim(&(*player)->move_left);
 		sl_free_anim(&(*player)->move_right);
 		free(*player);
+		*player = NULL;
 	}
-	*player = NULL;
 }
 
 void	sl_free_item_chest(t_chest **chest)
@@ -54,9 +55,14 @@ void	sl_free_item_chest(t_chest **chest)
 	*chest = NULL;
 }
 
-void	sl_free_map(t_map **map)
+void	sl_free_map(void *mlx, t_img *imgs, t_map **map)
 {
+	if ((*map)->outline)
+		mlx_destroy_image(mlx, (*map)->outline->img);
 	ft_lstclear(&(*map)->data, free);
+	free((*map)->wall);
+	free((*map)->floor);
+	free((*map)->outline);
 	free(*map);
 	*map = NULL;
 }

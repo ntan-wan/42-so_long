@@ -52,7 +52,7 @@ $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@echo "$(GREEN)Compiling : $< $(COLOR_OFF)"
 
 $(NAME) : $(OBJS_PREFIXED)
-	@$(CC) $(OBJS_PREFIXED) $(LIBFT_DIR)$(LIBFT_LIB) $(LIBMLX) $(OTHER_LIBS) -o $(NAME)
+	@$(CC) $(OBJS_PREFIXED) -fsanitize=address $(LIBFT_DIR)$(LIBFT_LIB) $(LIBMLX) $(OTHER_LIBS) -o $(NAME)
 	@echo "$(CYAN)$(NAME) done !$(COLOR_OFF)"
 
 clean :

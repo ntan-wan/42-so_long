@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:22:21 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/11 11:25:25 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:46:43 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ t_img	*sl_img_new(void *mlx, int width, int height)
 	new_img->width = width;
 	new_img->height = height;
 	new_img->img = mlx_new_image(mlx, width, height);
+	new_img->next = NULL;
 	return (new_img);
 }
