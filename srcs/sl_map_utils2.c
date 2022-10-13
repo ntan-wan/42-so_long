@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 20:35:59 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/13 14:16:18 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:25:43 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	sl_map_init(t_map **map)
 	{
 		new_map->width = 0;
 		new_map->height = 0;
-		new_map->img = NULL;
+		new_map->outline = NULL;
 		new_map->wall = NULL;
 		new_map->floor = NULL;
 		new_map->data = NULL;
@@ -33,7 +33,7 @@ void	sl_map_init(t_map **map)
 
 void	sl_map_copy_img(t_img *buffer, t_game *g)
 {
-	sl_copy_img(buffer, g->map->img,
+	sl_copy_img(buffer, g->map->outline,
 		(WINDOW_W - SPRITE_SIZE) / 2 - g->player->x,
 		(WINDOW_H - SPRITE_SIZE) / 2 - g->player->y);
 }
@@ -52,10 +52,10 @@ void	sl_map_parse_character(t_game *g, char c, int x, int y)
 void	sl_map_parse_image(t_game *g, char c, int x, int y)
 {
 	if (c == '1')
-		sl_copy_img(g->map->img, sl_img_search("wall", g->imgs),
+		sl_copy_img(g->map->outline, sl_img_search("wall", g->imgs),
 			x * SPRITE_SIZE, y * SPRITE_SIZE);
 	else if (ft_strchr("0CPE\n", c))
-		sl_copy_img(g->map->img, sl_img_search("floor", g->imgs),
+		sl_copy_img(g->map->outline, sl_img_search("floor", g->imgs),
 			x * SPRITE_SIZE, y * SPRITE_SIZE);
 	else
 		sl_exit_free_msg(g, "map_parse_image: invalid char\n", EXIT_FAILURE);

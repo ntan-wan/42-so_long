@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/13 14:21:21 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:24:01 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,7 +249,7 @@ void	sl_map_parse_data(t_game *g, void (*f)(t_game *, char, int, int));
 
 /* free_utils */
 // void	sl_free_map(void *mlx, t_map **map);
-void	sl_free_map(void *mlx, t_img *imgs, t_map **map);
+void	sl_free_map(void *mlx, t_map **map);
 void	sl_free_door(t_door **door);
 void	sl_free_player(t_player **player);
 void	sl_free_item_chest(t_chest **chest);
