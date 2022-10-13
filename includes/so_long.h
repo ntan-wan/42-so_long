@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/13 14:24:01 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/13 18:31:09 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,4 +264,5 @@ int		sl_exit_free(t_game *game);
 int		sl_exit_free_msg(t_game *game, char *msg, int exit_status);
 
 void	sl_item_check_collected(t_game *g);
+void	sl_map_load_imgs(void *mlx, t_img **imgs, t_map *map);
 #endif
