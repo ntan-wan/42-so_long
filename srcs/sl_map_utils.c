@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:05:08 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/13 18:40:45 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:26:20 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,26 @@ void	sl_map_load_imgs(void *mlx, t_img **imgs, t_map *map)
 	sl_img_add(imgs, map->floor);
 }
 
+int	sl_map_is_dup_char(t_map *map)
+{
+	int		x;
+	int		count;
+	t_list	*map_data;
+
+	count = 0;
+	map_data = map->data;
+	while (map_data)
+	{
+		x = -1;
+		while (((char *)map_data->content)[++x])
+			if (((char *)map_data->content)[x] == 'P'
+				|| ((char *)map_data->content)[x] == 'E')
+				count++;
+		map_data = map_data->next;
+	}
+	return (count > 2);	
+}
+
 void	sl_map_check_missing_char(t_game *g)
 {
 	if (g->player->x == 0 || g->player->y == 0)
@@ -134,6 +154,8 @@ void	sl_map_setup(t_game *g, char *path)
 		sl_exit_free_msg(g, "map_setup: map is not rectangular\n", EXIT_FAILURE);
 	else if (!sl_map_is_surrounded(g->map))
 		sl_exit_free_msg(g, "map_setup: not surrounded by wall\n", EXIT_FAILURE);
+	else if (sl_map_is_dup_char(g->map))
+		sl_exit_free_msg(g, "map_setup: more than 1 start/exit\n", EXIT_FAILURE);
 	sl_map_parse_data(g, sl_map_parse_character);
 	sl_map_check_missing_char(g);
 	close(fd);
