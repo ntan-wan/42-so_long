@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:05:08 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/13 19:26:20 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:29:18 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ int	sl_map_is_dup_char(t_map *map)
 				count++;
 		map_data = map_data->next;
 	}
-	return (count > 2);	
+	return (count > 2);
 }
 
 void	sl_map_check_missing_char(t_game *g)
