@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 21:31:20 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/11 19:14:42 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/14 19:01:42 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,25 @@ void	sl_item_copy_img(t_img *buffer, t_game *g)
 	}
 }
 
+int	sl_item_chest_get_total(t_chest *c)
+{
+	int		total;
+	t_chest	*chest;
+	
+	total = 0;
+	chest = c;
+	while (chest)
+	{
+		total++;
+		chest = chest->next;
+	}
+	return (total);
+}
+
+/* 
+	reduced_range = reduce the area to activate
+	chest->collected = 1.
+ */
 void	sl_item_check_collected(t_game *g)
 {
 	t_chest	*chest;
@@ -109,7 +128,10 @@ void	sl_item_check_collected(t_game *g)
 	{
 		if (sl_coord_is_overlapped(p_mid_x, chest->x, reduced_range)
 			&& sl_coord_is_overlapped(p_mid_y, chest->y, reduced_range))
+		{
 			chest->collected = 1;
+			// (g->player->collected)++;
+		}
 		chest = chest->next;
 	}
 }

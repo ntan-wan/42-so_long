@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:05:08 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/13 19:29:18 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/14 19:11:09 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,25 @@ static int	sl_map_open_fd(t_game *g, char *path)
 	free(file_extension);
 	return (fd);
 }
-
+/* 
+	- return (map->width) instead of return (1).
+	If map_data is null, map->width will remain as 0 and become 'false'.
+	If map_data is not null, map->width will be manipulated and become 'true'.	
+ */
 static int	sl_map_get_data(t_map *map, int fd)
 {
 	char	*buffer;
 
 	buffer = get_next_line(fd);
-	if (!buffer)
-		return (0);
 	while (buffer)
 	{
 		map->height++;
 		ft_lstadd_back(&map->data, ft_lstnew(buffer));
 		buffer = get_next_line(fd);
 	}
-	map->width = ft_strlen(map->data->content) - 1;
-	return (1);
+	if (map->data)
+		map->width = ft_strlen(map->data->content) - 1;
+	return (map->width);
 }
 
 /* 

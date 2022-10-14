@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/13 18:31:09 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/14 18:58:27 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ typedef struct s_player
 	int		y;
 	int		dir;
 	int		action;
+	int		collected;
 	t_anim	*idle_right;
 	t_anim	*idle_left;
 	t_anim	*move_right;
@@ -265,4 +266,5 @@ int		sl_exit_free_msg(t_game *game, char *msg, int exit_status);
 
 void	sl_item_check_collected(t_game *g);
 void	sl_map_load_imgs(void *mlx, t_img **imgs, t_map *map);
+int		sl_item_chest_get_total(t_chest *c);
 #endif
