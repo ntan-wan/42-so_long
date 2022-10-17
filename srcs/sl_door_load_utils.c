@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 08:28:09 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/11 11:23:46 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/17 12:12:24 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	sl_door_load_imgs(void *mlx, t_img **imgs)
 	sl_img_load(mlx, imgs, "opening11", "sprite/door/door_open11.xpm");
 	sl_img_load(mlx, imgs, "opening12", "sprite/door/door_open12.xpm");
 	sl_img_load(mlx, imgs, "opening13", "sprite/door/door_open13.xpm");
-	sl_img_load(mlx, imgs, "opened", "sprite/door/door_opened3.xpm");
+	sl_img_load(mlx, imgs, "opened", "sprite/door/door_opened.xpm");
 	sl_img_load(mlx, imgs, "closed", "sprite/door/door_closed.xpm");
 }
 
