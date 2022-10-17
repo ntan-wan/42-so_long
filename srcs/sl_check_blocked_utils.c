@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:26:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/14 18:44:10 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:48:59 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,12 @@ int	sl_is_blocked_by_chest(t_player *p, t_chest *c)
 	return (sl_is_blocked(p, c->x, c->y) && !c->interacted);
 }
 
-int	sl_is_blocked_by_door(t_player *p, t_door *d)
+int	sl_is_blocked_by_door(t_player *p, t_door *d, t_chest *c)
 {
-	return (sl_is_blocked(p, d->x, d->y) && !d->interacted);
+	int	chest_total;
+
+	chest_total = sl_item_chest_get_total(c);
+	return (sl_is_blocked(p, d->x, d->y) && p->collected != chest_total);
 }
 
 int	sl_is_wall(t_map *map, int x, int y)

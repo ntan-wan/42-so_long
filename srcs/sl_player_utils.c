@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:48:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/14 18:02:22 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/14 19:52:10 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,25 @@ void	sl_player_set_dir(t_player *player)
 	}
 	else
 		ft_printf("set_move_direction: player not found\n");
+}
+
+void	sl_player_check_collected(t_game *g)
+{
+	t_chest	*chest;
+	int		prev_collected;
+	int		curr_collected;
+
+	chest = g->chest;	
+	curr_collected = 0;
+	prev_collected = g->player->collected;
+	while (chest)
+	{
+		if (chest->collected)
+			curr_collected++;
+		chest = chest->next;
+	}
+	if (prev_collected != curr_collected)
+		g->player->collected = curr_collected;
 }
 
 void	sl_player_copy_img(t_img *buffer, t_player *player)

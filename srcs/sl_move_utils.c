@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 13:27:21 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/12 04:05:19 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:38:32 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	sl_move_is_blocked(t_game *g)
 {
 	t_chest	*chest;
 
-	if (sl_is_blocked_by_door(g->player, g->door))
+	if (sl_is_blocked_by_door(g->player, g->door, g->chest))
 		return (1);
 	chest = g->chest;
 	while (chest)

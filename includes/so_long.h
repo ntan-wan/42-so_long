@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/14 18:58:27 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:50:07 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ typedef struct s_door
 {
 	int		x;
 	int		y;
-	int		interacted;
 	t_anim	*open;
 	t_anim	*opened;
 	t_anim	*closed;
@@ -214,7 +213,7 @@ int	sl_coord_is_overlapped(int coord, int o_coord, int reduced_range);
 
 /* check_blocked_utils */
 int		sl_is_blocked(t_player *p, int o_x, int o_y);
-int		sl_is_blocked_by_door(t_player *p, t_door *d);
+int		sl_is_blocked_by_door(t_player *p, t_door *d, t_chest *c);
 int		sl_is_wall(t_map *map, int x, int y);
 int		sl_is_blocked_by_chest(t_player *p, t_chest *c);
 
@@ -267,4 +266,5 @@ int		sl_exit_free_msg(t_game *game, char *msg, int exit_status);
 void	sl_item_check_collected(t_game *g);
 void	sl_map_load_imgs(void *mlx, t_img **imgs, t_map *map);
 int		sl_item_chest_get_total(t_chest *c);
+void	sl_player_check_collected(t_game *g);
 #endif
