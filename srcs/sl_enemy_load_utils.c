@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 18:58:11 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 09:57:20 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:19:54 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,17 @@ void	sl_enemy_load_anim_move(t_enemy *e, t_img *imgs)
 	sl_anim_add_frame(e->move_left, sl_img_search("e_run3_l", imgs));
 	sl_anim_add_frame(e->move_left, sl_img_search("e_run4_l", imgs));
 	sl_anim_add_frame(e->move_left, sl_img_search("e_run5_l", imgs));
+}
+
+void	sl_enemies_load_anim(t_list *enemies, t_img *imgs)
+{
+	t_list	*enemy;
+
+	enemy = enemies;
+	while (enemy)
+	{
+		sl_enemy_load_anim_idle((t_enemy *)enemy->content, imgs);
+		sl_enemy_load_anim_move((t_enemy *)enemy->content, imgs);
+		enemy = enemy->next;
+	}
 }

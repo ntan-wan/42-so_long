@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 13:27:21 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 09:57:39 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:54:45 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,27 +39,24 @@ void	sl_move_player_step(t_game *g)
 void	sl_move_enemy_step(t_game *g)
 {
 	t_enemy	*e;
+	t_list	*enemies;
 
-	e = g->enemy;
-	if (e)
+	enemies = g->enemies;
+	if (!enemies)
+		sl_exit_free_msg(g, "enemy_step: enemy not found\n", EXIT_FAILURE);
+	while (enemies)
 	{
+		e = (t_enemy *)enemies->content;
 		if (e->dir == IDLE_LEFT
 			&& !sl_is_wall(g->map, e->x - STEP_SIZE, e->y + SPRITE_SIZE / 2))
-		{
-			e->action = MOVE_LEFT;
 			e->x -= STEP_SIZE;
-		}
 		else if (e->dir == IDLE_RIGHT
 			&& !sl_is_wall(g->map, e->x + SPRITE_SIZE, e->y + SPRITE_SIZE / 2))
-		{
-			e->action = MOVE_RIGHT;
 			e->x += STEP_SIZE;
-		}
 		else
 			e->dir = !e->dir;
+		enemies = enemies->next;
 	}
-	else
-		ft_printf("move_enemy_step: enemy not found\n");
 }
 
 int	sl_move_is_blocked(t_game *g)

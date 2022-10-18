@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:26:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/17 11:48:59 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 14:38:35 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,21 @@
 int	sl_is_blocked(t_player *p, int o_x, int o_y)
 {
 	int		act;
+	int		non_blocked_range;
 
 	act = p->action;
+	non_blocked_range = 4;
 	if (act == MOVE_RIGHT && sl_is_blocked_right(p->x, o_x)
-		&& sl_is_blocked_range(p->y, o_y))
+		&& sl_is_blocked_range(p->y, o_y, non_blocked_range))
 		return (1);
 	else if (act == MOVE_LEFT && sl_is_blocked_left(p->x, o_x)
-		&& sl_is_blocked_range(p->y, o_y))
+		&& sl_is_blocked_range(p->y, o_y, non_blocked_range))
 		return (1);
 	else if (act == MOVE_UP && sl_is_blocked_up(p->y, o_y)
-		&& sl_is_blocked_range(p->x, o_x))
+		&& sl_is_blocked_range(p->x, o_x, non_blocked_range))
 		return (1);
 	else if (act == MOVE_DOWN && sl_is_blocked_down(p->y, o_y)
-		&& sl_is_blocked_range(p->x, o_x))
+		&& sl_is_blocked_range(p->x, o_x, non_blocked_range))
 		return (1);
 	return (0);
 }

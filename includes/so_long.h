@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 09:31:45 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:36:31 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 	the lesser the blocked range by another img.
 	Must be lesser than sprite size.
  */
-# define NON_BLOCKED_RANGE 4
+// # define NON_BLOCKED_RANGE 4
 
 # define STEP_SIZE 4
 # define SPRITE_SIZE 64
@@ -163,6 +163,7 @@ typedef struct s_game
 	t_img		*imgs;
 	t_player	*player;
 	t_enemy		*enemy;
+	t_list		*enemies;
 	t_chest		*chest;
 	t_door		*door;
 	t_map		*map;
@@ -234,8 +235,8 @@ int		sl_is_blocked_by_chest(t_player *p, t_chest *c);
 int		sl_is_blocked_up(int p_y, int o_y);
 int		sl_is_blocked_left(int p_x, int o_x);
 int		sl_is_blocked_down(int p_y, int o_y);
-int		sl_is_blocked_range(int p_coord, int o_coord);
 int		sl_is_blocked_right(int p_x, int o_x);
+int		sl_is_blocked_range(int p_coord, int o_coord, int non_blocked_range);
 
 /* player_utils */
 void	sl_player_init(t_player **player);
@@ -284,7 +285,7 @@ void	sl_player_check_collected(t_game *g);
 
 void    sl_enemy_load_img_idle(void *mlx, t_img **imgs);
 void	sl_enemy_load_anim_idle(t_enemy *e, t_img *imgs);
-void	sl_enemy_init(t_enemy **e);
+t_enemy	*sl_enemy_init(int x, int y);
 t_img	*sl_enemy_get_anim(t_enemy *e);
 void	sl_enemy_set_dir(t_enemy *e);
 void	sl_enemy_copy_img(t_img *buffer, t_game *g);
@@ -292,4 +293,7 @@ void	sl_enemy_set_coord(t_enemy *e, int x, int y);
 void	sl_move_enemy_step(t_game *g);
 void	sl_enemy_load_imgs_move(void *mlx, t_img **imgs);
 void	sl_enemy_load_anim_move(t_enemy *e, t_img *imgs);
+void	sl_enemy_add(t_list **enemies, t_list *new);
+void	sl_enemies_load_anim(t_list *enemies, t_img *imgs);
+void	sl_enemies_check_player(t_game *g);
 #endif

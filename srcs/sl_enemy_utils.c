@@ -6,21 +6,21 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:21:57 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/17 19:32:09 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:46:39 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	sl_enemy_init(t_enemy **e)
+t_enemy	*sl_enemy_init(int x, int y)
 {
 	t_enemy *new_enemy;
 
 	new_enemy = (t_enemy *)malloc(sizeof(t_enemy));
 	if (new_enemy)
 	{
-		new_enemy->x = 0;
-		new_enemy->y = 0;
+		new_enemy->x = x;
+		new_enemy->y = y;
 		new_enemy->dir = 0;
 		new_enemy->action = 0;
 		new_enemy->idle_left = sl_anim_init();
@@ -30,18 +30,7 @@ void	sl_enemy_init(t_enemy **e)
 	}
 	else
 		ft_printf("enemy_init: init failed\n");
-	*e = new_enemy;
-}
-
-void	sl_enemy_set_coord(t_enemy *e, int x, int y)
-{
-	if (e)	
-	{
-		e->x = x;	
-		e->y = y;
-	}
-	else
-		ft_printf("enemy:set_coord: enemy not found\n");
+	return (new_enemy);
 }
 
 t_img	*sl_enemy_get_anim(t_enemy *e)
@@ -51,38 +40,54 @@ t_img	*sl_enemy_get_anim(t_enemy *e)
 	static unsigned int	frame;
 
 	frame = timer++ / PLAYER_ANIM_SPEED;
-	if (e->action == IDLE_RIGHT)
-		anim = e->idle_right;
-	else if (e->action == IDLE_LEFT)
-		anim = e->idle_left;
-	else if (e->action == MOVE_RIGHT)
-		anim = e->move_right;
-	else if (e->action == MOVE_LEFT)
-		anim = e->move_left;
-	else if (e->dir == IDLE_RIGHT)
+	if (e->dir == IDLE_RIGHT)
 		anim = e->move_right;
 	else if (e->dir == IDLE_LEFT)
 		anim = e->move_left;
 	return (sl_anim_get_frame(anim, frame % anim->frame_count));
 }
 
-
-void	sl_enemy_set_dir(t_enemy *e)
+void	sl_enemy_add(t_list **enemies, t_list *new)
 {
-	if (e)
-	{
-		if (e->action == IDLE_LEFT)
-			e->dir = IDLE_LEFT;
-		else if (e->action == IDLE_RIGHT)
-			e->dir = IDLE_RIGHT;
-	}
-	else
-		ft_printf("set_move_direction: enemy not found\n");
+	ft_lstadd_back(enemies, new);
 }
 
 void	sl_enemy_copy_img(t_img *buffer, t_game *g)
 {
-	sl_copy_img(buffer, sl_enemy_get_anim(g->enemy),
-		g->enemy->x + ((WINDOW_W - SPRITE_SIZE) / 2 - g->player->x),
-		g->enemy->y + ((WINDOW_H - SPRITE_SIZE) / 2 - g->player->y));
+	t_enemy	*enemy;
+	t_list	*enemies;
+
+	enemies = g->enemies;
+	while (enemies)
+	{
+		enemy = ((t_enemy *)enemies->content);
+		sl_copy_img(buffer, sl_enemy_get_anim(enemy),
+			enemy->x + ((WINDOW_W - SPRITE_SIZE) / 2 - g->player->x),
+			enemy->y + ((WINDOW_H - SPRITE_SIZE) / 2 - g->player->y));
+		enemies = enemies->next;
+	}
+}
+
+void	sl_enemies_check_player(t_game *g)
+{
+	t_enemy	*enemy;
+	t_list	*enemies;
+	int		reduced_range;
+	int		non_blocked_range;
+
+	enemies = g->enemies;
+	reduced_range = 28;
+	non_blocked_range = 16;
+
+	while (enemies)
+	{
+		enemy = ((t_enemy *)enemies->content);
+		if (sl_is_blocked_right(g->player->x - reduced_range, enemy->x)
+			&& sl_is_blocked_range(g->player->y, enemy->y, non_blocked_range))
+			sl_exit_free_msg(g, "YOU'VE BEEN CAPTURED!\n", EXIT_SUCCESS);
+		else if (sl_is_blocked_left(g->player->x + reduced_range, enemy->x)
+			&& sl_is_blocked_range(g->player->y, enemy->y, non_blocked_range))
+			sl_exit_free_msg(g, "YOU'VE BEEN CAPTURED!\n", EXIT_SUCCESS);
+		enemies = enemies->next;
+	}
 }
