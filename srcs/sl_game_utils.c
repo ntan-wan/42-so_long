@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 10:08:26 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 11:29:48 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:10:54 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	sl_game_init(t_game *g)
 		g->chest = NULL;
 		g->player = NULL;
 		g->enemies = NULL;
-		g->enemy = NULL;
 		g->map = NULL;
 	}
 	else

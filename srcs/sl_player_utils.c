@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:48:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/14 19:52:10 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 17:02:39 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	sl_player_check_collected(t_game *g)
 	int		prev_collected;
 	int		curr_collected;
 
-	chest = g->chest;	
+	chest = g->chest;
 	curr_collected = 0;
 	prev_collected = g->player->collected;
 	while (chest)

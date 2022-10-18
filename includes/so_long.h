@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 16:36:31 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:11:02 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,6 @@ typedef struct s_game
 	void		*win;
 	t_img		*imgs;
 	t_player	*player;
-	t_enemy		*enemy;
 	t_list		*enemies;
 	t_chest		*chest;
 	t_door		*door;
@@ -217,13 +216,14 @@ void	sl_door_load_anims(t_door *door, t_img *imgs);
 
 /* move_utils */
 int		sl_move_is_blocked(t_game *g);
+void	sl_move_enemy_step(t_game *g);
 void	sl_move_player_step(t_game *g);
 
 /* interact */
 void	sl_interact(t_game *game);
 
 /* check_coord_utils */
-int	sl_coord_is_overlapped(int coord, int o_coord, int reduced_range);
+int		sl_coord_is_overlapped(int coord, int o_coord, int reduced_range);
 
 /* check_blocked_utils */
 int		sl_is_blocked(t_player *p, int o_x, int o_y);
@@ -261,8 +261,12 @@ void	sl_map_parse_image(t_game *g, char c, int x, int y);
 void	sl_map_parse_character(t_game *g, char c, int x, int y);
 void	sl_map_parse_data(t_game *g, void (*f)(t_game *, char, int, int));
 
+/* map_utils3 */
+int		sl_map_is_rect(t_map *map);
+int		sl_map_is_dup_char(t_map *map);
+int		sl_map_is_surrounded(t_map *map);
+
 /* free_utils */
-// void	sl_free_map(void *mlx, t_map **map);
 void	sl_free_map(void *mlx, t_map **map);
 void	sl_free_door(t_door **door);
 void	sl_free_player(t_player **player);
@@ -282,18 +286,13 @@ void	sl_map_load_imgs(void *mlx, t_img **imgs, t_map *map);
 int		sl_item_chest_get_total(t_chest *c);
 void	sl_player_check_collected(t_game *g);
 
-
-void    sl_enemy_load_img_idle(void *mlx, t_img **imgs);
-void	sl_enemy_load_anim_idle(t_enemy *e, t_img *imgs);
+/* enemy_utils */
 t_enemy	*sl_enemy_init(int x, int y);
-t_img	*sl_enemy_get_anim(t_enemy *e);
-void	sl_enemy_set_dir(t_enemy *e);
-void	sl_enemy_copy_img(t_img *buffer, t_game *g);
-void	sl_enemy_set_coord(t_enemy *e, int x, int y);
-void	sl_move_enemy_step(t_game *g);
-void	sl_enemy_load_imgs_move(void *mlx, t_img **imgs);
-void	sl_enemy_load_anim_move(t_enemy *e, t_img *imgs);
-void	sl_enemy_add(t_list **enemies, t_list *new);
-void	sl_enemies_load_anim(t_list *enemies, t_img *imgs);
 void	sl_enemies_check_player(t_game *g);
+void	sl_enemy_add(t_list **enemies, t_list *new);
+void	sl_enemy_copy_img(t_img *buffer, t_game *g);
+
+/* enemy_load_utils */
+void	sl_enemy_load_imgs_move(void *mlx, t_img **imgs);
+void	sl_enemies_load_anim(t_list *enemies, t_img *imgs);
 #endif

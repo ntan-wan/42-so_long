@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 21:31:20 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/14 19:53:47 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 17:14:28 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	sl_item_chest_get_total(t_chest *c)
 {
 	int		total;
 	t_chest	*chest;
-	
+
 	total = 0;
 	chest = c;
 	while (chest)
@@ -119,12 +119,11 @@ void	sl_item_check_collected(t_game *g)
 	int		p_mid_x;
 	int		p_mid_y;
 	int		reduced_range;
-	
+
 	chest = g->chest;
 	reduced_range = 16;
 	p_mid_y = g->player->y + SPRITE_SIZE / 2;
 	p_mid_x = g->player->x + SPRITE_SIZE / 2;
-
 	while (chest)
 	{
 		if (sl_coord_is_overlapped(p_mid_x, chest->x, reduced_range)

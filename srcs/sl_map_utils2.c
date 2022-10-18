@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 20:35:59 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 11:04:53 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 17:18:24 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	sl_map_parse_character(t_game *g, char c, int x, int y)
 	else if (c == 'E')
 		sl_door_set_coord(g->door, x * SPRITE_SIZE, y * SPRITE_SIZE);
 	else if (c == 'Y')
-		sl_enemy_add(&g->enemies, ft_lstnew(sl_enemy_init(x * SPRITE_SIZE, y * SPRITE_SIZE)));
-		// sl_enemy_set_coord(g->enemy, x * SPRITE_SIZE, y * SPRITE_SIZE);
+		sl_enemy_add(&g->enemies,
+			ft_lstnew(sl_enemy_init(x * SPRITE_SIZE, y * SPRITE_SIZE)));
 }
 
 void	sl_map_parse_image(t_game *g, char c, int x, int y)

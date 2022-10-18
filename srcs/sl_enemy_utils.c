@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:21:57 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 16:46:39 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 17:17:37 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_enemy	*sl_enemy_init(int x, int y)
 {
-	t_enemy *new_enemy;
+	t_enemy	*new_enemy;
 
 	new_enemy = (t_enemy *)malloc(sizeof(t_enemy));
 	if (new_enemy)
@@ -33,7 +33,7 @@ t_enemy	*sl_enemy_init(int x, int y)
 	return (new_enemy);
 }
 
-t_img	*sl_enemy_get_anim(t_enemy *e)
+static t_img	*sl_enemy_get_anim(t_enemy *e)
 {
 	t_anim				*anim;
 	static unsigned int	timer;
@@ -78,7 +78,6 @@ void	sl_enemies_check_player(t_game *g)
 	enemies = g->enemies;
 	reduced_range = 28;
 	non_blocked_range = 16;
-
 	while (enemies)
 	{
 		enemy = ((t_enemy *)enemies->content);

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 08:28:15 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/17 11:50:25 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 17:17:53 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,16 @@ t_img	*sl_door_get_anim(t_game *g)
 	static unsigned int	timer;
 	static unsigned int	frame;
 	int					opened;
-	int					chest_total;
 
 	opened = 0;
 	frame = timer / DOOR_ANIM_SPEED;
-	chest_total = sl_item_chest_get_total(g->chest);
 	key = sl_img_get_key(frame % g->door->open->frame_count, g->door->open);
 	if (sl_anim_is_last_frame(key, g->door->open) || opened)
 	{
 		anim = g->door->opened;
 		opened = 1;
 	}
-	else if (g->player->collected == chest_total)
+	else if (g->player->collected == sl_item_chest_get_total(g->chest))
 	{
 		timer++;
 		anim = g->door->open;

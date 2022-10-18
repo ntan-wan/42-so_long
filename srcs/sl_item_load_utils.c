@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 23:41:43 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/11 15:21:59 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 17:02:15 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	sl_item_load_imgs_chest(void *mlx, t_img **imgs)
 {
-	// sl_img_load(mlx, imgs, "chest_open", "sprite/items/chest_open.xpm");
 	sl_img_load(mlx, imgs, "chest_close0", "sprite/items/chest_closed0.xpm");
 	sl_img_load(mlx, imgs, "chest_close1", "sprite/items/chest_closed1.xpm");
 	sl_img_load(mlx, imgs, "chest_close2", "sprite/items/chest_closed2.xpm");
@@ -29,13 +28,10 @@ void	sl_item_load_imgs_chest(void *mlx, t_img **imgs)
 	sl_img_load(mlx, imgs, "coin3", "sprite/items/coin3.xpm");
 	sl_img_load(mlx, imgs, "coin4", "sprite/items/coin4.xpm");
 	sl_img_load(mlx, imgs, "coin5", "sprite/items/coin5.xpm");
-	// sl_img_load(mlx, imgs, "coin5", "sprite/items/coin5_32.xpm");
 }
 
 void	sl_item_load_anim_chest(t_chest *chest, t_img *imgs)
 {
-	// sl_anim_add_frame(chest->open, sl_img_search("chest_open", imgs));
-	// sl_anim_add_frame(chest->open, sl_img_search("coin5", imgs));
 	sl_anim_add_frame(chest->open, sl_img_search("coin0", imgs));
 	sl_anim_add_frame(chest->open, sl_img_search("coin1", imgs));
 	sl_anim_add_frame(chest->open, sl_img_search("coin2", imgs));

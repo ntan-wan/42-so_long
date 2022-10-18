@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:05:08 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/14 19:11:09 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:07:34 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static int	sl_map_open_fd(t_game *g, char *path)
 	free(file_extension);
 	return (fd);
 }
+
 /* 
 	- return (map->width) instead of return (1).
 	If map_data is null, map->width will remain as 0 and become 'false'.
@@ -47,65 +48,6 @@ static int	sl_map_get_data(t_map *map, int fd)
 	return (map->width);
 }
 
-/* 
-	- return (y) instead of return (1).
-	If map_data is null, y will remain as 0 and become 'false'.
-	If map_data is not null, y will be manipulated and become 'true'.	
- */
-static int	sl_map_is_surrounded(t_map *map)
-{
-	int		x;
-	int		y;
-	char	c;
-	t_list	*map_data;
-
-	y = 0;
-	map_data = map->data;
-	while (map_data)
-	{
-		x = 0;
-		while (((char *)map_data->content)[x])
-		{
-			c = ((char *)map_data->content)[x];
-			if ((y == 0 || y == map->height - 1) && (c != '1' && c != '\n'))
-				return (0);
-			else if ((x == 0 || x == ft_strlen((char *)map_data->content) - 2)
-				&& c != '1')
-				return (0);
-			x++;
-		}
-		map_data = map_data->next;
-		y++;
-	}
-	return (y);
-}
-
-/*
-	- rect = rectangle
-	- return (width) instead of return (1).
-	If map_data is null, width will remain as 0 and become 'false'.
-	If map_data is not null, width will be manipulated and become 'true'.	
-  */
-static int	sl_map_is_rect(t_map *map)
-{
-	int		width;
-	t_list	*map_data;
-
-	width = 0;
-	map_data = map->data;
-	while (map_data)
-	{
-		if (ft_strchr((char *)map_data->content, '\n'))
-				width = ft_strlen((char *)map_data->content) - 1;
-		else
-			width = ft_strlen((char *)map_data->content);
-		if (width != map->width || map->width == map->height)
-			return (0);
-		map_data = map_data->next;
-	}
-	return (width);
-}
-
 void	sl_map_load_imgs(void *mlx, t_img **imgs, t_map *map)
 {	
 	map->outline = sl_img_new(mlx, map->width * SPRITE_SIZE,
@@ -114,26 +56,6 @@ void	sl_map_load_imgs(void *mlx, t_img **imgs, t_map *map)
 	sl_img_load(mlx, &map->floor, "floor", "sprite/tiles/floor2.xpm");
 	sl_img_add(imgs, map->wall);
 	sl_img_add(imgs, map->floor);
-}
-
-int	sl_map_is_dup_char(t_map *map)
-{
-	int		x;
-	int		count;
-	t_list	*map_data;
-
-	count = 0;
-	map_data = map->data;
-	while (map_data)
-	{
-		x = -1;
-		while (((char *)map_data->content)[++x])
-			if (((char *)map_data->content)[x] == 'P'
-				|| ((char *)map_data->content)[x] == 'E')
-				count++;
-		map_data = map_data->next;
-	}
-	return (count > 2);
 }
 
 void	sl_map_check_missing_char(t_game *g)

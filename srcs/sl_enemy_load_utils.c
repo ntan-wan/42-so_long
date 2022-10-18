@@ -6,13 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 18:58:11 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 11:19:54 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:04:55 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void    sl_enemy_load_img_idle(void *mlx, t_img **imgs)
+void	sl_enemy_load_img_idle(void *mlx, t_img **imgs)
 {
 	sl_img_load(mlx, imgs, "e_idle0_r", "sprite/enemy/idle_right0.xpm");
 	sl_img_load(mlx, imgs, "e_idle1_r", "sprite/enemy/idle_right1.xpm");
@@ -44,7 +44,7 @@ void	sl_enemy_load_imgs_move(void *mlx, t_img **imgs)
 	sl_img_load(mlx, imgs, "e_run5_l", "sprite/enemy/run_left5.xpm");
 }
 
-void	sl_enemy_load_anim_idle(t_enemy *e, t_img *imgs)
+static void	sl_enemy_load_anim_idle(t_enemy *e, t_img *imgs)
 {
 	sl_anim_add_frame(e->idle_right, sl_img_search("e_idle0_r", imgs));
 	sl_anim_add_frame(e->idle_right, sl_img_search("e_idle1_r", imgs));
@@ -60,7 +60,7 @@ void	sl_enemy_load_anim_idle(t_enemy *e, t_img *imgs)
 	sl_anim_add_frame(e->idle_left, sl_img_search("e_idle5_l", imgs));
 }
 
-void	sl_enemy_load_anim_move(t_enemy *e, t_img *imgs)
+static void	sl_enemy_load_anim_move(t_enemy *e, t_img *imgs)
 {
 	sl_anim_add_frame(e->move_right, sl_img_search("e_run0_r", imgs));
 	sl_anim_add_frame(e->move_right, sl_img_search("e_run1_r", imgs));
