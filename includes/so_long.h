@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/17 11:50:07 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 09:31:45 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,18 @@ typedef struct s_door
 	t_anim	*closed;
 }	t_door;
 
+typedef struct s_enemy
+{
+	int		x;
+	int		y;
+	int		dir;
+	int		action;
+	t_anim	*idle_right;
+	t_anim	*idle_left;
+	t_anim	*move_right;
+	t_anim	*move_left;
+}	t_enemy;
+
 typedef struct s_player
 {
 	int		x;
@@ -150,6 +162,7 @@ typedef struct s_game
 	void		*win;
 	t_img		*imgs;
 	t_player	*player;
+	t_enemy		*enemy;
 	t_chest		*chest;
 	t_door		*door;
 	t_map		*map;
@@ -267,4 +280,16 @@ void	sl_item_check_collected(t_game *g);
 void	sl_map_load_imgs(void *mlx, t_img **imgs, t_map *map);
 int		sl_item_chest_get_total(t_chest *c);
 void	sl_player_check_collected(t_game *g);
+
+
+void    sl_enemy_load_img_idle(void *mlx, t_img **imgs);
+void	sl_enemy_load_anim_idle(t_enemy *e, t_img *imgs);
+void	sl_enemy_init(t_enemy **e);
+t_img	*sl_enemy_get_anim(t_enemy *e);
+void	sl_enemy_set_dir(t_enemy *e);
+void	sl_enemy_copy_img(t_img *buffer, t_game *g);
+void	sl_enemy_set_coord(t_enemy *e, int x, int y);
+void	sl_move_enemy_step(t_game *g);
+void	sl_enemy_load_imgs_move(void *mlx, t_img **imgs);
+void	sl_enemy_load_anim_move(t_enemy *e, t_img *imgs);
 #endif

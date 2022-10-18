@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 10:08:26 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/13 18:31:26 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 09:32:33 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	sl_game_init(t_game *g)
 		g->imgs = NULL;
 		g->chest = NULL;
 		g->player = NULL;
+		g->enemy = NULL;
 		g->map = NULL;
 	}
 	else
@@ -34,6 +35,8 @@ void	sl_game_load_imgs(t_game *g)
 	sl_player_load_imgs_move(g->mlx, &g->imgs);
 	sl_item_load_imgs_chest(g->mlx, &g->imgs);
 	sl_door_load_imgs(g->mlx, &g->imgs);
+	sl_enemy_load_img_idle(g->mlx, &g->imgs);
+	sl_enemy_load_imgs_move(g->mlx, &g->imgs);
 }
 
 void	sl_game_load_anims(t_game *g)
@@ -42,6 +45,8 @@ void	sl_game_load_anims(t_game *g)
 	sl_player_load_anim_move(g->player, g->imgs);
 	sl_item_load_anim_chests(g->chest, g->imgs);
 	sl_door_load_anims(g->door, g->imgs);
+	sl_enemy_load_anim_idle(g->enemy, g->imgs);
+	sl_enemy_load_anim_move(g->enemy, g->imgs);
 }
 
 void	sl_game_init_all(t_game *g)
@@ -50,4 +55,5 @@ void	sl_game_init_all(t_game *g)
 	sl_map_init(&g->map);
 	sl_door_init(&g->door);
 	sl_player_init(&g->player);
+	sl_enemy_init(&g->enemy);
 }

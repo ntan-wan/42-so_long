@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 20:35:59 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/13 19:13:49 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/17 19:13:34 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	sl_map_parse_character(t_game *g, char c, int x, int y)
 		sl_player_set_coord(g->player, x * SPRITE_SIZE, y * SPRITE_SIZE);
 	else if (c == 'E')
 		sl_door_set_coord(g->door, x * SPRITE_SIZE, y * SPRITE_SIZE);
+	else if (c == 'Y')
+		sl_enemy_set_coord(g->enemy, x * SPRITE_SIZE, y * SPRITE_SIZE);
 }
 
 void	sl_map_parse_image(t_game *g, char c, int x, int y)
@@ -54,7 +56,7 @@ void	sl_map_parse_image(t_game *g, char c, int x, int y)
 	if (c == '1')
 		sl_copy_img(g->map->outline, sl_img_search("wall", g->imgs),
 			x * SPRITE_SIZE, y * SPRITE_SIZE);
-	else if (ft_strchr("0CPE\n", c))
+	else if (ft_strchr("0CPEY\n", c))
 		sl_copy_img(g->map->outline, sl_img_search("floor", g->imgs),
 			x * SPRITE_SIZE, y * SPRITE_SIZE);
 	else
