@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 19:11:02 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 20:01:13 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,8 @@ typedef struct s_game
 	t_img		*imgs;
 	t_player	*player;
 	t_list		*enemies;
-	t_chest		*chest;
+	t_list		*chest;
+	t_list		*chests;
 	t_door		*door;
 	t_map		*map;
 }	t_game;
@@ -227,7 +228,7 @@ int		sl_coord_is_overlapped(int coord, int o_coord, int reduced_range);
 
 /* check_blocked_utils */
 int		sl_is_blocked(t_player *p, int o_x, int o_y);
-int		sl_is_blocked_by_door(t_player *p, t_door *d, t_chest *c);
+// int		sl_is_blocked_by_door(t_player *p, t_door *d, t_chest *c);
 int		sl_is_wall(t_map *map, int x, int y);
 int		sl_is_blocked_by_chest(t_player *p, t_chest *c);
 
@@ -283,7 +284,7 @@ int		sl_exit_free_msg(t_game *game, char *msg, int exit_status);
 
 void	sl_item_check_collected(t_game *g);
 void	sl_map_load_imgs(void *mlx, t_img **imgs, t_map *map);
-int		sl_item_chest_get_total(t_chest *c);
+// int		sl_item_chest_get_total(t_chest *c);
 void	sl_player_check_collected(t_game *g);
 
 /* enemy_utils */
@@ -295,4 +296,11 @@ void	sl_enemy_copy_img(t_img *buffer, t_game *g);
 /* enemy_load_utils */
 void	sl_enemy_load_imgs_move(void *mlx, t_img **imgs);
 void	sl_enemies_load_anim(t_list *enemies, t_img *imgs);
+
+void	sl_chest_add(t_list **chests, t_list *new);
+t_chest	*sl_chest_init(int x, int y);
+void	sl_item_chests_load_anim(t_list *chests, t_img *imgs);
+int	sl_is_blocked_by_door(t_player *p, t_door *d, t_list *c);
+int	sl_item_chest_get_total(t_list *chests);
+void	sl_enemy_load_img_idle(void *mlx, t_img **imgs);
 #endif

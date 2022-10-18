@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 13:27:21 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 11:54:45 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:40:30 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ void	sl_move_enemy_step(t_game *g)
 
 int	sl_move_is_blocked(t_game *g)
 {
-	t_chest	*chest;
+	t_list	*chest;
 
-	if (sl_is_blocked_by_door(g->player, g->door, g->chest))
+	chest = g->chests;
+	if (sl_is_blocked_by_door(g->player, g->door, chest))
 		return (1);
-	chest = g->chest;
 	while (chest)
 	{
-		if (sl_is_blocked_by_chest(g->player, chest))
+		if (sl_is_blocked_by_chest(g->player, (t_chest*)chest->content))
 			return (1);
 		chest = chest->next;
 	}

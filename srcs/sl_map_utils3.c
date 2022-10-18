@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:06:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 19:09:36 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:45:32 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	If map_data is null, y will remain as 0 and become 'false'.
 	If map_data is not null, y will be manipulated and become 'true'.	
  */
-static int	sl_map_is_surrounded(t_map *map)
+int	sl_map_is_surrounded(t_map *map)
 {
 	int		x;
 	int		y;
@@ -51,7 +51,7 @@ static int	sl_map_is_surrounded(t_map *map)
 	If map_data is null, width will remain as 0 and become 'false'.
 	If map_data is not null, width will be manipulated and become 'true'.	
   */
-static int	sl_map_is_rect(t_map *map)
+int	sl_map_is_rect(t_map *map)
 {
 	int		width;
 	t_list	*map_data;

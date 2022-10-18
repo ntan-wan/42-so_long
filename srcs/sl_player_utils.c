@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:48:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 17:02:39 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 20:02:43 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,17 +86,19 @@ void	sl_player_set_dir(t_player *player)
 void	sl_player_check_collected(t_game *g)
 {
 	t_chest	*chest;
+	t_list	*chests;
 	int		prev_collected;
 	int		curr_collected;
 
-	chest = g->chest;
+	chests = g->chests;
 	curr_collected = 0;
 	prev_collected = g->player->collected;
-	while (chest)
+	while (chests)
 	{
+		chest = (t_chest *)chests->content;
 		if (chest->collected)
 			curr_collected++;
-		chest = chest->next;
+		chests = chests->next;
 	}
 	if (prev_collected != curr_collected)
 		g->player->collected = curr_collected;

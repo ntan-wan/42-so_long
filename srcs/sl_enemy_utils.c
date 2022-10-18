@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:21:57 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 17:17:37 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:30:50 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	sl_enemy_copy_img(t_img *buffer, t_game *g)
 	enemies = g->enemies;
 	while (enemies)
 	{
-		enemy = ((t_enemy *)enemies->content);
+		enemy = (t_enemy *)enemies->content;
 		sl_copy_img(buffer, sl_enemy_get_anim(enemy),
 			enemy->x + ((WINDOW_W - SPRITE_SIZE) / 2 - g->player->x),
 			enemy->y + ((WINDOW_H - SPRITE_SIZE) / 2 - g->player->y));

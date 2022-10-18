@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 10:08:26 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 19:10:54 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:52:32 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	sl_game_init(t_game *g)
 		g->win = mlx_new_window(g->mlx, WINDOW_W, WINDOW_H, "so_long");
 		g->imgs = NULL;
 		g->chest = NULL;
+		g->chests = NULL;
 		g->player = NULL;
 		g->enemies = NULL;
 		g->map = NULL;
@@ -44,7 +45,8 @@ void	sl_game_load_anims(t_game *g)
 	sl_door_load_anims(g->door, g->imgs);
 	sl_player_load_anim_idle(g->player, g->imgs);
 	sl_player_load_anim_move(g->player, g->imgs);
-	sl_item_load_anim_chests(g->chest, g->imgs);
+	// sl_item_load_anim_chests(g->chest, g->imgs);
+	sl_item_chests_load_anim(g->chests, g->imgs);
 	sl_enemies_load_anim(g->enemies, g->imgs);
 }
 

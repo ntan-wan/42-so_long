@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:26:03 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 14:38:35 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:38:13 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	sl_is_blocked_by_chest(t_player *p, t_chest *c)
 	return (sl_is_blocked(p, c->x, c->y) && !c->interacted);
 }
 
-int	sl_is_blocked_by_door(t_player *p, t_door *d, t_chest *c)
+int	sl_is_blocked_by_door(t_player *p, t_door *d, t_list *c)
 {
 	int	chest_total;
 

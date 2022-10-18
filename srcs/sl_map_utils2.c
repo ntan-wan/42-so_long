@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 20:35:59 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 17:18:24 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:44:53 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ void	sl_map_copy_img(t_img *buffer, t_game *g)
 void	sl_map_parse_character(t_game *g, char c, int x, int y)
 {
 	if (c == 'C')
-		sl_item_chest_add(&g->chest,
-			sl_item_chest_new(x * SPRITE_SIZE, y * SPRITE_SIZE));
+	 	sl_chest_add(&g->chests,
+			ft_lstnew(sl_chest_init(x * SPRITE_SIZE, y * SPRITE_SIZE)));
+		// sl_item_chest_add(&g->chest,
+			// sl_item_chest_new(x * SPRITE_SIZE, y * SPRITE_SIZE));
 	else if (c == 'P')
 		sl_player_set_coord(g->player, x * SPRITE_SIZE, y * SPRITE_SIZE);
 	else if (c == 'E')

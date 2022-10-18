@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:05:08 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 19:07:34 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:47:21 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	sl_map_check_missing_char(t_game *g)
 		sl_exit_free_msg(g, "'P' is missing\n", EXIT_FAILURE);
 	else if (g->door->x == 0 || g->player->y == 0)
 		sl_exit_free_msg(g, "'E' is missing\n", EXIT_FAILURE);
-	else if (g->chest == NULL)
+	else if (g->chests == NULL)
 		sl_exit_free_msg(g, "'C' is missing\n", EXIT_FAILURE);
 }
 
