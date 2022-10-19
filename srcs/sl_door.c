@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 08:28:15 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 19:36:52 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 21:18:36 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_img	*sl_door_get_anim(t_game *g)
 		anim = g->door->opened;
 		opened = 1;
 	}
-	else if (g->player->collected == sl_item_chest_get_total(g->chests))
+	else if (g->player->collected == ft_lstsize(g->chests))
 	{
 		timer++;
 		anim = g->door->open;

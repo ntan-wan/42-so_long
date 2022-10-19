@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 08:08:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 09:36:14 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 21:10:36 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	sl_free_content(t_game *g)
 		mlx_destroy_window(g->mlx, g->win);
 		mlx_destroy_display(g->mlx);
 		sl_free_player(&g->player);
-		// sl_free_item_chest(&g->chest);
 		sl_free_door(&g->door);
 		sl_free_map(g->mlx, &g->map);
 		free(g->mlx);

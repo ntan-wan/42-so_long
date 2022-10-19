@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 20:01:13 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/19 09:11:17 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ typedef struct s_chest
 	t_anim			*open;
 	int				interacted;
 	int				collected;
-	struct s_chest	*next;
 }	t_chest;
 
 typedef struct s_door
@@ -195,26 +194,6 @@ void	sl_anim_add_frame(t_anim *anim, t_img *new);
 t_img	*sl_anim_get_frame(t_anim *anim, int frame_index);
 int		sl_anim_get_duration(int anim_speed, int frame_count);
 
-/* item_utils */
-t_chest	*sl_item_chest_new(int x, int y);
-t_img	*sl_item_chest_get_anim(t_chest *chest);
-void	sl_item_chest_add(t_chest **head, t_chest *new);
-void	sl_item_copy_img(t_img *buffer, t_game *g);
-
-/* item_load_utils */
-void	sl_item_load_anim_chests(t_chest *chest, t_img *imgs);
-void	sl_item_load_imgs_chest(void *mlx, t_img **imgs);
-void	sl_item_load_anim_chest(t_chest *chest, t_img *imgs);
-
-/* door */
-void	sl_door_init(t_door **door);
-void	sl_door_set_coord(t_door *door, int x, int y);
-void	sl_door_copy_img(t_img *buffer, t_game *g);
-
-/* door_load*/
-void	sl_door_load_imgs(void *mlx, t_img **imgs);
-void	sl_door_load_anims(t_door *door, t_img *imgs);
-
 /* move_utils */
 int		sl_move_is_blocked(t_game *g);
 void	sl_move_enemy_step(t_game *g);
@@ -228,9 +207,9 @@ int		sl_coord_is_overlapped(int coord, int o_coord, int reduced_range);
 
 /* check_blocked_utils */
 int		sl_is_blocked(t_player *p, int o_x, int o_y);
-// int		sl_is_blocked_by_door(t_player *p, t_door *d, t_chest *c);
 int		sl_is_wall(t_map *map, int x, int y);
 int		sl_is_blocked_by_chest(t_player *p, t_chest *c);
+int		sl_is_blocked_by_door(t_player *p, t_door *d, t_list *c);
 
 /* check_blocked_utils2 */
 int		sl_is_blocked_up(int p_y, int o_y);
@@ -239,9 +218,37 @@ int		sl_is_blocked_down(int p_y, int o_y);
 int		sl_is_blocked_right(int p_x, int o_x);
 int		sl_is_blocked_range(int p_coord, int o_coord, int non_blocked_range);
 
+/* item_utils */
+t_chest	*sl_item_chest_init(int x, int y);
+t_img	*sl_item_chest_get_anim(t_chest *chest);
+void	sl_item_chest_check_collected(t_game *g);
+void	sl_item_chest_copy_img(t_img *buffer, t_game *g);
+
+/* item_load_utils */
+void	sl_item_load_imgs_chest(void *mlx, t_img **imgs);
+void	sl_item_load_anim_chests(t_list *chests, t_img *imgs);
+
+/* door */
+void	sl_door_init(t_door **door);
+void	sl_door_set_coord(t_door *door, int x, int y);
+void	sl_door_copy_img(t_img *buffer, t_game *g);
+
+/* door_load*/
+void	sl_door_load_imgs(void *mlx, t_img **imgs);
+void	sl_door_load_anims(t_door *door, t_img *imgs);
+
+/* enemy_utils */
+t_enemy	*sl_enemy_init(int x, int y);
+void	sl_enemies_check_player(t_game *g);
+void	sl_enemy_copy_img(t_img *buffer, t_game *g);
+
+/* enemy_load_utils */
+void	sl_enemy_load_img_idle(void *mlx, t_img **imgs);
+void	sl_enemy_load_imgs_move(void *mlx, t_img **imgs);
+void	sl_enemies_load_anim(t_list *enemies, t_img *imgs);
+
 /* player_utils */
 void	sl_player_init(t_player **player);
-void	sl_player_set_dir(t_player *player);
 t_img	*sl_player_get_anim(t_player *player);
 void	sl_player_set_coord(t_player *player, int x, int y);
 void	sl_player_copy_img(t_img *buffer, t_player *player);
@@ -255,10 +262,11 @@ void	sl_player_load_anim_move(t_player *player, t_img *imgs);
 /* map_utils */
 void	sl_map_init(t_map **map);
 void	sl_map_setup(t_game *g, char *path);
-void	sl_map_copy_img(t_img *buffer, t_game *g);
 
 /* map_utils2 */
+void	sl_map_copy_img(t_img *buffer, t_game *g);
 void	sl_map_parse_image(t_game *g, char c, int x, int y);
+void	sl_map_load_imgs(void *mlx, t_img **imgs, t_map *map);
 void	sl_map_parse_character(t_game *g, char c, int x, int y);
 void	sl_map_parse_data(t_game *g, void (*f)(t_game *, char, int, int));
 
@@ -266,6 +274,7 @@ void	sl_map_parse_data(t_game *g, void (*f)(t_game *, char, int, int));
 int		sl_map_is_rect(t_map *map);
 int		sl_map_is_dup_char(t_map *map);
 int		sl_map_is_surrounded(t_map *map);
+void	sl_map_check_missing_char(t_game *g);
 
 /* free_utils */
 void	sl_free_map(void *mlx, t_map **map);
@@ -282,25 +291,5 @@ void	sl_free_imgs(void *mlx, t_img **head);
 int		sl_exit_free(t_game *game);
 int		sl_exit_free_msg(t_game *game, char *msg, int exit_status);
 
-void	sl_item_check_collected(t_game *g);
-void	sl_map_load_imgs(void *mlx, t_img **imgs, t_map *map);
-// int		sl_item_chest_get_total(t_chest *c);
 void	sl_player_check_collected(t_game *g);
-
-/* enemy_utils */
-t_enemy	*sl_enemy_init(int x, int y);
-void	sl_enemies_check_player(t_game *g);
-void	sl_enemy_add(t_list **enemies, t_list *new);
-void	sl_enemy_copy_img(t_img *buffer, t_game *g);
-
-/* enemy_load_utils */
-void	sl_enemy_load_imgs_move(void *mlx, t_img **imgs);
-void	sl_enemies_load_anim(t_list *enemies, t_img *imgs);
-
-void	sl_chest_add(t_list **chests, t_list *new);
-t_chest	*sl_chest_init(int x, int y);
-void	sl_item_chests_load_anim(t_list *chests, t_img *imgs);
-int	sl_is_blocked_by_door(t_player *p, t_door *d, t_list *c);
-int	sl_item_chest_get_total(t_list *chests);
-void	sl_enemy_load_img_idle(void *mlx, t_img **imgs);
 #endif

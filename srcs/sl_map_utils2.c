@@ -6,30 +6,11 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 20:35:59 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 19:44:53 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 21:47:08 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-void	sl_map_init(t_map **map)
-{
-	t_map	*new_map;
-
-	new_map = (t_map *)malloc(sizeof(t_map));
-	if (new_map)
-	{
-		new_map->width = 0;
-		new_map->height = 0;
-		new_map->outline = NULL;
-		new_map->wall = NULL;
-		new_map->floor = NULL;
-		new_map->data = NULL;
-	}
-	else
-		ft_printf("map_init: init failed\n");
-	*map = new_map;
-}
 
 void	sl_map_copy_img(t_img *buffer, t_game *g)
 {
@@ -38,19 +19,27 @@ void	sl_map_copy_img(t_img *buffer, t_game *g)
 		(WINDOW_H - SPRITE_SIZE) / 2 - g->player->y);
 }
 
+void	sl_map_load_imgs(void *mlx, t_img **imgs, t_map *map)
+{	
+	map->outline = sl_img_new(mlx, map->width * SPRITE_SIZE,
+			map->height * SPRITE_SIZE);
+	sl_img_load(mlx, &map->wall, "wall", "sprite/tiles/wall2.xpm");
+	sl_img_load(mlx, &map->floor, "floor", "sprite/tiles/floor2.xpm");
+	sl_img_add(imgs, map->wall);
+	sl_img_add(imgs, map->floor);
+}
+
 void	sl_map_parse_character(t_game *g, char c, int x, int y)
 {
 	if (c == 'C')
-	 	sl_chest_add(&g->chests,
-			ft_lstnew(sl_chest_init(x * SPRITE_SIZE, y * SPRITE_SIZE)));
-		// sl_item_chest_add(&g->chest,
-			// sl_item_chest_new(x * SPRITE_SIZE, y * SPRITE_SIZE));
+		ft_lstadd_back(&g->chests,
+			ft_lstnew(sl_item_chest_init(x * SPRITE_SIZE, y * SPRITE_SIZE)));
 	else if (c == 'P')
 		sl_player_set_coord(g->player, x * SPRITE_SIZE, y * SPRITE_SIZE);
 	else if (c == 'E')
 		sl_door_set_coord(g->door, x * SPRITE_SIZE, y * SPRITE_SIZE);
 	else if (c == 'Y')
-		sl_enemy_add(&g->enemies,
+		ft_lstadd_back(&g->enemies,
 			ft_lstnew(sl_enemy_init(x * SPRITE_SIZE, y * SPRITE_SIZE)));
 }
 

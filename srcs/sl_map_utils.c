@@ -6,11 +6,30 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:05:08 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 19:47:21 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 21:47:14 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+void	sl_map_init(t_map **map)
+{
+	t_map	*new_map;
+
+	new_map = (t_map *)malloc(sizeof(t_map));
+	if (new_map)
+	{
+		new_map->width = 0;
+		new_map->height = 0;
+		new_map->outline = NULL;
+		new_map->wall = NULL;
+		new_map->floor = NULL;
+		new_map->data = NULL;
+	}
+	else
+		ft_printf("map_init: init failed\n");
+	*map = new_map;
+}
 
 static int	sl_map_open_fd(t_game *g, char *path)
 {
@@ -46,26 +65,6 @@ static int	sl_map_get_data(t_map *map, int fd)
 	if (map->data)
 		map->width = ft_strlen(map->data->content) - 1;
 	return (map->width);
-}
-
-void	sl_map_load_imgs(void *mlx, t_img **imgs, t_map *map)
-{	
-	map->outline = sl_img_new(mlx, map->width * SPRITE_SIZE,
-			map->height * SPRITE_SIZE);
-	sl_img_load(mlx, &map->wall, "wall", "sprite/tiles/wall2.xpm");
-	sl_img_load(mlx, &map->floor, "floor", "sprite/tiles/floor2.xpm");
-	sl_img_add(imgs, map->wall);
-	sl_img_add(imgs, map->floor);
-}
-
-void	sl_map_check_missing_char(t_game *g)
-{
-	if (g->player->x == 0 || g->player->y == 0)
-		sl_exit_free_msg(g, "'P' is missing\n", EXIT_FAILURE);
-	else if (g->door->x == 0 || g->player->y == 0)
-		sl_exit_free_msg(g, "'E' is missing\n", EXIT_FAILURE);
-	else if (g->chests == NULL)
-		sl_exit_free_msg(g, "'C' is missing\n", EXIT_FAILURE);
 }
 
 void	sl_map_setup(t_game *g, char *path)

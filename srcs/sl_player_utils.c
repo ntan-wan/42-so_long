@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:48:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 20:02:43 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/19 09:09:49 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,6 @@ t_img	*sl_player_get_anim(t_player *player)
 	else if (player->dir == IDLE_LEFT)
 		anim = player->move_left;
 	return (sl_anim_get_frame(anim, frame % anim->frame_count));
-}
-
-/* 
-	dir = direction
- */
-void	sl_player_set_dir(t_player *player)
-{
-	if (player)
-	{
-		if (player->action == IDLE_LEFT)
-			player->dir = IDLE_LEFT;
-		else if (player->action == IDLE_RIGHT)
-			player->dir = IDLE_RIGHT;
-	}
-	else
-		ft_printf("set_move_direction: player not found\n");
 }
 
 void	sl_player_check_collected(t_game *g)

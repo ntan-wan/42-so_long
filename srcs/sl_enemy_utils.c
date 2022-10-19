@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:21:57 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 19:30:50 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 21:31:05 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,6 @@ static t_img	*sl_enemy_get_anim(t_enemy *e)
 	else if (e->dir == IDLE_LEFT)
 		anim = e->move_left;
 	return (sl_anim_get_frame(anim, frame % anim->frame_count));
-}
-
-void	sl_enemy_add(t_list **enemies, t_list *new)
-{
-	ft_lstadd_back(enemies, new);
 }
 
 void	sl_enemy_copy_img(t_img *buffer, t_game *g)

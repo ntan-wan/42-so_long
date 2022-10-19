@@ -6,13 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 21:31:20 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 20:00:14 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 21:34:41 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-t_chest	*sl_item_chest_new(int x, int y)
+t_chest	*sl_item_chest_init(int x, int y)
 {
 	t_chest	*new_chest;
 
@@ -21,7 +21,6 @@ t_chest	*sl_item_chest_new(int x, int y)
 	{
 		new_chest->x = x;
 		new_chest->y = y;
-		new_chest->next = NULL;
 		new_chest->interacted = 0;
 		new_chest->collected = 0;
 		new_chest->shine = sl_anim_init();
@@ -29,29 +28,6 @@ t_chest	*sl_item_chest_new(int x, int y)
 		new_chest->close = sl_anim_init();
 	}
 	return (new_chest);
-}
-
-t_chest	*sl_item_chest_get_last(t_chest *head)
-{
-	t_chest	*tail;
-
-	tail = head;
-	if (!tail)
-		return (NULL);
-	while (tail->next)
-		tail = tail->next;
-	return (tail);
-}
-
-void	sl_item_chest_add(t_chest **head, t_chest *new)
-{
-	t_chest	*tail;
-
-	tail = sl_item_chest_get_last(*head);
-	if (tail)
-		tail->next = new;
-	else
-		*head = new;
 }
 
 /* 
@@ -77,8 +53,7 @@ t_img	*sl_item_chest_get_anim(t_chest *chest)
 	return (sl_anim_get_frame(anim, frame % anim->frame_count));
 }
 
-
-void	sl_item_copy_img(t_img *buffer, t_game *g)
+void	sl_item_chest_copy_img(t_img *buffer, t_game *g)
 {
 	t_chest	*chest;
 	t_list	*chests;
@@ -97,28 +72,11 @@ void	sl_item_copy_img(t_img *buffer, t_game *g)
 	}
 }
 
-int	sl_item_chest_get_total(t_list *chests)
-{
-	/*int		total;
-	t_chest	*chest;
-	t_list	chests;
-
-	total = 0;
-	chests = c;
-	while (chests)
-	{
-		total++;
-		chests = chest->next;
-	}
-	return (total);*/
-	return (ft_lstsize(chests));
-}
-
 /* 
 	reduced_range = reduce the area to activate
 	chest->collected = 1.
  */
-void	sl_item_check_collected(t_game *g)
+void	sl_item_chest_check_collected(t_game *g)
 {
 	t_chest	*chest;
 	t_list	*chests;
@@ -138,28 +96,4 @@ void	sl_item_check_collected(t_game *g)
 			chest->collected = 1;
 		chests = chests->next;
 	}
-}
-
-void	sl_chest_add(t_list **chests, t_list *new)
-{
-	ft_lstadd_back(chests, new);
-}
-
-t_chest	*sl_chest_init(int x, int y)
-{
-	t_chest	*new_chest;
-
-	new_chest = (t_chest *)malloc(sizeof(t_chest));
-	if (new_chest)
-	{
-		new_chest->x = x;
-		new_chest->y = y;
-		new_chest->next = NULL;
-		new_chest->interacted = 0;
-		new_chest->collected = 0;
-		new_chest->shine = sl_anim_init();
-		new_chest->open = sl_anim_init();
-		new_chest->close = sl_anim_init();
-	}
-	return (new_chest);
 }

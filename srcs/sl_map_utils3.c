@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:06:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 19:45:32 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/18 21:55:18 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,14 @@ int	sl_map_is_dup_char(t_map *map)
 		map_data = map_data->next;
 	}
 	return (count > 2);
+}
+
+void	sl_map_check_missing_char(t_game *g)
+{
+	if (g->player->x == 0 || g->player->y == 0)
+		sl_exit_free_msg(g, "'P' is missing\n", EXIT_FAILURE);
+	else if (g->door->x == 0 || g->player->y == 0)
+		sl_exit_free_msg(g, "'E' is missing\n", EXIT_FAILURE);
+	else if (g->chests == NULL)
+		sl_exit_free_msg(g, "'C' is missing\n", EXIT_FAILURE);
 }

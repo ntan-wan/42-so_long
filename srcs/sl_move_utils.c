@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 13:27:21 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 19:40:30 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/19 09:09:16 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ void	sl_move_player_step(t_game *g)
 	p = g->player;
 	if (p)
 	{
+		if (p->action == IDLE_LEFT)
+			p->dir = IDLE_LEFT;
+		else if (p->action == IDLE_RIGHT)
+			p->dir = IDLE_RIGHT;
 		if (p->action == MOVE_LEFT
 			&& !sl_is_wall(g->map, p->x - STEP_SIZE, p->y + SPRITE_SIZE / 2))
 			p->x -= STEP_SIZE;
@@ -68,7 +72,7 @@ int	sl_move_is_blocked(t_game *g)
 		return (1);
 	while (chest)
 	{
-		if (sl_is_blocked_by_chest(g->player, (t_chest*)chest->content))
+		if (sl_is_blocked_by_chest(g->player, (t_chest *)chest->content))
 			return (1);
 		chest = chest->next;
 	}
