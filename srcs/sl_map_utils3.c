@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:06:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 21:55:18 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:23:19 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,25 @@ int	sl_map_is_surrounded(t_map *map)
 	int		y;
 	char	c;
 	t_list	*map_data;
+	char	*data;
 
-	y = 0;
+	y = -1;
 	map_data = map->data;
 	while (map_data)
 	{
-		x = 0;
-		while (((char *)map_data->content)[x])
+		++y;
+		x = -1;
+		data = (char *)map_data->content;
+		while (data[++x])
 		{
-			c = ((char *)map_data->content)[x];
+			c = data[x];
 			if ((y == 0 || y == map->height - 1) && (c != '1' && c != '\n'))
 				return (0);
-			else if ((x == 0 || x == ft_strlen((char *)map_data->content) - 2)
+			else if ((x == 0 || x == (int)ft_strlen(data) - 2)
 				&& c != '1')
 				return (0);
-			x++;
 		}
 		map_data = map_data->next;
-		y++;
 	}
 	return (y);
 }

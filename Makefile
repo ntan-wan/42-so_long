@@ -48,11 +48,11 @@ $(LIBFT_LIB) :
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
-	@$(CC) -c $< -o $@ -I$(HEADER_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@ -I$(HEADER_DIR)
 	@echo "$(GREEN)Compiling : $< $(COLOR_OFF)"
 
 $(NAME) : $(OBJS_PREFIXED)
-	@$(CC) $(OBJS_PREFIXED) -fsanitize=address $(LIBFT_DIR)$(LIBFT_LIB) $(LIBMLX) $(OTHER_LIBS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS_PREFIXED) -fsanitize=address $(LIBFT_DIR)$(LIBFT_LIB) $(LIBMLX) $(OTHER_LIBS) -o $(NAME)
 	@echo "$(CYAN)$(NAME) done !$(COLOR_OFF)"
 
 clean :
