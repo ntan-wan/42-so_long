@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:21:57 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/19 11:13:11 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/19 12:57:37 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,27 +75,23 @@ void	sl_enemies_check_player(t_game *g)
 	t_enemy	*enemy;
 	t_list	*enemies;
 	int		captured;
-	int		reduced_contact;
-	int		reduced_range;
 
 	captured = 0;
-	reduced_contact = 28;
 	enemies = g->enemies;
-	reduced_range = 16;
 	while (enemies)
 	{
 		enemy = ((t_enemy *)enemies->content);
-		if (sl_is_blocked_right(g->player->x - reduced_contact, enemy->x)
-			&& sl_is_blocked_range(g->player->y, enemy->y, reduced_range))
+		if (sl_is_blocked_right(g->player->x - 28, enemy->x)
+			&& sl_is_blocked_range(g->player->y, enemy->y, 16))
 			captured = 1;
-		else if (sl_is_blocked_left(g->player->x + reduced_contact, enemy->x)
-			&& sl_is_blocked_range(g->player->y, enemy->y, reduced_range))
+		else if (sl_is_blocked_left(g->player->x + 28, enemy->x)
+			&& sl_is_blocked_range(g->player->y, enemy->y, 16))
 			captured = 1;
-		else if (sl_is_blocked_up(g->player->y + reduced_contact, enemy->y)
-		&& sl_is_blocked_range(g->player->x, enemy->x, reduced_range))
+		else if (sl_is_blocked_up(g->player->y + 28, enemy->y)
+			&& sl_is_blocked_range(g->player->x, enemy->x, 16))
 			captured = 1;
-		else if (sl_is_blocked_down(g->player->y - reduced_contact, enemy->y)
-		&& sl_is_blocked_range(g->player->x, enemy->x, reduced_range))
+		else if (sl_is_blocked_down(g->player->y - 28, enemy->y)
+			&& sl_is_blocked_range(g->player->x, enemy->x, 16))
 			captured = 1;
 		if (captured)
 			sl_exit_free_msg(g, "YOU'VE BEEN CAPTURED!\n", EXIT_SUCCESS);
