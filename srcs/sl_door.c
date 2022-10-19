@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 08:28:15 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/19 13:02:11 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/19 17:29:32 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,25 +76,14 @@ void	sl_door_copy_img(t_img *buffer, t_game *g)
 
 void	sl_door_check_exit(t_game *g)
 {
-	int		exit;
-	int		reduced_contact;
+	int		p_mid_x;
+	int		p_mid_y;
 	int		reduced_range;
 
-	exit = 0;
-	reduced_contact = 28;
 	reduced_range = 16;
-	if (sl_is_blocked_right(g->player->x - reduced_contact, g->door->x)
-		&& sl_is_blocked_range(g->player->y, g->door->y, reduced_range))
-		exit = 1;
-	else if (sl_is_blocked_left(g->player->x + reduced_contact, g->door->x)
-		&& sl_is_blocked_range(g->player->y, g->door->y, reduced_range))
-		exit = 1;
-	else if (sl_is_blocked_up(g->player->y + reduced_contact, g->door->y)
-		&& sl_is_blocked_range(g->player->x, g->door->x, reduced_range))
-		exit = 1;
-	else if (sl_is_blocked_down(g->player->y - reduced_contact, g->door->y)
-		&& sl_is_blocked_range(g->player->x, g->door->x, reduced_range))
-		exit = 1;
-	if (exit)
+	p_mid_y = g->player->y + SPRITE_SIZE / 2;
+	p_mid_x = g->player->x + SPRITE_SIZE / 2;
+	if (sl_coord_is_overlapped(p_mid_x, g->door->x, reduced_range)
+		&& sl_coord_is_overlapped(p_mid_y, g->door->y, reduced_range))
 		sl_exit_free_msg(g, "YOU'VE SUCCESSFULLY ESCAPED!\n", EXIT_SUCCESS);
 }
