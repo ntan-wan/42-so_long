@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:21:57 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/19 12:57:37 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:00:01 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ void	sl_enemy_copy_img(t_img *buffer, t_game *g)
 }
 
 /* 
-	reduced_contact = The higher the number,
+	28 (reduced_contact) = The higher the number,
 	the lesser the contact range between the enemies and
 	the player.
-	reduced_range = The higher the number, the lesser
+	16 (reduced_range) = The higher the number, the lesser
 	the range to be blocked by other object.
  */
 void	sl_enemies_check_player(t_game *g)

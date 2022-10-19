@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/19 11:13:22 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:02:50 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ int	sl_render(t_game *g)
 	sl_item_chest_check_collected(g);
 	sl_player_check_collected(g);
 	sl_enemies_check_player(g);
+	sl_door_check_exit(g);
 	sl_map_copy_img(buffer, g);
 	sl_item_chest_copy_img(buffer, g);
 	sl_door_copy_img(buffer, g);
 	sl_enemy_copy_img(buffer, g);
 	sl_player_copy_img(buffer, g->player);
-	sl_door_exit(g);
 	mlx_put_image_to_window(g->mlx, g->win, buffer->img, 0, 0);
 	mlx_destroy_image(g->mlx, buffer->img);
 	free(buffer);

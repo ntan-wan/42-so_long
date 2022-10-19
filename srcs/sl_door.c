@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 08:28:15 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/19 12:51:04 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:02:11 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	sl_door_copy_img(t_img *buffer, t_game *g)
 		g->door->y + ((WINDOW_H - SPRITE_SIZE) / 2 - g->player->y));
 }
 
-void	sl_door_exit(t_game *g)
+void	sl_door_check_exit(t_game *g)
 {
 	int		exit;
 	int		reduced_contact;
