@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/19 09:28:56 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/19 11:10:24 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,7 @@ int		sl_is_blocked_up(int p_y, int o_y);
 int		sl_is_blocked_left(int p_x, int o_x);
 int		sl_is_blocked_down(int p_y, int o_y);
 int		sl_is_blocked_right(int p_x, int o_x);
-int		sl_is_blocked_range(int p_coord, int o_coord, int non_blocked_range);
+int		sl_is_blocked_range(int p_coord, int o_coord, int reduced_range);
 
 /* item_utils */
 t_chest	*sl_item_chest_init(int x, int y);
@@ -242,6 +242,7 @@ void	sl_enemies_load_anim(t_list *enemies, t_img *imgs);
 
 /* player_utils */
 void	sl_player_init(t_player **player);
+void	sl_player_check_collected(t_game *g);
 t_img	*sl_player_get_anim(t_player *player);
 void	sl_player_set_coord(t_player *player, int x, int y);
 void	sl_player_copy_img(t_img *buffer, t_player *player);
@@ -284,5 +285,5 @@ void	sl_free_imgs(void *mlx, t_img **head);
 int		sl_exit_free(t_game *game);
 int		sl_exit_free_msg(t_game *game, char *msg, int exit_status);
 
-void	sl_player_check_collected(t_game *g);
+void	sl_door_exit(t_game *g);
 #endif

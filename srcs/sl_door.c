@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 08:28:15 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 21:18:36 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/19 11:09:19 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,29 @@ void	sl_door_copy_img(t_img *buffer, t_game *g)
 	sl_copy_img(buffer, sl_door_get_anim(g),
 		g->door->x + ((WINDOW_W - SPRITE_SIZE) / 2 - g->player->x),
 		g->door->y + ((WINDOW_H - SPRITE_SIZE) / 2 - g->player->y));
+}
+
+void	sl_door_exit(t_game *g)
+{
+	int		exit;
+	int		reduced_contact;
+	int		reduced_range;
+
+	exit = 0;
+	reduced_contact = 28;
+	reduced_range = 16;
+	if (sl_is_blocked_right(g->player->x - reduced_contact, g->door->x)
+		&& sl_is_blocked_range(g->player->y, g->door->y, reduced_range))
+		exit = 1;
+	else if (sl_is_blocked_left(g->player->x + reduced_contact, g->door->x)
+		&& sl_is_blocked_range(g->player->y, g->door->y, reduced_range))
+		exit = 1;
+	else if (sl_is_blocked_up(g->player->y + reduced_contact, g->door->y)
+		&& sl_is_blocked_range(g->player->x, g->door->x, reduced_range))
+		exit = 1;
+	else if (sl_is_blocked_down(g->player->y - reduced_contact, g->door->y)
+		&& sl_is_blocked_range(g->player->x, g->door->x, reduced_range))
+		exit = 1;
+	if (exit)
+		sl_exit_free_msg(g, "YOU'VE SUCCESSFULLY ESCAPED!\n", EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:21:57 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/19 09:31:56 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/19 11:13:11 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,30 +64,40 @@ void	sl_enemy_copy_img(t_img *buffer, t_game *g)
 }
 
 /* 
-	contact_range = The higher the number,
+	reduced_contact = The higher the number,
 	the lesser the contact range between the enemies and
 	the player.
-	non_blocked_range = The higher the number, the lesser
+	reduced_range = The higher the number, the lesser
 	the range to be blocked by other object.
  */
 void	sl_enemies_check_player(t_game *g)
 {
 	t_enemy	*enemy;
 	t_list	*enemies;
-	int		contact_range;
-	int		non_blocked_range;
+	int		captured;
+	int		reduced_contact;
+	int		reduced_range;
 
+	captured = 0;
+	reduced_contact = 28;
 	enemies = g->enemies;
-	contact_range = 28;
-	non_blocked_range = 16;
+	reduced_range = 16;
 	while (enemies)
 	{
 		enemy = ((t_enemy *)enemies->content);
-		if (sl_is_blocked_right(g->player->x - contact_range, enemy->x)
-			&& sl_is_blocked_range(g->player->y, enemy->y, non_blocked_range))
-			sl_exit_free_msg(g, "YOU'VE BEEN CAPTURED!\n", EXIT_SUCCESS);
-		else if (sl_is_blocked_left(g->player->x + contact_range, enemy->x)
-			&& sl_is_blocked_range(g->player->y, enemy->y, non_blocked_range))
+		if (sl_is_blocked_right(g->player->x - reduced_contact, enemy->x)
+			&& sl_is_blocked_range(g->player->y, enemy->y, reduced_range))
+			captured = 1;
+		else if (sl_is_blocked_left(g->player->x + reduced_contact, enemy->x)
+			&& sl_is_blocked_range(g->player->y, enemy->y, reduced_range))
+			captured = 1;
+		else if (sl_is_blocked_up(g->player->y + reduced_contact, enemy->y)
+		&& sl_is_blocked_range(g->player->x, enemy->x, reduced_range))
+			captured = 1;
+		else if (sl_is_blocked_down(g->player->y - reduced_contact, enemy->y)
+		&& sl_is_blocked_range(g->player->x, enemy->x, reduced_range))
+			captured = 1;
+		if (captured)
 			sl_exit_free_msg(g, "YOU'VE BEEN CAPTURED!\n", EXIT_SUCCESS);
 		enemies = enemies->next;
 	}
