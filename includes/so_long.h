@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/19 09:11:17 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/19 09:28:56 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,6 @@
 # define ON_DESTROY 17
 # define ON_KEY_PRESS 2
 # define ON_KEY_RELEASE 3
-
-/* 
-	The higher the number, 
-	the lesser the blocked range by another img.
-	Must be lesser than sprite size.
- */
-// # define NON_BLOCKED_RANGE 4
 
 # define STEP_SIZE 4
 # define SPRITE_SIZE 64

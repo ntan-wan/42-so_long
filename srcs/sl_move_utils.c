@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 13:27:21 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/19 09:09:16 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/19 09:15:44 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	sl_move_player_step(t_game *g)
 	p = g->player;
 	if (p)
 	{
-		if (p->action == IDLE_LEFT)
+		if (p->action == MOVE_LEFT)
 			p->dir = IDLE_LEFT;
-		else if (p->action == IDLE_RIGHT)
+		else if (p->action == MOVE_RIGHT)
 			p->dir = IDLE_RIGHT;
 		if (p->action == MOVE_LEFT
 			&& !sl_is_wall(g->map, p->x - STEP_SIZE, p->y + SPRITE_SIZE / 2))
