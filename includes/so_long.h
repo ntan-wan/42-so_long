@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/19 13:02:11 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/19 15:59:51 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,6 +227,7 @@ void	sl_door_set_coord(t_door *door, int x, int y);
 void	sl_door_copy_img(t_img *buffer, t_game *g);
 
 /* door_load*/
+void	sl_door_check_exit(t_game *g);
 void	sl_door_load_imgs(void *mlx, t_img **imgs);
 void	sl_door_load_anims(t_door *door, t_img *imgs);
 
@@ -284,6 +285,4 @@ void	sl_free_imgs(void *mlx, t_img **head);
 /* exit_utils */
 int		sl_exit_free(t_game *game);
 int		sl_exit_free_msg(t_game *game, char *msg, int exit_status);
-
-void	sl_door_check_exit(t_game *g);
 #endif

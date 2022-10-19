@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 13:27:21 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/19 09:15:44 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:32:18 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	sl_move_enemy_step(t_game *g)
 	t_list	*enemies;
 
 	enemies = g->enemies;
-	if (!enemies)
-		sl_exit_free_msg(g, "enemy_step: enemy not found\n", EXIT_FAILURE);
 	while (enemies)
 	{
 		e = (t_enemy *)enemies->content;

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 10:08:26 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 21:12:51 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/19 15:57:37 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,26 @@ void	sl_game_init(t_game *g)
 
 void	sl_game_load_imgs(t_game *g)
 {
+	if (g->enemies)
+	{
+		sl_enemy_load_img_idle(g->mlx, &g->imgs);
+		sl_enemy_load_imgs_move(g->mlx, &g->imgs);
+	}
 	sl_map_load_imgs(g->mlx, &g->imgs, g->map);
 	sl_player_load_imgs_idle(g->mlx, &g->imgs);
 	sl_player_load_imgs_move(g->mlx, &g->imgs);
 	sl_item_load_imgs_chest(g->mlx, &g->imgs);
 	sl_door_load_imgs(g->mlx, &g->imgs);
-	sl_enemy_load_img_idle(g->mlx, &g->imgs);
-	sl_enemy_load_imgs_move(g->mlx, &g->imgs);
 }
 
 void	sl_game_load_anims(t_game *g)
 {
+	if (g->enemies)
+		sl_enemies_load_anim(g->enemies, g->imgs);
 	sl_door_load_anims(g->door, g->imgs);
 	sl_player_load_anim_idle(g->player, g->imgs);
 	sl_player_load_anim_move(g->player, g->imgs);
 	sl_item_load_anim_chests(g->chests, g->imgs);
-	sl_enemies_load_anim(g->enemies, g->imgs);
 }
 
 void	sl_game_init_all(t_game *g)
