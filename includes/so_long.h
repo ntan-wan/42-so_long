@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/20 10:41:54 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/20 18:17:22 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ typedef struct s_player
 	int		dir;
 	int		action;
 	int		collected;
+	int		move_count;
 	t_anim	*idle_right;
 	t_anim	*idle_left;
 	t_anim	*move_right;
@@ -211,6 +212,9 @@ int		sl_is_blocked_down(int p_y, int o_y);
 int		sl_is_blocked_right(int p_x, int o_x);
 int		sl_is_blocked_range(int p_coord, int o_coord, int reduced_range);
 
+/* gui_utils */
+void    sl_gui_display_move(t_game *g);
+
 /* item_utils */
 t_chest	*sl_item_chest_init(int x, int y);
 t_img	*sl_item_chest_get_anim(t_chest *chest);
@@ -286,5 +290,4 @@ void	sl_free_imgs(void *mlx, t_img **head);
 int		sl_exit_free(t_game *game);
 int		sl_exit_free_msg(t_game *game, char *msg, int exit_status);
 
-void    sl_gui_display(t_game *g);
 #endif

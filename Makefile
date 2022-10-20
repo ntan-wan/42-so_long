@@ -6,8 +6,17 @@ CFLAGS = -Wall -Wextra -Werror
 LIBFT_DIR = libft/
 LIBFT_LIB = libft.a
 
-LIBMLX = -Lmlx_linux -lmlx_Linux -Imlx_linux
-OTHER_LIBS = -lX11 -lXext -lm -lz
+UNAME := $(shell uname)
+ifeq ($(UNAME), Linux)
+	MLXFLAGS	= -Lmlx_linux -lmlx_Linux -L/usr/lib -I/usr/include -Imlx_linux -lXext -lX11 -lm -lz
+endif
+
+ifeq ($(UNAME), Darwin)
+	MLXFLAGS	= -L/usr/local/lib -lmlx -framework OpenGL -framework AppKit -Imlx
+endif
+
+# LIBMLX = -Lmlx_linux -lmlx_Linux -Imlx_linuxj
+# OTHER_LIBS = -lX11 -lXext -lm -lz
 HEADER_DIR =  includes/
 SRCS_DIR = srcs/
 SRCS = $(shell find srcs/*.c)
@@ -52,8 +61,11 @@ $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@echo "$(GREEN)Compiling : $< $(COLOR_OFF)"
 
 $(NAME) : $(OBJS_PREFIXED)
-	@$(CC) $(CFLAGS) $(OBJS_PREFIXED) -fsanitize=address $(LIBFT_DIR)$(LIBFT_LIB) $(LIBMLX) $(OTHER_LIBS) -o $(NAME)
+# @$(CC) $(CFLAGS) $(OBJS_PREFIXED) -fsanitize=address $(LIBFT_DIR)$(LIBFT_LIB) $(LIBMLX) $(OTHER_LIBS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS_PREFIXED) -fsanitize=address $(LIBFT_DIR)$(LIBFT_LIB) $(MLXFLAGS) -o $(NAME)
 	@echo "$(CYAN)$(NAME) done !$(COLOR_OFF)"
+
+bonus : all
 
 clean :
 	@rm -rf $(OBJS_DIR)

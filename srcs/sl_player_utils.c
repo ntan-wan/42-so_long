@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:48:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/19 09:09:49 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/20 12:34:26 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	sl_player_init(t_player **player)
 		new_player->dir = 0;
 		new_player->action = 0;
 		new_player->collected = 0;
+		new_player->move_count = 0;
 		new_player->idle_left = sl_anim_init();
 		new_player->idle_right = sl_anim_init();
 		new_player->move_left = sl_anim_init();
