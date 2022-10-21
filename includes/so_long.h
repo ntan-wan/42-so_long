@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/21 12:34:31 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:05:16 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,7 @@ int		sl_is_blocked_right(int p_x, int o_x);
 int		sl_is_blocked_range(int p_coord, int o_coord, int reduced_range);
 
 /* gui_utils */
-void	sl_gui_display_move(t_game *g);
+void	sl_gui_display_movecount(t_game *g);
 
 /* item_utils */
 t_chest	*sl_item_chest_init(int x, int y);
