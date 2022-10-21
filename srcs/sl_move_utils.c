@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 13:27:21 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/20 15:41:29 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/20 21:27:01 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ void	sl_move_player_step(t_game *g)
 		else if (p->action == IDLE_RIGHT)
 			p->dir = IDLE_RIGHT;
 		if (p->action == MOVE_LEFT
-			&& !sl_is_wall(g->map, p->x - STEP_SIZE, p->y + SPRITE_SIZE / 2))
-				p->x -= STEP_SIZE;
+			&& !sl_is_wall(g->map, p->x - P_STEP_SIZE, p->y + SPRITE_SIZE / 2))
+				p->x -= P_STEP_SIZE;
 		else if (p->action == MOVE_RIGHT
 			&& !sl_is_wall(g->map, p->x + SPRITE_SIZE, p->y + SPRITE_SIZE / 2))
-			p->x += STEP_SIZE;
+			p->x += P_STEP_SIZE;
 		else if (p->action == MOVE_UP
-			&& !sl_is_wall(g->map, p->x + SPRITE_SIZE / 2, p->y - STEP_SIZE))
-			p->y -= STEP_SIZE;
+			&& !sl_is_wall(g->map, p->x + SPRITE_SIZE / 2, p->y - P_STEP_SIZE))
+			p->y -= P_STEP_SIZE;
 		else if (p->action == MOVE_DOWN
 			&& !sl_is_wall(g->map, p->x + SPRITE_SIZE / 2, p->y + SPRITE_SIZE))
-			p->y += STEP_SIZE;
+			p->y += P_STEP_SIZE;
 	}
 	else
 		ft_printf("move_player_step: player not found\n");
@@ -50,11 +50,11 @@ void	sl_move_enemy_step(t_game *g)
 	{
 		e = (t_enemy *)enemies->content;
 		if (e->dir == IDLE_LEFT
-			&& !sl_is_wall(g->map, e->x - STEP_SIZE, e->y + SPRITE_SIZE / 2))
-			e->x -= STEP_SIZE;
+			&& !sl_is_wall(g->map, e->x - P_STEP_SIZE, e->y + SPRITE_SIZE / 2))
+			e->x -= E_STEP_SIZE;
 		else if (e->dir == IDLE_RIGHT
 			&& !sl_is_wall(g->map, e->x + SPRITE_SIZE, e->y + SPRITE_SIZE / 2))
-			e->x += STEP_SIZE;
+			e->x += E_STEP_SIZE;
 		else
 			e->dir = !e->dir;
 		enemies = enemies->next;

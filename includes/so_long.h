@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/20 18:18:15 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/21 12:34:31 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 # define ON_KEY_PRESS 2
 # define ON_KEY_RELEASE 3
 
-# define STEP_SIZE 4
+# define P_STEP_SIZE 4
+# define E_STEP_SIZE 4
 # define SPRITE_SIZE 64
 
 /* 
