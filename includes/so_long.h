@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/21 14:27:18 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/22 03:11:00 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,6 @@ typedef struct s_game
 	t_img		*imgs;
 	t_player	*player;
 	t_list		*enemies;
-	t_list		*chest;
 	t_list		*chests;
 	t_door		*door;
 	t_map		*map;
@@ -215,7 +214,7 @@ int		sl_is_blocked_range(int p_coord, int o_coord, int reduced_range);
 
 /* gui_utils */
 void	sl_gui_update_movecount(t_game *g);
-void	sl_gui_display_movecount(t_game *g);
+void	sl_gui_display_collected(t_game *g);
 
 /* item_utils */
 t_chest	*sl_item_chest_init(int x, int y);
@@ -292,4 +291,7 @@ void	sl_free_imgs(void *mlx, t_img **head);
 int		sl_exit_free(t_game *game);
 int		sl_exit_free_msg(t_game *game, char *msg, int exit_status);
 
+void	sl_gui_load_imgs(void *mlx, t_img **imgs);
+void	sl_gui_copy_imgs(t_img *buffer, t_game *g);
+void	sl_gui_put_movecount(t_img  *buffer, t_img *imgs, int n, int x);
 #endif

@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:40:09 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/21 14:27:30 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/22 03:20:32 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,67 @@ void	sl_gui_update_movecount(t_game *g)
 	prev_count_y = curr_count_y;
 }
 
-void	sl_gui_display_movecount(t_game *g)
+void	sl_gui_display_collected(t_game *g)
 {
-	char		*count;
+	char	*collected;
+	char	*chest_total;
 
-	count = ft_itoa(g->player->move_count);
-	mlx_string_put(g->mlx, g->win, SPRITE_SIZE, SPRITE_SIZE, WHITE, "moves :");
-	mlx_string_put(g->mlx, g->win, 2 * SPRITE_SIZE, SPRITE_SIZE, WHITE, count);
-	free(count);
+	collected = ft_itoa(g->player->collected);
+	chest_total = ft_itoa(ft_lstsize(g->chests));
+	mlx_string_put(g->mlx, g->win, SPRITE_SIZE, 2 * SPRITE_SIZE, WHITE, "collect :");
+	mlx_string_put(g->mlx, g->win, 2 * SPRITE_SIZE, 2 * SPRITE_SIZE, WHITE, collected);
+	mlx_string_put(g->mlx, g->win, 3 * SPRITE_SIZE, 2 * SPRITE_SIZE, WHITE, "/");
+	mlx_string_put(g->mlx, g->win, 4 * SPRITE_SIZE, 2 * SPRITE_SIZE, WHITE, chest_total);
+	free(collected);
+	free(chest_total);
+}
+
+void	sl_gui_put_movecount(t_img  *buffer, t_img *imgs, int n, int flag)
+{
+	static int	x;
+	char		*number_key;
+	
+	if (flag)
+		x = 0;
+	if (n >= 10)
+		sl_gui_put_movecount(buffer, imgs, n / 10, 0);
+	number_key = ft_itoa(n % 10);
+	sl_copy_img(buffer, sl_img_search(number_key, imgs), x * SPRITE_SIZE, 0);
+	free(number_key);
+	x++;
+}
+
+void	sl_gui_put_collcount(t_img  *buffer, t_img *imgs, int n, int flag)
+{
+	static int	x;
+	char		*number_key;
+	
+	if (flag)
+		x = 0;
+	if (n >= 10)
+		sl_gui_put_movecount(buffer, imgs, n / 10, 0);
+	number_key = ft_itoa(n % 10);
+	sl_copy_img(buffer, sl_img_search(number_key, imgs), x * SPRITE_SIZE, SPRITE_SIZE);
+	free(number_key);
+	x++;
+}
+
+void	sl_gui_copy_imgs(t_img *buffer, t_game *g)
+{
+	sl_gui_put_movecount(buffer, g->imgs, g->player->move_count, 1);
+	sl_gui_put_collcount(buffer, g->imgs, g->player->collected, 1);
+}
+
+void	sl_gui_load_imgs(void *mlx, t_img **imgs)
+{
+	sl_img_load(mlx, imgs, "0", "sprite/nums/0.xpm");
+	sl_img_load(mlx, imgs, "1", "sprite/nums/1.xpm");
+	sl_img_load(mlx, imgs, "2", "sprite/nums/2.xpm");
+	sl_img_load(mlx, imgs, "3", "sprite/nums/3.xpm");
+	sl_img_load(mlx, imgs, "4", "sprite/nums/4.xpm");
+	sl_img_load(mlx, imgs, "5", "sprite/nums/5.xpm");
+	sl_img_load(mlx, imgs, "6", "sprite/nums/6.xpm");
+	sl_img_load(mlx, imgs, "7", "sprite/nums/7.xpm");
+	sl_img_load(mlx, imgs, "8", "sprite/nums/8.xpm");
+	sl_img_load(mlx, imgs, "9", "sprite/nums/9.xpm");
 }
