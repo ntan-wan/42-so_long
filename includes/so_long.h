@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/22 03:11:00 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/22 19:03:05 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@
 # define ON_KEY_PRESS 2
 # define ON_KEY_RELEASE 3
 
+# define IMG_GAP_X 32
+# define IMG_GAP_Y 16
+
+/* 
+	STEP_SIZE = next number must be divisible by 8 & lesser than SPRITE_SIZE
+ */
 # define P_STEP_SIZE 4
 # define E_STEP_SIZE 4
 # define SPRITE_SIZE 64
@@ -214,7 +220,12 @@ int		sl_is_blocked_range(int p_coord, int o_coord, int reduced_range);
 
 /* gui_utils */
 void	sl_gui_update_movecount(t_game *g);
-void	sl_gui_display_collected(t_game *g);
+void	sl_gui_copy_imgs(t_img *buffer, t_game *g);
+
+/* gui_utils2 */
+t_img	*sl_gui_get_gold_num(int n, t_img *imgs);
+void	sl_gui_load_num_imgs(void *mlx, t_img **imgs);
+void	sl_gui_load_char_imgs(void *mlx, t_img **imgs);
 
 /* item_utils */
 t_chest	*sl_item_chest_init(int x, int y);
@@ -291,7 +302,4 @@ void	sl_free_imgs(void *mlx, t_img **head);
 int		sl_exit_free(t_game *game);
 int		sl_exit_free_msg(t_game *game, char *msg, int exit_status);
 
-void	sl_gui_load_imgs(void *mlx, t_img **imgs);
-void	sl_gui_copy_imgs(t_img *buffer, t_game *g);
-void	sl_gui_put_movecount(t_img  *buffer, t_img *imgs, int n, int x);
 #endif

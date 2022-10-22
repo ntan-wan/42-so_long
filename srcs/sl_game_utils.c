@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 10:08:26 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/22 01:24:11 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/22 17:08:46 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	sl_game_load_imgs(t_game *g)
 	sl_player_load_imgs_move(g->mlx, &g->imgs);
 	sl_item_load_imgs_chest(g->mlx, &g->imgs);
 	sl_door_load_imgs(g->mlx, &g->imgs);
-	sl_gui_load_imgs(g->mlx, &g->imgs);
+	sl_gui_load_num_imgs(g->mlx, &g->imgs);
+	sl_gui_load_char_imgs(g->mlx, &g->imgs);
 }
 
 void	sl_game_load_anims(t_game *g)
