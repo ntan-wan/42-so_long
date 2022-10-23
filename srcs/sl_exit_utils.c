@@ -6,11 +6,18 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:23:53 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/19 16:04:47 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/23 08:55:38 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+int	sl_exit_msg(char *msg, int exit_status)
+{
+	ft_printf(msg);
+	exit(exit_status);
+	return (0);
+}
 
 int	sl_exit_free(t_game *game)
 {

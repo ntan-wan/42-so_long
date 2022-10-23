@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/22 18:55:57 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/23 08:57:05 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ int	main(int ac, char **av)
 {
 	t_game	game;
 
-	if (ac > 2)
-		exit(EXIT_FAILURE);
+	if (ac != 2)
+		sl_exit_msg("invalid number of arguments\n", EXIT_FAILURE);
 	sl_game_init_all(&game);
 	sl_map_setup(&game, av[1]);
 	sl_game_load_imgs(&game);

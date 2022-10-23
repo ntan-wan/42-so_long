@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:05:08 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/18 21:47:14 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/23 11:58:33 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,6 @@ void	sl_map_init(t_map **map)
 	*map = new_map;
 }
 
-static int	sl_map_open_fd(t_game *g, char *path)
-{
-	int		fd;
-	char	*file_extension;
-
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
-		sl_exit_free_msg(g, "open_fd: unable to read map\n", EXIT_FAILURE);
-	file_extension = ft_substr(path, ft_strlen(path)- 4, 4);
-	if (ft_strncmp(".ber", file_extension, 4))
-		sl_exit_free_msg(g, "open_fd: wrong file extension\n", EXIT_FAILURE);
-	free(file_extension);
-	return (fd);
-}
-
 /* 
 	- return (map->width) instead of return (1).
 	If map_data is null, map->width will remain as 0 and become 'false'.
@@ -67,20 +52,37 @@ static int	sl_map_get_data(t_map *map, int fd)
 	return (map->width);
 }
 
-void	sl_map_setup(t_game *g, char *path)
+static void	sl_map_open_fd(t_game *g, char *path)
 {
 	int		fd;
+	char	*file_extension;
 
-	fd = sl_map_open_fd(g, path);
-	if (!sl_map_get_data(g->map, fd))
-		sl_exit_free_msg(g, "map_setup: map is empty\n", EXIT_FAILURE);
-	else if (!sl_map_is_rect(g->map))
-		sl_exit_free_msg(g, "map_setup: map is not rectangular\n", EXIT_FAILURE);
+	fd = open(path, O_RDONLY);
+	file_extension = ft_substr(path, ft_strlen(path)- 4, 4);
+	if (ft_strncmp(".ber", file_extension, 4))
+		sl_exit_free_msg(g, "open_fd: wrong file extension\n", EXIT_FAILURE);
+	else if (fd == -1)
+		sl_exit_free_msg(g, "open_fd: unable to read map\n", EXIT_FAILURE);
+	else if (!sl_map_get_data(g->map, fd))
+		sl_exit_free_msg(g, "map_check: map is empty\n", EXIT_FAILURE);
+	free(file_extension);
+	close(fd);
+}
+
+static void	sl_map_error_check(t_game *g)
+{
+	if (!sl_map_is_rect(g->map))
+		sl_exit_free_msg(g, "map_check: map is not rectangular\n", EXIT_FAILURE);
 	else if (!sl_map_is_surrounded(g->map))
-		sl_exit_free_msg(g, "map_setup: not surrounded by wall\n", EXIT_FAILURE);
+		sl_exit_free_msg(g, "map_check: not surrounded by wall\n", EXIT_FAILURE);
 	else if (sl_map_is_dup_char(g->map))
-		sl_exit_free_msg(g, "map_setup: more than 1 start/exit\n", EXIT_FAILURE);
+		sl_exit_free_msg(g, "map_check: more than 1 start/exit\n", EXIT_FAILURE);
+}
+
+void	sl_map_setup(t_game *g, char *path)
+{
+	sl_map_open_fd(g, path);
+	sl_map_error_check(g);
 	sl_map_parse_data(g, sl_map_parse_character);
 	sl_map_check_missing_char(g);
-	close(fd);
 }
