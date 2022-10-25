@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 08:48:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/21 12:10:34 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/25 13:02:35 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	sl_player_set_coord(t_player *player, int x, int y)
 
 t_img	*sl_player_get_anim(t_player *player)
 {
-	t_anim				*anim;
+	t_anim				*anim = NULL;
 	static unsigned int	timer;
 	static unsigned int	frame;
 

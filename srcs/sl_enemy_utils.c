@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:21:57 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/19 13:00:01 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/25 12:59:56 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_enemy	*sl_enemy_init(int x, int y)
 
 static t_img	*sl_enemy_get_anim(t_enemy *e)
 {
-	t_anim				*anim;
+	t_anim				*anim = NULL;
 	static unsigned int	timer;
 	static unsigned int	frame;
 

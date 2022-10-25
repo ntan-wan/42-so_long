@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:53:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/19 16:02:50 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/25 17:56:21 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	sl_free_map(void *mlx, t_map **map)
 {
 	if ((*map)->outline)
 		mlx_destroy_image(mlx, (*map)->outline->img);
-	(void)mlx;
 	ft_lstclear(&(*map)->data, free);
 	free((*map)->wall);
 	free((*map)->floor);
