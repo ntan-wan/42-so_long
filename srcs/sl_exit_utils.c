@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:23:53 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/25 17:57:40 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/26 11:52:21 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	sl_exit_msg(char *msg, int exit_status)
 	return (0);
 }
 
-int	sl_exit_free(t_game *game)
+int	sl_exit_free_success(t_game *game)
 {
 	sl_free_content(game);
 	ft_printf("exit success\n");

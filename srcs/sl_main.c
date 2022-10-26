@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 08:59:39 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/25 17:56:33 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/26 11:51:40 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	main(int ac, char **av)
 	sl_game_load_imgs(&game);
 	sl_game_load_anims(&game);
 	sl_map_parse_data(&game, sl_map_parse_image);
-	mlx_hook(game.win, ON_DESTROY, 0, sl_exit_free, &game);
+	mlx_hook(game.win, ON_DESTROY, 0, sl_exit_free_success, &game);
 	mlx_hook(game.win, ON_KEY_PRESS, 1L << 0, sl_key_press, &game);
 	mlx_hook(game.win, ON_KEY_RELEASE, 1L << 1, sl_key_release, &game);
 	mlx_loop_hook(game.mlx, sl_render, &game);

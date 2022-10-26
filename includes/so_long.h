@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/25 15:49:24 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:05:50 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,12 @@ typedef struct s_player
 	t_anim	*move_right;
 	t_anim	*move_left;
 }	t_player;
+
+typedef struct s_grid
+{
+	char	content;
+	int		visited;
+}	t_grid;
 
 typedef struct s_map
 {
@@ -300,8 +306,19 @@ void	sl_free_content(t_game *game);
 void	sl_free_imgs(void *mlx, t_img **head);
 
 /* exit_utils */
-int		sl_exit_free(t_game *game);
+int		sl_exit_free_success(t_game *game);
 int		sl_exit_msg(char *msg, int exit_status);
 int		sl_exit_free_msg(t_game *game, char *msg, int exit_status);
 
+typedef struct s_map_data
+{
+	int		x;
+	int		y;
+	char	content;
+}	t_map_data;
+
+t_grid	**sl_map_data_to_grid(t_map *map);
+void	sl_print_grid(t_grid **grid, int map_width, int map_height);
+void	sl_free_map_data_grid(t_grid **grid);
+void	sl_check_exit_path(t_map *map, t_player *p, t_door *d);
 #endif
