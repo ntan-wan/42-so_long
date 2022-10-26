@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:05:08 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/26 11:49:15 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/27 06:30:38 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,8 @@ void	sl_map_setup(t_game *g, char *path)
 	sl_map_error_check(g);
 	sl_map_parse_data(g, sl_map_parse_character);
 	sl_map_check_missing_char(g);
-	sl_check_exit_path(g->map, g->player, g->door);
+	sl_check_path_door(g->map, g->player, g->door);
+	// sl_check_path_chests(g->map, g->player, g->chests);
+	sl_check_path_chests2(g->map, g->player, g->chests);
+	// sl_check_path_chests2(g);
 }

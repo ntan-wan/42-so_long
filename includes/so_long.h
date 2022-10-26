@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/26 14:05:50 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/26 23:16:29 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,6 +277,11 @@ void	sl_player_load_imgs_move(void *mlx, t_img **imgs);
 void	sl_player_load_anim_idle(t_player *player, t_img *imgs);
 void	sl_player_load_anim_move(t_player *player, t_img *imgs);
 
+/* grid_utils */
+t_grid	**sl_map_data_to_grid(t_map *map);
+void	sl_grid_reset(t_grid **grid, int map_width, int map_height);
+void	sl_print_grid(t_grid **grid, int map_width, int map_height);
+
 /* map_utils */
 void	sl_map_init(t_map **map);
 void	sl_map_setup(t_game *g, char *path);
@@ -303,6 +308,7 @@ void	sl_free_item_chest(t_chest **chest);
 /* free_utils2 */
 void	sl_free_anim(t_anim **anim);
 void	sl_free_content(t_game *game);
+void	sl_free_map_data_grid(t_grid **grid);
 void	sl_free_imgs(void *mlx, t_img **head);
 
 /* exit_utils */
@@ -310,15 +316,9 @@ int		sl_exit_free_success(t_game *game);
 int		sl_exit_msg(char *msg, int exit_status);
 int		sl_exit_free_msg(t_game *game, char *msg, int exit_status);
 
-typedef struct s_map_data
-{
-	int		x;
-	int		y;
-	char	content;
-}	t_map_data;
 
-t_grid	**sl_map_data_to_grid(t_map *map);
-void	sl_print_grid(t_grid **grid, int map_width, int map_height);
-void	sl_free_map_data_grid(t_grid **grid);
-void	sl_check_exit_path(t_map *map, t_player *p, t_door *d);
+void	sl_check_path_door(t_map *map, t_player *p, t_door *d);
+void	sl_check_path_chests(t_map *map, t_player *p, t_list *chests);
+void	sl_check_path_chests2(t_map *map, t_player *p, t_list *chests);
+// void	sl_check_path_chests2(t_game *g);
 #endif
