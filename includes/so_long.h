@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/27 12:12:32 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/27 15:20:04 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,6 +233,10 @@ int		sl_is_blocked_down(int p_y, int o_y);
 int		sl_is_blocked_right(int p_x, int o_x);
 int		sl_is_blocked_range(int p_coord, int o_coord, int reduced_range);
 
+/* check_path_utils */
+void	sl_check_path_door(t_game *g);
+void	sl_check_path_chests(t_game *g);
+
 /* gui_utils */
 void	sl_gui_update_movecount(t_game *g);
 void	sl_gui_copy_imgs(t_img *buffer, t_game *g);
@@ -285,9 +289,6 @@ void	sl_player_load_imgs_move(void *mlx, t_img **imgs);
 void	sl_player_load_anim_idle(t_player *player, t_img *imgs);
 void	sl_player_load_anim_move(t_player *player, t_img *imgs);
 
-/* check_path_utils */
-void	sl_check_path_door(t_map *map, t_player *p, t_door *d);
-void	sl_check_path_chests(t_map *map, t_player *p, t_list *chests);
 
 /* grid_utils */
 t_grid	**sl_map_data_to_grid(t_map *map);
@@ -327,4 +328,8 @@ void	sl_free_imgs(void *mlx, t_img **head);
 int		sl_exit_free_success(t_game *game);
 int		sl_exit_msg(char *msg, int exit_status);
 int		sl_exit_free_msg(t_game *game, char *msg, int exit_status);
+
+
+void	sl_free_chests(t_list **chests);
+void	sl_free_enemies(t_list **enemies);
 #endif

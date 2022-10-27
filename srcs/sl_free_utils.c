@@ -6,11 +6,54 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:53:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/27 12:17:15 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/27 14:50:14 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+void	sl_free_chests(t_list **chests)
+{
+	t_list	*ptr_list;
+	t_list	*next;
+	t_chest	*chest;
+	
+	ptr_list = *chests;
+	while (ptr_list)
+	{
+		next = ptr_list->next;
+		chest = (t_chest *)ptr_list->content;
+		sl_free_anim(&chest->close);
+		sl_free_anim(&chest->open);
+		sl_free_anim(&chest->shine);
+		free(chest);
+		free(ptr_list);
+		ptr_list = next;
+	}
+	*chests = NULL;
+}
+
+void	sl_free_enemies(t_list **enemies)
+{
+	t_list	*ptr_list;
+	t_list	*next;
+	t_enemy *enemy;
+	
+	ptr_list = *enemies;
+	while (ptr_list)
+	{
+		next = ptr_list->next;
+		enemy = (t_enemy *)ptr_list->content;
+		sl_free_anim(&enemy->idle_left);
+		sl_free_anim(&enemy->idle_right);
+		sl_free_anim(&enemy->move_left);
+		sl_free_anim(&enemy->move_right);
+		free(enemy);
+		free(ptr_list);
+		ptr_list = next;
+	}
+	*enemies = NULL;
+}
 
 void	sl_free_door(t_door **door)
 {
@@ -28,10 +71,10 @@ void	sl_free_player(t_player **player)
 {
 	if (*player)
 	{
-		sl_free_anim(&(*player)->idle_left);
-		sl_free_anim(&(*player)->idle_right);
-		sl_free_anim(&(*player)->move_left);
 		sl_free_anim(&(*player)->move_right);
+		sl_free_anim(&(*player)->move_left);
+		sl_free_anim(&(*player)->idle_right);
+		sl_free_anim(&(*player)->idle_left);
 		free(*player);
 		*player = NULL;
 	}
