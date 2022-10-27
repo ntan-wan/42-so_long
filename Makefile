@@ -63,7 +63,8 @@ $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 $(NAME) : $(OBJS_PREFIXED)
 # @$(CC) $(CFLAGS) $(OBJS_PREFIXED) -fsanitize=address $(LIBFT_DIR)$(LIBFT_LIB) $(LIBMLX) $(OTHER_LIBS) -o $(NAME)
 # @$(CC) $(CFLAGS) $(OBJS_PREFIXED) $(LIBFT_DIR)$(LIBFT_LIB) $(MLXFLAGS) -o $(NAME)
-	@$(CC) $(CFLAGS) $(OBJS_PREFIXED) -fsanitize=address $(LIBFT_DIR)$(LIBFT_LIB) $(MLXFLAGS) -o $(NAME)
+# @$(CC) $(CFLAGS) $(OBJS_PREFIXED) -fsanitize=address $(LIBFT_DIR)$(LIBFT_LIB) $(MLXFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS_PREFIXED) $(LIBFT_DIR)$(LIBFT_LIB) $(MLXFLAGS) -o $(NAME)
 	@echo "$(CYAN)$(NAME) done !$(COLOR_OFF)"
 
 bonus : all

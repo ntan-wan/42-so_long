@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:53:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/26 14:01:15 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/27 12:17:15 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	sl_free_map(void *mlx, t_map **map)
 void	sl_free_map_data_grid(t_grid **grid)
 {
 	int	i;
-	
+
 	i = -1;
 	while (grid[++i])
 		free(grid[i]);
