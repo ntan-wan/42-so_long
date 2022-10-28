@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:40:09 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/22 19:00:28 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/28 18:43:01 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ static void	sl_gui_put_movecount(t_img *buffer, t_img *imgs, int n, int flag)
 	char		*number_key;
 
 	if (flag)
-		x = 0;
+		x = 2;
 	if (n >= 10)
 		sl_gui_put_movecount(buffer, imgs, n / 10, 0);
 	number_key = ft_itoa(n % 10);
 	sl_copy_img(buffer, sl_img_search(number_key, imgs),
-		x * (SPRITE_SIZE - IMG_GAP_X), SPRITE_SIZE - IMG_GAP_Y);
+		x * (SPRITE_SIZE - IMG_GAP_X), SPRITE_SIZE);
 	free(number_key);
 	x++;
 }
@@ -33,7 +33,7 @@ static void	sl_gui_put_collcount(t_img *buffer, t_img *imgs, int n, int flag)
 	static int	x;
 
 	if (flag)
-		x = 0;
+		x = 2;
 	if (n >= 10)
 		sl_gui_put_collcount(buffer, imgs, n / 10, 0);
 	sl_copy_img(buffer, sl_gui_get_gold_num(n % 10, imgs),
@@ -64,8 +64,13 @@ void	sl_gui_copy_imgs(t_img *buffer, t_game *g)
 
 	chest_remaining = ft_lstsize(g->chests) - g->player->collected;
 	if (chest_remaining)
+	{
+		sl_copy_img(buffer, sl_img_search("coin3", g->imgs), 0, 0);
 		sl_gui_put_collcount(buffer, g->imgs, chest_remaining, 1);
+	}
 	else
 		sl_gui_put_escape(buffer, g->imgs);
+	sl_copy_img(buffer, sl_img_search("feet_icon", g->imgs),
+		0, SPRITE_SIZE + IMG_GAP_Y);
 	sl_gui_put_movecount(buffer, g->imgs, g->player->move_count, 1);
 }

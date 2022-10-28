@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/28 14:34:29 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/28 18:39:40 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define ON_KEY_RELEASE 3
 
 # define IMG_GAP_X 32
-# define IMG_GAP_Y 16
+# define IMG_GAP_Y 4
 
 /* 
 	STEP_SIZE = next number must be divisible by 8 & lesser than SPRITE_SIZE

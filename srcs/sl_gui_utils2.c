@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 08:54:16 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/22 17:11:38 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/28 18:33:52 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,5 @@ void	sl_gui_load_char_imgs(void *mlx, t_img **imgs)
 	sl_img_load(mlx, imgs, "A", "sprite/char/A.xpm");
 	sl_img_load(mlx, imgs, "P", "sprite/char/P.xpm");
 	sl_img_load(mlx, imgs, "!", "sprite/char/exclamation.xpm");
+	sl_img_load(mlx, imgs, "feet_icon", "sprite/icons/feet.xpm");
 }
