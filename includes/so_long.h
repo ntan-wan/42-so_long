@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 12:13:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/27 15:20:04 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/28 13:57:31 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -289,7 +289,6 @@ void	sl_player_load_imgs_move(void *mlx, t_img **imgs);
 void	sl_player_load_anim_idle(t_player *player, t_img *imgs);
 void	sl_player_load_anim_move(t_player *player, t_img *imgs);
 
-
 /* grid_utils */
 t_grid	**sl_map_data_to_grid(t_map *map);
 void	sl_grid_reset(t_grid **grid, int map_width, int map_height);
@@ -316,7 +315,8 @@ void	sl_map_check_missing_char(t_game *g);
 void	sl_free_map(void *mlx, t_map **map);
 void	sl_free_door(t_door **door);
 void	sl_free_player(t_player **player);
-void	sl_free_item_chest(t_chest **chest);
+void	sl_free_chests(t_list **chests);
+void	sl_free_enemies(t_list **enemies);
 
 /* free_utils2 */
 void	sl_free_anim(t_anim **anim);
@@ -328,8 +328,4 @@ void	sl_free_imgs(void *mlx, t_img **head);
 int		sl_exit_free_success(t_game *game);
 int		sl_exit_msg(char *msg, int exit_status);
 int		sl_exit_free_msg(t_game *game, char *msg, int exit_status);
-
-
-void	sl_free_chests(t_list **chests);
-void	sl_free_enemies(t_list **enemies);
 #endif

@@ -6,11 +6,21 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 08:08:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/28 13:10:59 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/28 13:58:05 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+void	sl_free_map_data_grid(t_grid **grid)
+{
+	int	i;
+
+	i = -1;
+	while (grid[++i])
+		free(grid[i]);
+	free(grid);
+}
 
 void	sl_free_imgs(void *mlx, t_img **head)
 {
@@ -54,7 +64,6 @@ void	sl_free_content(t_game *g)
 	{
 		sl_free_imgs(g->mlx, &g->imgs);
 		mlx_destroy_window(g->mlx, g->win);
-		// XCloseDisplay(((t_xvar *)g->mlx)->display);
 		sl_free_chests(&g->chests);
 		sl_free_door(&g->door);
 		sl_free_enemies(&g->enemies);

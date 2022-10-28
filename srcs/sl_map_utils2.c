@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 20:35:59 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/28 11:51:30 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/28 13:59:00 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ void	sl_map_parse_image(t_game *g, char c, int x, int y)
 	else if (ft_strchr("0CPEY\n", c))
 		sl_copy_img(g->map->outline, sl_img_search("floor", g->imgs),
 			x * SPRITE_SIZE, y * SPRITE_SIZE);
-	// else
-		// sl_exit_free_msg(g, "map_parse_image: invalid char\n", EXIT_FAILURE);
 }
 
 void	sl_map_parse_data(t_game *g, void (*f)(t_game *, char, int, int))

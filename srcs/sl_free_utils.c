@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:53:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/28 13:24:38 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/28 13:58:42 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	sl_free_chests(t_list **chests)
 	t_list	*ptr_list;
 	t_list	*next;
 	t_chest	*chest;
-	
+
 	ptr_list = *chests;
 	while (ptr_list)
 	{
@@ -37,8 +37,8 @@ void	sl_free_enemies(t_list **enemies)
 {
 	t_list	*ptr_list;
 	t_list	*next;
-	t_enemy *enemy;
-	
+	t_enemy	*enemy;
+
 	ptr_list = *enemies;
 	while (ptr_list)
 	{
@@ -95,14 +95,4 @@ void	sl_free_map(void *mlx, t_map **map)
 	}
 	free(*map);
 	*map = NULL;
-}
-
-void	sl_free_map_data_grid(t_grid **grid)
-{
-	int	i;
-
-	i = -1;
-	while (grid[++i])
-		free(grid[i]);
-	free(grid);
 }

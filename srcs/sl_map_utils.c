@@ -6,35 +6,18 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:05:08 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/28 13:27:51 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:01:55 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	sl_map_init(t_map **map)
-{
-	t_map	*new_map;
-
-	new_map = (t_map *)malloc(sizeof(t_map));
-	if (new_map)
-	{
-		new_map->width = 0;
-		new_map->height = 0;
-		new_map->outline = NULL;
-		new_map->wall = NULL;
-		new_map->floor = NULL;
-		new_map->data = NULL;
-	}
-	else
-		ft_printf("map_init: init failed\n");
-	*map = new_map;
-}
-
 /* 
 	- return (map->width + map->height) instead of return (1).
-	If map_data is null, map->width + height will remain as 0 and become 'false'.
-	If map_data is not null, map->width + height will be manipulated and become 'true'.	
+	If map_data is null,
+	map->width + height will remain as 0 and become 'false'.
+	If map_data is not null,
+	map->width + height will be manipulated and become 'true'.	
  */
 static int	sl_map_get_data(t_map *map, int fd)
 {
@@ -69,7 +52,7 @@ static void	sl_map_open_fd(t_game *g, char *path)
 	close(fd);
 }
 
-int	sl_is_invalid_char(t_map *map)
+static int	sl_is_invalid_char(t_map *map)
 {
 	int		x;
 	int		y;
@@ -85,7 +68,7 @@ int	sl_is_invalid_char(t_map *map)
 		str = (char *)map_data->content;
 		while (str[++x])
 		{
-			if (!ft_strchr("10PECY\n", str[x]))	
+			if (!ft_strchr("10PECY\n", str[x]))
 				return (1);
 		}
 		map_data = map_data->next;

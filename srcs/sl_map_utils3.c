@@ -6,11 +6,30 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:06:13 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/19 13:23:19 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:01:34 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+void	sl_map_init(t_map **map)
+{
+	t_map	*new_map;
+
+	new_map = (t_map *)malloc(sizeof(t_map));
+	if (new_map)
+	{
+		new_map->width = 0;
+		new_map->height = 0;
+		new_map->outline = NULL;
+		new_map->wall = NULL;
+		new_map->floor = NULL;
+		new_map->data = NULL;
+	}
+	else
+		ft_printf("map_init: init failed\n");
+	*map = new_map;
+}
 
 /* 
 	- return (y) instead of return (1).
