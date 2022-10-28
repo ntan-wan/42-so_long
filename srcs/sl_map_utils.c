@@ -6,13 +6,13 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:05:08 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/28 14:01:55 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:29:39 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-/* 
+/*
 	- return (map->width + map->height) instead of return (1).
 	If map_data is null,
 	map->width + height will remain as 0 and become 'false'.
