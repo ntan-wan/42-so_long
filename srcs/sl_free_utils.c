@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:53:24 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/27 14:50:14 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/28 13:24:38 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,17 @@ void	sl_free_player(t_player **player)
 
 void	sl_free_map(void *mlx, t_map **map)
 {
+	if ((*map)->width || (*map)->height)
+	{
+		ft_lstclear(&(*map)->data, free);
+		(*map)->data = NULL;
+	}
 	if ((*map)->outline)
+	{
 		mlx_destroy_image(mlx, (*map)->outline->img);
-	ft_lstclear(&(*map)->data, free);
-	free((*map)->wall);
-	free((*map)->floor);
-	free((*map)->outline);
+		free((*map)->outline);
+		(*map)->outline = NULL;
+	}
 	free(*map);
 	*map = NULL;
 }

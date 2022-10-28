@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:05:08 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/27 15:21:04 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/28 13:27:51 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	sl_map_init(t_map **map)
 }
 
 /* 
-	- return (map->width) instead of return (1).
-	If map_data is null, map->width will remain as 0 and become 'false'.
-	If map_data is not null, map->width will be manipulated and become 'true'.	
+	- return (map->width + map->height) instead of return (1).
+	If map_data is null, map->width + height will remain as 0 and become 'false'.
+	If map_data is not null, map->width + height will be manipulated and become 'true'.	
  */
 static int	sl_map_get_data(t_map *map, int fd)
 {
@@ -49,7 +49,7 @@ static int	sl_map_get_data(t_map *map, int fd)
 	}
 	if (map->data)
 		map->width = ft_strlen(map->data->content) - 1;
-	return (map->width);
+	return (map->width + map->height);
 }
 
 static void	sl_map_open_fd(t_game *g, char *path)
@@ -69,6 +69,30 @@ static void	sl_map_open_fd(t_game *g, char *path)
 	close(fd);
 }
 
+int	sl_is_invalid_char(t_map *map)
+{
+	int		x;
+	int		y;
+	char	*str;
+	t_list	*map_data;
+
+	y = -1;
+	map_data = map->data;
+	while (map_data)
+	{
+		++y;
+		x = -1;
+		str = (char *)map_data->content;
+		while (str[++x])
+		{
+			if (!ft_strchr("10PECY\n", str[x]))	
+				return (1);
+		}
+		map_data = map_data->next;
+	}
+	return (0);
+}
+
 static void	sl_map_error_check(t_game *g)
 {
 	if (!sl_map_is_rect(g->map))
@@ -77,6 +101,8 @@ static void	sl_map_error_check(t_game *g)
 		sl_exit_free_msg(g, "map_check: not surrounded by wall\n", EXIT_FAILURE);
 	else if (sl_map_is_dup_char(g->map))
 		sl_exit_free_msg(g, "map_check: more than 1 start/exit\n", EXIT_FAILURE);
+	else if (sl_is_invalid_char(g->map))
+		sl_exit_free_msg(g, "map_check: invalid char\n", EXIT_FAILURE);
 }
 
 void	sl_map_setup(t_game *g, char *path)

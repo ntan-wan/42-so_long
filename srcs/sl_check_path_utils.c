@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 13:32:18 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/27 15:22:44 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:10:31 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,11 @@ void	sl_check_path_chests(t_game *g)
 		sl_grid_reset(grid, g->map->width, g->map->height);
 		if (!path_data->valid)
 		{
-			ft_printf("x = %d, y = %d\n",
+			ft_printf("check_path_chests: invalid path to (%d, %d)\n",
 				c->x / SPRITE_SIZE, c->y / SPRITE_SIZE);
 			free(path_data);
 			sl_free_map_data_grid(grid);
-			sl_exit_free_msg(g, "check_path_chests: invalid path\n", EXIT_FAILURE);
+			sl_exit_free_msg(g, "", EXIT_FAILURE);
 		}
 		chest = chest->next;
 		free(path_data);
