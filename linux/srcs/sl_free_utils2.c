@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 08:08:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/28 18:51:48 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/31 13:04:30 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,6 @@ void	sl_free_anim(t_anim **anim)
 	*anim = NULL;
 }
 
-/* 
-	macOS = XCloseDisplay(((t_xvar *)g->mlx)->display);
-	linux = mlx_destroy_display(g->mlx);
- */
 void	sl_free_content(t_game *g)
 {
 	if (g)
