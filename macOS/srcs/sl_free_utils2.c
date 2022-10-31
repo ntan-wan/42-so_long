@@ -6,7 +6,7 @@
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 08:08:45 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/10/28 18:52:33 by ntan-wan         ###   ########.fr       */
+/*   Updated: 2022/10/31 13:00:03 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	sl_free_content(t_game *g)
 		sl_free_enemies(&g->enemies);
 		sl_free_player(&g->player);
 		sl_free_map(g->mlx, &g->map);
-		XCloseDisplay(((t_xvar *)g->mlx)->display);
 		free(g->mlx);
 		g->mlx = NULL;
 	}
